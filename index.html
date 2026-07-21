@@ -222,7 +222,7 @@ h3{font-size:var(--text-xl);font-weight:600}
 /* ============ 5 · SIGNATURE — ANATOMY OF A KIT ============ */
 .sig-track{position:relative}
 .sig-viewport{min-height:100vh;display:flex;align-items:center;padding-block:5rem var(--space-8)}
-.sig-stage{position:relative;background:var(--color-paper);color:var(--color-paper-ink);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);width:100%;height:min(80vh,44rem);overflow:hidden;display:grid;grid-template-columns:17.5rem 1fr}
+.sig-stage{position:relative;background:var(--color-paper);color:var(--color-paper-ink);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);width:100%;height:clamp(38rem,80vh,44rem);overflow:hidden;display:grid;grid-template-columns:17.5rem 1fr}
 .sig-head{position:absolute;top:var(--space-6);left:var(--space-8);z-index:5}
 .sig-head .mono{color:var(--color-paper-muted)}
 .sig-head h2{font-size:clamp(1.35rem,1.15rem + .9vw,1.6rem);margin-top:var(--space-2);max-width:15ch;text-wrap:balance}
@@ -231,7 +231,7 @@ h3{font-size:var(--text-xl);font-weight:600}
 .manifest .total{border-bottom:0;border-top:2px solid var(--color-paper-ink);font-weight:500;color:var(--color-paper-ink);margin-top:.3em}
 .manifest .total .sum{color:var(--color-brass-ink)}
 .sig-field{position:relative}
-.sig-crate{position:absolute;inset:16% 8% 20% 6%;border:1.5px dashed rgba(30,58,46,.22);border-radius:var(--radius-lg)}
+.sig-crate{position:absolute;inset:16% 8% 22% 6%;border:1.5px dashed rgba(30,58,46,.22);border-radius:var(--radius-lg)}
 .sig-crate.solid{border-style:solid;border-color:var(--color-brass-ink)}
 .sig-crate .cornertag{position:absolute;top:.65em;left:var(--space-4);background:var(--color-paper);padding-inline:var(--space-2);color:var(--color-paper-muted)}
 .sig-item{position:absolute;width:20%;min-width:6.2rem;background:#FFFDF8;color:var(--color-paper-ink);border:1px solid rgba(30,58,46,.14);border-radius:var(--radius-sm);box-shadow:0 1px 2px rgba(30,58,46,.08),0 2px 8px rgba(30,58,46,.07);padding:var(--space-2)}
@@ -300,7 +300,7 @@ h3{font-size:var(--text-xl);font-weight:600}
 .owners .epigraph cite{font-style:normal;font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:var(--tracking-mono);text-transform:uppercase;display:block;margin-top:var(--space-2);color:rgba(22,52,42,.5)}
 .own-grid{display:grid;gap:var(--space-4);grid-template-columns:1fr}
 .own{border:1px solid rgba(22,52,42,.16);border-radius:var(--radius-md);padding:var(--space-6);background:#FFFDF8}
-.own .avatar{width:3rem;height:3rem;border-radius:50%;background:var(--color-accent);color:var(--color-btn-ink);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;margin-bottom:var(--space-4)}
+.own .ownitem{font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:var(--tracking-mono);text-transform:uppercase;color:rgba(22,52,42,.6);margin-bottom:var(--space-4)}
 .own h3{font-size:1.15rem;color:var(--color-on-deep);margin-bottom:var(--space-2)}
 .own .lends{font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:var(--tracking-mono);text-transform:uppercase;color:rgba(22,52,42,.66);line-height:1.8}
 .own .lends .keeps{color:var(--color-brass-ink)}
@@ -308,7 +308,6 @@ h3{font-size:var(--text-xl);font-weight:600}
 .lister-strip p{color:rgba(22,52,42,.82)}
 .lister-strip a{color:var(--color-ui-ink);text-decoration:none;font-weight:500}
 .lister-strip a:hover{text-decoration:underline}
-.mock-note{margin-top:var(--space-8);color:rgba(22,52,42,.45)}
 
 /* ============ 9 · PROTECTED, CALMLY + performed beat + FAQ ============ */
 .covered{padding-block:var(--section-pad)}
@@ -335,6 +334,9 @@ h3{font-size:var(--text-xl);font-weight:600}
 .pphoto .mono{position:absolute;left:var(--space-2);bottom:var(--space-2);color:var(--color-paper-ink);font-size:.58rem;background:rgba(246,242,232,.85);border-radius:4px;padding:.15em .5em}
 .stamp{position:absolute;bottom:-1.1em;left:50%;transform:translateX(-50%);border:2px solid var(--color-ui);color:var(--color-ui);background:var(--color-surface);font-family:var(--font-mono);font-size:var(--text-sm);letter-spacing:.14em;text-transform:uppercase;border-radius:var(--radius-sm);padding:.5em 1.2em;rotate:-4deg}
 .prot-caption{text-align:center;color:var(--color-muted)}
+.mini-btn{display:inline-block;font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:var(--tracking-mono);text-transform:uppercase;background:var(--color-btn-ink);color:var(--color-ink);border-radius:var(--radius-pill);padding:.4em 1.1em;margin-left:var(--space-3);vertical-align:middle;box-shadow:var(--shadow-sm)}
+.mini-btn.cond{position:absolute;bottom:-1.1em;left:50%;transform:translateX(-50%);margin-left:0;z-index:5;white-space:nowrap}
+.prot-cursor{position:absolute;top:0;left:0;z-index:9;pointer-events:none}
 
 .cov-grid{display:grid;gap:var(--space-6);grid-template-columns:1fr;margin-top:var(--space-12)}
 .cov{border-top:2px solid var(--color-ink);padding-top:var(--space-4)}
@@ -670,30 +672,29 @@ footer .wordmark{color:var(--color-on-deep)}
 <section class="owners">
   <div class="shell">
     <p class="sect-label mono rv">05 — The curators</p>
-    <h2 class="rv">Every piece has a curator.</h2>
+    <h2 class="rv">Your gear could be on this page.</h2>
     <p class="epigraph rv">Gear that sits idle costs money twice — once to buy, once to store. On Cache it earns instead: owners keep 90% of every rental.</p>
     <div class="own-grid rv-kids">
-      <!-- ASSET: curator portraits — replace initial avatars with real curator photos at launch -->
+      <!-- real listings from the rail above — real prices, honest math (day rate × days × 90%) -->
       <div class="own">
-        <div class="avatar" aria-hidden="true">O</div>
-        <h3>A quiver of boards that never dries out.</h3>
-        <p class="lends">Lends: boards · wetsuits · racks<br>Ocean Beach · <span class="keeps">keeps 90%</span></p>
+        <p class="ownitem mono">Custom 9&#8217;8 Longboard &#183; $50/day</p>
+        <h3>Two rental days a month &#8776; $90 back.</h3>
+        <p class="lends">San Diego &#183; <span class="keeps">listed on Cache now</span></p>
       </div>
       <div class="own">
-        <div class="avatar" aria-hidden="true">G</div>
-        <h3>The Golden Hill studio, on loan.</h3>
-        <p class="lends">Lends: wheel · glazes · tools<br>Golden Hill · <span class="keeps">keeps 90%</span></p>
+        <p class="ownitem mono">Listening Room Kit &#183; $18/day</p>
+        <h3>One weekend on loan &#8776; $32 back.</h3>
+        <p class="lends">La Jolla &#183; <span class="keeps">listed on Cache now</span></p>
       </div>
       <div class="own">
-        <div class="avatar" aria-hidden="true">N</div>
-        <h3>The North Park listening room, on loan.</h3>
-        <p class="lends">Lends: turntable · amp · records<br>North Park · <span class="keeps">keeps 90%</span></p>
+        <p class="ownitem mono">Armada Skis &#183; 164cm &#183; $15/day</p>
+        <h3>Four days a winter &#8776; $54 back.</h3>
+        <p class="lends">San Diego &#183; <span class="keeps">listed on Cache now</span></p>
       </div>
     </div>
     <div class="lister-strip rv">
-      <p>What you own could be in demand. You keep 90% of every rental — two weekend bookings a month is about $162. <a href="https://cachekits.com">Become a founding curator →</a></p>
+      <p>What you own could be in demand. You keep 90% of every rental and approve every request — two weekend kit bookings a month is about $162. <a href="https://cachekits.com">Become a founding curator →</a></p>
     </div>
-    <p class="mock-note mono rv">Curator cards are illustrative — replaced with real curators at launch.</p>
   </div>
 </section>
 
@@ -710,11 +711,12 @@ footer .wordmark{color:var(--color-on-deep)}
           <div class="req-card" id="reqCard">
             <p class="mono">Incoming request</p>
             <p class="kitline">Pottery Studio Kit · 2 days</p>
-            <span class="req-chip" id="reqChip">Pending — you approve</span>
+            <span class="req-chip" id="reqChip">Pending — you approve</span><span class="mini-btn" id="reqAccept">Accept</span>
             <p class="dep-line mono" id="depLine">Damage cap: $50 &#183; nothing held up front</p>
           </div>
           <div class="prot-shots">
             <span class="day-chip mono" id="dayChip">Day 1</span>
+            <span class="mini-btn cond" id="condBtn">Approve condition</span>
             <div class="prot-photos" id="protPhotos">
               <div class="pphoto"><img src="assets/img/prot-condition.webp" width="1280" height="832" alt="Condition photo of the pottery wheel" loading="lazy"><span class="mono">Condition · 1/3</span></div>
               <div class="pphoto"><img src="assets/img/prot-included.webp" width="1280" height="832" alt="Everything included, laid out" loading="lazy"><span class="mono">Included · 2/3</span></div>
@@ -728,6 +730,7 @@ footer .wordmark{color:var(--color-on-deep)}
             <span class="req-chip ok">Payout sent — curator keeps 90%</span>
           </div>
           <p class="prot-caption mono" id="protCaption">Request first — you approve who borrows. Nothing is charged until you accept.</p>
+          <div class="prot-cursor" id="protCursor" aria-hidden="true"><svg viewBox="-1 -1 26 26" width="27" height="27"><path d="M23 5.5V20c0 2.2-1.8 4-4 4h-7.3c-1.08 0-2.1-.43-2.85-1.19L1 14.83s1.26-1.23 1.3-1.25c.22-.19.49-.29.79-.29.22 0 .42.06.6.16.04.01 4.31 2.46 4.31 2.46V4c0-.83.67-1.5 1.5-1.5S11 3.17 11 4v7h1V1.5c0-.83.67-1.5 1.5-1.5S15 .67 15 1.5V11h1V2.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5V11h1V5.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5z" fill="#161310" stroke="#FFFFFF" stroke-width="1.2" stroke-linejoin="round"/></svg></div>
         </div>
       </div>
     </div>
@@ -905,7 +908,7 @@ footer .wordmark{color:var(--color-on-deep)}
       if (c.reduceMotion){
         placeStageFinal(c.isMobile);
         gsap.set("#reqCard, #protPhotos > *, #protStamp, #protCaption, #depLine", { autoAlpha: 1, x: 0, y: 0, scale: 1 });
-        gsap.set("#dayChip, #payCard", { autoAlpha: 0 });
+        gsap.set("#dayChip, #payCard, #reqAccept, #condBtn, #protCursor", { autoAlpha: 0 });
         document.getElementById("reqChip").classList.add("ok");
         document.getElementById("reqChip").textContent = "Accepted — now you’re charged";
         var sp = document.getElementById("sigPack"); if (sp) sp.style.display = "none";
@@ -1152,22 +1155,22 @@ footer .wordmark{color:var(--color-on-deep)}
       /* button-played pack animation (founder: "started by a button, not scroll") */
       var sigTl = gsap.timeline({ paused: true, defaults: { ease: "power2.inOut" } });
       sigTl.timeScale(3.2);
-      sigTl.to(caps, { autoAlpha: 1, duration: 2, stagger: 0.35 }, 0);
-      sigTl.to(crate, { autoAlpha: 1, duration: 1.5 }, 2.5);
+      sigTl.to(caps, { autoAlpha: 1, duration: 2, stagger: 0.3 }, 0);
+      sigTl.to(crate, { autoAlpha: 1, duration: 1.2 }, 0.3);
       stageItems.forEach(function(it, i){
         var ey = (c.isMobile && it.dataset.eym) ? it.dataset.eym : it.dataset.ey;
         sigTl.to(it, {
           left: it.dataset.ex + "%", top: ey + "%", rotation: 0,
           duration: 2, ease: "power1.inOut"
-        }, 3 + i * 0.3);
+        }, 0.4 + i * 0.25);
       });
       manifestRows.forEach(function(row, i){
-        sigTl.to(row, { autoAlpha: 1, duration: 0.5 }, 3.5 + i * 0.55);
+        sigTl.to(row, { autoAlpha: 1, duration: 0.5 }, 0.9 + i * 0.45);
       });
-      sigTl.call(function(){ crate.classList.add("solid"); }, null, 8.2);
-      sigTl.to(sigEnd, { autoAlpha: 1, y: 0, duration: 1 }, 8.4);
+      sigTl.call(function(){ crate.classList.add("solid"); }, null, 4.2);
+      sigTl.to(sigEnd, { autoAlpha: 1, y: 0, duration: 1 }, 4.3);
       ScrollTrigger.create({
-        trigger: ".sig-stage", start: "top 52%", once: true,
+        trigger: ".sig-stage", start: "top 92%", once: true,
         onEnter: function(){ sigTl.play(); }
       });
 
@@ -1185,12 +1188,19 @@ footer .wordmark{color:var(--color-on-deep)}
         c: "Two days of making. Card on file — nothing held, nothing charged.",
         d: "Condition matched \u00b7 no extra charges \u00b7 payout sent — curator keeps 90%."
       };
+      var protInner = document.querySelector(".prot-inner");
+      /* aim the tap cursor at an element's center, in .prot-inner space */
+      function curX(sel, dx){ return function(){ var b = document.querySelector(sel).getBoundingClientRect(), ir = protInner.getBoundingClientRect(); return b.left - ir.left + b.width / 2 + (dx || 0) - 10; }; }
+      function curY(sel, dy){ return function(){ var b = document.querySelector(sel).getBoundingClientRect(), ir = protInner.getBoundingClientRect(); return b.top - ir.top + b.height / 2 + (dy || 0) - 6; }; }
       function protHideAll(){
         gsap.set("#reqCard", { autoAlpha: 0, x: -40 });
         gsap.set("#depLine", { autoAlpha: 0 });
         gsap.set("#protPhotos > *", { autoAlpha: 0, y: 24, scale: 0.92 });
         gsap.set("#protStamp", { autoAlpha: 0, scale: 1.5 });
         gsap.set("#protCaption, #dayChip, #payCard", { autoAlpha: 0 });
+        gsap.set("#reqAccept", { autoAlpha: 1, scale: 1 });
+        gsap.set("#condBtn", { autoAlpha: 0, scale: 1 });
+        gsap.set("#protCursor", { autoAlpha: 0, scale: 1 });
       }
       protHideAll();
 
@@ -1205,34 +1215,50 @@ footer .wordmark{color:var(--color-on-deep)}
       protTl.call(function(){
         protHideAll();
         chip.classList.remove("ok"); chip.textContent = "Pending — you approve";
-        stampEl.textContent = "Documented";
+        stampEl.textContent = "Condition approved";
         capEl.textContent = CAPS.a;
         dayEl.textContent = "Day 1";
       }, null, 0);
-      /* A — request + accept + damage cap */
+      /* A — request comes in; the owner TAPS ACCEPT on screen */
       protTl.to("#reqCard", { autoAlpha: 1, x: 0, duration: 0.6 }, 0.2);
       protTl.to(capEl, { autoAlpha: 1, duration: 0.4 }, 0.5);
-      protTl.call(function(){ chip.classList.add("ok"); chip.textContent = "Accepted — now you\u2019re charged"; }, null, 1.7);
-      protTl.fromTo(chip, { scale: 0.9 }, { scale: 1, duration: 0.35, ease: "back.out(2)" }, 1.72);
-      protTl.to("#depLine", { autoAlpha: 1, duration: 0.4 }, 2.1);
-      /* B — documented pickup */
-      capSwap("b", 3.0);
-      protTl.to("#protPhotos > *", { autoAlpha: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.35, ease: "back.out(1.4)" }, 3.2);
-      protTl.to("#protStamp", { autoAlpha: 1, scale: 1, duration: 0.6, ease: "back.out(1.7)" }, 4.7);
+      protTl.set("#protCursor", { x: curX("#reqAccept", 40), y: curY("#reqAccept", 34) }, 1.0);
+      protTl.to("#protCursor", { autoAlpha: 1, duration: 0.3 }, 1.0);
+      protTl.to("#protCursor", { x: curX("#reqAccept"), y: curY("#reqAccept"), duration: 0.45, ease: "power2.inOut" }, 1.3);
+      protTl.to("#protCursor", { scale: 0.82, duration: 0.1, ease: "power2.out" }, 1.8);
+      protTl.to("#reqAccept", { scale: 0.9, duration: 0.1 }, 1.8);
+      protTl.to("#protCursor", { scale: 1, duration: 0.18, ease: "back.out(2)" }, 1.95);
+      protTl.to("#reqAccept", { scale: 1, duration: 0.18, ease: "back.out(2)" }, 1.95);
+      protTl.call(function(){ chip.classList.add("ok"); chip.textContent = "Accepted — now you’re charged"; }, null, 2.0);
+      protTl.fromTo(chip, { scale: 0.9 }, { scale: 1, duration: 0.35, ease: "back.out(2)" }, 2.02);
+      protTl.to("#reqAccept", { autoAlpha: 0, duration: 0.25 }, 2.1);
+      protTl.to("#protCursor", { x: "+=24", y: "+=16", autoAlpha: 0.5, duration: 0.4 }, 2.2);
+      protTl.to("#depLine", { autoAlpha: 1, duration: 0.4 }, 2.5);
+      /* B — documented pickup; the borrower TAPS APPROVE on the condition */
+      capSwap("b", 3.3);
+      protTl.to("#protPhotos > *", { autoAlpha: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.35, ease: "back.out(1.4)" }, 3.5);
+      protTl.fromTo("#condBtn", { autoAlpha: 0, y: 6 }, { autoAlpha: 1, y: 0, duration: 0.35 }, 5.0);
+      protTl.to("#protCursor", { x: curX("#condBtn"), y: curY("#condBtn"), autoAlpha: 1, duration: 0.5, ease: "power2.inOut" }, 5.2);
+      protTl.to("#protCursor", { scale: 0.82, duration: 0.1 }, 5.75);
+      protTl.to("#condBtn", { scale: 0.92, duration: 0.1 }, 5.75);
+      protTl.to("#protCursor", { scale: 1, duration: 0.18, ease: "back.out(2)" }, 5.9);
+      protTl.to("#condBtn", { autoAlpha: 0, duration: 0.25 }, 5.95);
+      protTl.to("#protStamp", { autoAlpha: 1, scale: 1, duration: 0.6, ease: "back.out(1.7)" }, 6.05);
+      protTl.to("#protCursor", { x: "+=22", y: "+=16", autoAlpha: 0, duration: 0.45 }, 6.3);
       /* C — the rental days */
-      capSwap("c", 5.9);
-      protTl.to(dayEl, { autoAlpha: 1, duration: 0.3 }, 6.1);
-      protTl.call(function(){ dayEl.textContent = "Day 2"; }, null, 7.1);
-      protTl.fromTo(dayEl, { scale: 0.85 }, { scale: 1, duration: 0.3, ease: "back.out(2)" }, 7.12);
+      capSwap("c", 7.0);
+      protTl.to(dayEl, { autoAlpha: 1, duration: 0.3 }, 7.2);
+      protTl.call(function(){ dayEl.textContent = "Day 2"; }, null, 8.2);
+      protTl.fromTo(dayEl, { scale: 0.85 }, { scale: 1, duration: 0.3, ease: "back.out(2)" }, 8.22);
       /* D — matched return + payout */
-      capSwap("d", 8.1);
-      protTl.to("#protStamp", { autoAlpha: 0, duration: 0.2 }, 8.2);
-      protTl.call(function(){ stampEl.textContent = "Returned — matched"; }, null, 8.4);
-      protTl.to("#protStamp", { autoAlpha: 1, scale: 1, duration: 0.5, ease: "back.out(1.7)" }, 8.5);
-      protTl.to("#reqCard, #protPhotos > *", { autoAlpha: 0.22, duration: 0.5 }, 9.3);
-      protTl.fromTo("#payCard", { autoAlpha: 0, scale: 0.9 }, { autoAlpha: 1, scale: 1, duration: 0.6, ease: "back.out(1.5)" }, 9.4);
+      capSwap("d", 9.2);
+      protTl.to("#protStamp", { autoAlpha: 0, duration: 0.2 }, 9.3);
+      protTl.call(function(){ stampEl.textContent = "Returned — matched"; }, null, 9.5);
+      protTl.to("#protStamp", { autoAlpha: 1, scale: 1, duration: 0.5, ease: "back.out(1.7)" }, 9.6);
+      protTl.to("#reqCard, #protPhotos > *", { autoAlpha: 0.22, duration: 0.5 }, 10.4);
+      protTl.fromTo("#payCard", { autoAlpha: 0, scale: 0.9 }, { autoAlpha: 1, scale: 1, duration: 0.6, ease: "back.out(1.5)" }, 10.5);
       /* hold, then fade out for the loop */
-      protTl.to("#reqCard, #depLine, #protPhotos > *, #protStamp, #protCaption, #dayChip, #payCard", { autoAlpha: 0, duration: 0.6 }, 12.4);
+      protTl.to("#reqCard, #depLine, #protPhotos > *, #protStamp, #protCaption, #dayChip, #payCard", { autoAlpha: 0, duration: 0.6 }, 13.5);
 
       ScrollTrigger.create({
         trigger: ".prot-stage", start: "top 80%",
