@@ -108,6 +108,7 @@ h3{font-size:var(--text-xl);font-weight:600}
 .ws-bg{position:absolute;inset:-5% -8%;background:var(--color-paper);border-radius:var(--radius-md);box-shadow:var(--shadow-lift);z-index:-1}
 .fitem[data-i="0"]{width:15rem}
 .fitem .ws-full{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;border-radius:8px;clip-path:inset(0 0 100% 0)}
+.fcursor{position:absolute;left:0;top:0;width:26px;z-index:9;filter:drop-shadow(0 2px 5px rgba(22,19,16,.35))}
 .fcrate{position:absolute;left:0;top:0;width:10.5rem;color:var(--color-paper);will-change:transform}
 .fcrate .lid{transform-origin:8% 88%}
 .slot{position:absolute;width:6.6rem;height:5.4rem;visibility:hidden;pointer-events:none}
@@ -183,7 +184,9 @@ h3{font-size:var(--text-xl);font-weight:600}
 .mode p{color:var(--color-ink-soft);max-width:34ch}
 .mode .micro{margin-top:var(--space-4);color:var(--color-muted);font-size:var(--text-sm)}
 /* surf inset card (the commercial flagship keeps its visual) */
-.kitcard{position:relative;margin-top:var(--space-6);background:var(--color-paper);color:var(--color-paper-ink);border:1px solid rgba(22,19,16,.08);border-radius:var(--radius-md);box-shadow:var(--shadow-sm);padding:var(--space-3);max-width:24rem;min-height:19rem}
+.mode{display:flex;flex-direction:column;align-items:stretch}
+.mode .kitcard{margin-top:auto;padding-top:var(--space-6)}
+.kitcard{position:relative;margin-top:var(--space-6);background:var(--color-paper);color:var(--color-paper-ink);border:1px solid rgba(22,19,16,.08);border-radius:var(--radius-md);box-shadow:var(--shadow-sm);padding:var(--space-3);width:100%;max-width:24rem;height:19rem}
 .kitcard .spread{position:absolute;inset:0}
 .kitcard .sp{position:absolute;display:block;height:auto}
 .kitcard .sp[data-i="0"]{width:8.5rem;top:24%;left:9%;transform:rotate(-8deg)}
@@ -194,6 +197,7 @@ h3{font-size:var(--text-xl);font-weight:600}
 .kitcard .sp[data-i="5"]{width:4.2rem;top:48%;left:42%;z-index:7}
 .sp-ws img{width:100%;display:block;height:auto}
 .onecard .one-suit{position:absolute;left:50%;top:56%;transform:translate(-50%,-50%);width:6.93rem;height:auto}
+.onecard .suit-ghost{position:absolute;left:50%;top:56%;transform:translate(-50%,-50%);width:6.93rem;height:auto;filter:brightness(.25) sepia(.2);opacity:0}
 .onecard .slot[data-slot="k5"]{left:50%;top:56%;margin-left:-3.3rem;margin-top:-2.7rem}
 .sp-ws .ws-full2{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:top;clip-path:inset(0 0 100% 0)}
 .kit-label{position:absolute;left:var(--space-4);top:var(--space-3);z-index:5}
@@ -419,6 +423,7 @@ footer .wordmark{color:var(--color-on-deep)}
   <div class="fitem" data-i="3"><span class="callout">hot shower<svg class="co-line" viewBox="0 0 60 24" aria-hidden="true"><path d="M4 20 Q22 2 56 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span><img src="assets/img/cut-shower.webp" width="412" height="644" alt="Portable camp shower"></div>
   <div class="fitem" data-i="4"><span class="callout"><svg class="co-line" viewBox="0 0 60 24" aria-hidden="true"><path d="M4 20 Q22 2 56 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>firepit &amp; mugs</span><img src="assets/img/cut-firepit.webp" width="640" height="166" alt="Fire pit and mugs"></div>
   <div class="fitem" data-i="5"><span class="callout">the wetsuit<svg class="co-line" viewBox="0 0 60 24" aria-hidden="true"><path d="M4 20 Q22 2 56 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span><div class="ws-bg"></div><img src="assets/img/cut-wetsuit.webp" width="390" height="454" alt="Folded wetsuit"><img class="ws-full" src="assets/img/kit-surf-wetsuit-full.webp" width="768" height="1024" alt="Full wetsuit, unfolded"></div>
+  <div class="fcursor" id="dragCursor" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M5.5 3l13 10.2-5.6 1 3.2 5.6-2.4 1.4-3.2-5.6L5.5 20z" fill="#161310" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
   <div class="fcrate" id="fcrate">
     <svg viewBox="0 0 140 100">
       <rect x="12" y="34" width="116" height="58" rx="8" fill="#F6F2E8" stroke="#8F6A1E" stroke-width="2"/>
@@ -524,6 +529,7 @@ footer .wordmark{color:var(--color-on-deep)}
       <div class="kitcard onecard">
         <p class="kit-label"><span class="mono">One item &#183; $10/day &#183; Ocean Beach</span><em>The Wetsuit</em></p>
         <span class="slot" data-slot="k5"></span>
+        <img class="suit-ghost" src="assets/img/kit-surf-wetsuit-cut.webp" width="472" height="903" alt="" aria-hidden="true">
         <img class="one-suit" src="assets/img/kit-surf-wetsuit-cut.webp" width="472" height="903" alt="Full wetsuit, unfolded">
       </div>
       <p class="micro mono">Single items from $7/day in San Diego</p>
@@ -994,6 +1000,7 @@ footer .wordmark{color:var(--color-on-deep)}
         gsap.set(wsPiece, { height: function(){ return wsPiece.offsetHeight; } });
         gsap.set(pieces, { autoAlpha: 0, y: -46 });
         gsap.set(".one-suit", { autoAlpha: 0 });
+        gsap.set("#dragCursor", { autoAlpha: 0 });
         gsap.set(".kit-label", { autoAlpha: 0 });
 
         var kitTl = gsap.timeline({ paused: true, defaults: { ease: "power1.out" } });
@@ -1004,7 +1011,18 @@ footer .wordmark{color:var(--color-on-deep)}
            stacking context that would paint the traveling wetsuit beneath the
            neighboring card. The reveals are done by now; strip them. */
         kitTl.set("#modeKit, #modeOne", { clearProps: "transform" }, 2.4);
-        /* the pull — deltas resolve at play time, when layout is settled */
+        /* the die-cut placeholder fades up with the assembly — "insert here" */
+        kitTl.to(".suit-ghost", { autoAlpha: 0.14, duration: 0.5 }, 0.5);
+
+        /* THE DRAG-AND-DROP: a cursor grabs the wetsuit from the kit spread
+           and drops it into the suit-shaped outline in the item card */
+        kitTl.set("#dragCursor", {
+          x: function(){ var r = wsPiece.getBoundingClientRect(); return r.left + r.width / 2 + window.pageXOffset - 6; },
+          y: function(){ var r = wsPiece.getBoundingClientRect(); return r.top + r.height / 2 + window.pageYOffset - 4; }
+        }, 2.2);
+        kitTl.to("#dragCursor", { autoAlpha: 1, duration: 0.25 }, 2.2);
+        kitTl.to("#dragCursor", { scale: 0.82, transformOrigin: "6px 4px", duration: 0.14, ease: "power2.out" }, 2.55); /* press */
+        kitTl.to(wsPiece, { scale: 1.07, duration: 0.16 }, 2.55); /* pick up */
         kitTl.to(wsPiece, {
           x: function(){
             var k = slotXY("k5"), r = wsPiece.getBoundingClientRect();
@@ -1015,16 +1033,25 @@ footer .wordmark{color:var(--color-on-deep)}
             return k.y - (r.top + r.height / 2 + window.pageYOffset);
           },
           rotation: 0, duration: 1.1, ease: "power2.inOut"
-        }, 2.5);
+        }, 2.75);
+        kitTl.to("#dragCursor", {
+          x: function(){ var k = slotXY("k5"); return k.x - 6; },
+          y: function(){ var k = slotXY("k5"); return k.y - 4; },
+          duration: 1.1, ease: "power2.inOut"
+        }, 2.75);
+        /* the drop: outline fills, cursor releases and slips away */
+        kitTl.to(".suit-ghost", { autoAlpha: 0, duration: 0.3 }, 3.85);
+        kitTl.to("#dragCursor", { scale: 1, duration: 0.15 }, 3.9);
         kitTl.to(wsPiece, {
           scale: 1.65,
           height: function(){ return wsPiece.offsetWidth * 903 / 472; },
           duration: 0.7, ease: "power2.inOut"
-        }, 3.6);
-        kitTl.to(".sp-ws .ws-folded", { autoAlpha: 0, duration: 0.5 }, 3.8);
+        }, 3.9);
+        kitTl.to(".sp-ws .ws-folded", { autoAlpha: 0, duration: 0.5 }, 4.1);
+        kitTl.to("#dragCursor", { autoAlpha: 0, x: "+=26", y: "+=18", duration: 0.5 }, 4.2);
         /* handoff: the traveling cutout becomes the card's own suit */
-        kitTl.to(".one-suit", { autoAlpha: 1, duration: 0.2 }, 4.6);
-        kitTl.to(wsPiece, { autoAlpha: 0, duration: 0.2 }, 4.65);
+        kitTl.to(".one-suit", { autoAlpha: 1, duration: 0.2 }, 4.9);
+        kitTl.to(wsPiece, { autoAlpha: 0, duration: 0.2 }, 4.95);
         kitTl.to(wsFull2, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.8, ease: "power2.inOut" }, 3.75);
 
         ScrollTrigger.create({
