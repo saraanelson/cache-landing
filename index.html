@@ -157,8 +157,6 @@ h3{font-size:var(--text-xl);font-weight:600}
 .hero-cta{margin-top:var(--space-8)}
 .hero-note{margin-top:var(--space-3);color:var(--color-ui)}
 .fitem img,.sig-item img,.sitem img{display:block;width:100%;height:auto;border-radius:6px}
-.kitcard .art{padding:0;background:none}
-.kitcard .art img{display:block;width:100%;height:auto;border-radius:var(--radius-sm)}
 .ink-line{stroke:currentColor;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .ink-fill{fill:currentColor}
 
@@ -183,22 +181,29 @@ h3{font-size:var(--text-xl);font-weight:600}
 .mode p{color:var(--color-ink-soft);max-width:34ch}
 .mode .micro{margin-top:var(--space-4);color:var(--color-muted);font-size:var(--text-sm)}
 /* surf inset card (the commercial flagship keeps its visual) */
-.kitcard{position:relative;margin-top:var(--space-6);background:var(--color-paper);color:var(--color-paper-ink);border-radius:var(--radius-md);box-shadow:var(--shadow-sm);padding:var(--space-3);max-width:15rem}
-.kitcard .art{background:rgba(30,58,46,.06);border-radius:var(--radius-sm);padding:var(--space-2);margin-bottom:var(--space-2)}
+.kitcard{position:relative;margin-top:var(--space-6);background:var(--color-paper);color:var(--color-paper-ink);border-radius:var(--radius-md);box-shadow:var(--shadow-sm);padding:var(--space-3);max-width:24rem;min-height:19rem}
+.kitcard .slot[data-slot="s0"]{top:24%;left:10%}
+.kitcard .slot[data-slot="s1"]{top:48%;left:4%}
+.kitcard .slot[data-slot="s2"]{top:42%;left:52%}
+.kitcard .slot[data-slot="s3"]{top:64%;left:74%}
+.kitcard .slot[data-slot="s4"]{top:66%;left:26%}
+.kitcard .slot[data-slot="s5"]{top:52%;left:42%}
+.kit-label{position:absolute;left:var(--space-4);top:var(--space-3);z-index:5}
+.kit-label .mono{display:block;color:var(--color-paper-muted);font-size:.62rem}
+.kit-label em{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:550;font-size:1.5rem;color:var(--color-paper-ink);letter-spacing:-.01em}
 .kitcard .tag{font-family:var(--font-mono);font-size:.66rem;letter-spacing:var(--tracking-mono);text-transform:uppercase;color:var(--color-paper-muted);line-height:1.7}
 .kitcard .tag b{font-weight:500;color:var(--color-paper-ink)}
 .kitcard .tag .price{color:var(--color-brass-ink)}
 .kitcard .tag .who{color:var(--color-ui-ink)}
 /* film slot zones inside the mode cards */
 /* cluster hugs the card's empty right rail; film items scale to .7 there */
-.kitcard .slot[data-slot="k-abs"]{top:20%;left:25%}
 .mode .slot[data-slot="k0"]{top:8%;right:9%;left:auto}
 .mode .slot[data-slot="k1"]{top:24%;right:19%;left:auto}
 .mode .slot[data-slot="k2"]{top:42%;right:10%;left:auto}
 .mode .slot[data-slot="k3"]{top:60%;right:20%;left:auto}
 .mode .slot[data-slot="k4"]{top:76%;right:11%;left:auto}
-.mode .slot[data-slot="k5"]{top:34%;right:9%;left:auto}
-@media (min-width:1024px){ #modeOne h3, #modeOne .pricepair, #modeOne p, #modeOne .micro { max-width: calc(100% - 12rem); } }
+.mode .slot[data-slot="k5"]{top:auto;bottom:5rem;left:50%;margin-left:-3.3rem;right:auto}
+@media (min-width:1024px){ #modeOne{padding-bottom:14rem} }
 .stat-foot{margin-top:var(--space-6);color:var(--color-muted)}
 .quote-aside{margin-top:var(--space-8);border-left:2px solid var(--color-accent);padding-left:var(--space-4);max-width:var(--max-width-text)}
 .quote-aside p{font-size:var(--text-base);color:var(--color-ink-soft);font-style:italic}
@@ -453,7 +458,7 @@ footer .wordmark{color:var(--color-on-deep)}
         <div class="sitem"><img src="assets/img/kit-surf-firepit.webp" width="1280" height="832" alt="Fire pit and mugs"><p class="cap">Firepit</p></div>
         <div class="sitem"><img src="assets/img/kit-surf-wetsuit.webp" width="1280" height="832" alt="Folded wetsuit"><p class="cap">Wetsuit</p></div>
       </div>
-      <p class="hero-kit-tag mono">The Surf Trip Kit · Ocean Beach · <b>$80/day</b> — watch it come together as you scroll</p>
+      <p class="hero-kit-tag mono">The Coastal Surf Kit · Ocean Beach · <b>$80/day</b> — watch it come together as you scroll</p>
     </div>
   </div>
 </header>
@@ -489,9 +494,12 @@ footer .wordmark{color:var(--color-on-deep)}
       <p class="pricepair"><span class="buy">$1,900 to buy it all.</span><br><span class="rent">$80 a day to try it.</span></p>
       <p>You don’t have to know what you need — the kit knows. Board, wetsuit, stove, tent, portable shower: every piece listed, one price, one curator.</p>
       <!-- ASSET: kitcard — Surf Trip Kit cutout flat-lay on bone, 10:7 -->
-      <div class="kitcard"><span class="slot" data-slot="k-abs"></span>
-        <div class="art"><img src="assets/img/kit-surf-flatlay.webp" width="1280" height="832" alt="Surf Trip Kit flat-lay: longboard, tent, wetsuits, camp stove, portable shower, fire pit, camp chairs" loading="lazy"></div>
-        <p class="tag"><b>Surf Trip Kit</b> · <span class="who">Ocean Beach</span><br><b class="price">$80/day</b> · request first</p>
+      <div class="kitcard">
+        <span class="slot" data-slot="s0"></span><span class="slot" data-slot="s1"></span>
+        <span class="slot" data-slot="s2"></span><span class="slot" data-slot="s3"></span>
+        <span class="slot" data-slot="s4"></span><span class="slot" data-slot="s5"></span>
+        <p class="kit-label"><span class="mono">The whole kit &#183; $80/day &#183; Ocean Beach</span><em>Coastal Surf Kit</em></p>
+      </div>
       </div>
       <p class="micro mono">Beach shops charge $95/day for the board and wetsuits alone.</p>
     </div>
@@ -966,41 +974,43 @@ footer .wordmark{color:var(--color-on-deep)}
            card, shrinking and dissolving as the compiled flat-lay reveals
            beneath them; the wetsuit peels off to "the one thing" and unfolds —
            all of it live under the visitor's scroll (and reversible). */
-        gsap.set(".kitcard .art", { autoAlpha: 0, scale: 0.92 });
         var ws = fitems[5];
         var wsFull = ws.querySelector(".ws-full");
         gsap.set(ws, { height: function(){ return ws.offsetHeight; } });
-
         gsap.set(".ws-bg", { autoAlpha: 0 });
+        gsap.set(".kit-label", { autoAlpha: 0 });
+
+        /* THE SPREAD — a long, slow descent: the six pieces drift down from the
+           hero and arrange themselves into a labeled kit spread on the paper
+           board; then the wetsuit is PULLED from the spread into "the one thing",
+           landing under the text and unfolding. All scrubbed, all reversible. */
+        var spreadScale = [0.55, 0.5, 0.5, 0.5, 0.5, 0.5];
+        var spreadRot = [-8, 2, -2, 3, -2, 2];
         var compile = gsap.timeline({
-          scrollTrigger: { trigger: "#modes", start: "top 90%", end: "top 30%", scrub: 0.8, invalidateOnRefresh: true },
+          scrollTrigger: { trigger: "#modes", start: "clamp(top 115%)", end: "clamp(top 12%)", scrub: 1.2, invalidateOnRefresh: true },
           defaults: { ease: "none" }
         });
-        compile.to(".callout", { autoAlpha: 0, duration: 1.2 }, 0);
-        /* items stream in ONE BY ONE — each accelerates into the card, vanishes
-           at the mouth, and the card pulses as it swallows the piece */
+        compile.to(".callout", { autoAlpha: 0, duration: 1.5 }, 0);
         fitems.forEach(function(it, i){
-          if (i === 5) return;
           compile.to(it, {
-            x: function(){ return itemXY(it, "k-abs").x; },
-            y: function(){ return itemXY(it, "k-abs").y; },
-            scale: 0.18, rotation: 0, duration: 4.2, ease: "power1.in"
-          }, i * 0.9);
-          compile.to(it, { autoAlpha: 0, duration: 0.7 }, i * 0.9 + 3.6);
-          compile.to(".kitcard", { scale: 1.03, duration: 0.25, yoyo: true, repeat: 1, ease: "power1.inOut" }, i * 0.9 + 4.0);
+            x: function(){ return itemXY(it, "s" + i).x; },
+            y: function(){ return itemXY(it, "s" + i).y; },
+            scale: spreadScale[i], rotation: spreadRot[i], duration: 7
+          }, i * 0.5);
         });
-        compile.to(".kitcard .art", { autoAlpha: 1, scale: 1, duration: 1.6, ease: "power1.out" }, 8.1);
+        compile.fromTo(".kit-label", { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 1.5, ease: "power1.out" }, 8.2);
+        /* the pull */
         compile.to(ws, {
           x: function(){ return itemXY(ws, "k5").x; },
           y: function(){ return itemXY(ws, "k5").y; },
-          rotation: 0, duration: 5
-        }, 0.6);
+          rotation: 0, duration: 3.5
+        }, 10.0);
         compile.to(ws, {
           height: function(){ return ws.clientWidth * 4 / 3; },
-          scale: 1.15, duration: 2.6
-        }, 6.6);
-        compile.to(".ws-bg", { autoAlpha: 1, duration: 1.8 }, 6.8);
-        compile.to(wsFull, { clipPath: "inset(0% 0% 0% 0%)", duration: 2.6 }, 7.0);
+          scale: 1.15, duration: 2.5
+        }, 12.0);
+        compile.to(".ws-bg", { autoAlpha: 1, duration: 1.8 }, 12.2);
+        compile.to(wsFull, { clipPath: "inset(0% 0% 0% 0%)", duration: 2.5 }, 12.4);
 
         /* SEGMENT 4 — crate rides to the handoff (appears after the pin) */
         gsap.set(fcrate, { autoAlpha: 0 });
