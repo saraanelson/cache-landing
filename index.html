@@ -225,7 +225,7 @@ h3{font-size:var(--text-xl);font-weight:600}
 .sig-stage{position:relative;background:var(--color-paper);color:var(--color-paper-ink);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);width:100%;height:min(80vh,44rem);overflow:hidden;display:grid;grid-template-columns:17.5rem 1fr}
 .sig-head{position:absolute;top:var(--space-6);left:var(--space-8);z-index:5}
 .sig-head .mono{color:var(--color-paper-muted)}
-.sig-head h2{font-size:var(--text-xl);margin-top:var(--space-2)}
+.sig-head h2{font-size:clamp(1.35rem,1.15rem + .9vw,1.6rem);margin-top:var(--space-2);max-width:15ch;text-wrap:balance}
 .manifest{align-self:center;padding:var(--space-8);z-index:4}
 .manifest li{list-style:none;display:flex;justify-content:space-between;gap:var(--space-4);font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:var(--tracking-mono);text-transform:uppercase;color:var(--color-paper-muted);padding-block:.4em;border-bottom:1px solid rgba(30,58,46,.16)}
 .manifest .total{border-bottom:0;border-top:2px solid var(--color-paper-ink);font-weight:500;color:var(--color-paper-ink);margin-top:.3em}
@@ -247,7 +247,7 @@ h3{font-size:var(--text-xl);font-weight:600}
 .sig-end .btn{background:var(--color-btn-ink);color:var(--color-ink)}
 .sig-end .btn:hover{background:var(--color-bg)}
 .pulse{display:inline-block;width:.55em;height:.55em;border-radius:50%;background:var(--color-signal);margin-right:.5em;vertical-align:1px}
-.sig-epigraph{position:absolute;top:var(--space-6);right:var(--space-8);max-width:22rem;text-align:right;color:var(--color-paper-muted);font-size:var(--text-xs);font-family:var(--font-mono);letter-spacing:.02em;z-index:5}
+.sig-epigraph{position:absolute;top:var(--space-6);right:var(--space-8);max-width:22rem;text-align:right;color:var(--color-paper-muted);font-size:var(--text-xs);font-family:var(--font-mono);letter-spacing:.02em;z-index:5;background:var(--color-paper);padding-bottom:var(--space-2)}
 
 /* ============ 6 · HOW IT WORKS ============ */
 .how{padding-block:var(--section-pad);position:relative}
@@ -546,7 +546,7 @@ footer .wordmark{color:var(--color-on-deep)}
         <p class="mono">02 — Anatomy of a kit</p>
         <h2>Watch the whole hobby pack itself.</h2>
       </div>
-      <p class="sig-epigraph">Pottery studio memberships run $85+ a month — before tools, clay, or glazes. This kit: $45 a day, everything included.</p>
+      <p class="sig-epigraph">Owning this setup: $1,000+ before your first pot. Borrowing it: $45 a day, everything included.</p>
       <ul class="manifest" aria-label="Kit manifest">
         <li><span>Wheel · Golden Hill</span><span>$22</span></li>
         <li><span>Clay · 10 lb</span><span>$6</span></li>
