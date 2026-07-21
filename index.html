@@ -28,6 +28,7 @@
 @font-face{font-family:'Instrument Sans';font-style:normal;font-weight:400 600;src:url("assets/fonts/instrument.woff2") format('woff2');font-display:swap}
 @font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;src:url("assets/fonts/plex400.woff2") format('woff2');font-display:swap}
 @font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;src:url("assets/fonts/plex500.woff2") format('woff2');font-display:swap}
+@font-face{font-family:'Caveat';font-style:normal;font-weight:500 600;src:url("assets/fonts/caveat.woff2") format('woff2');font-display:swap}
 @font-face{font-family:'Fraunces';font-style:italic;font-weight:400 700;src:url("assets/fonts/fraunces-italic.woff2") format('woff2');font-display:swap}
 
 :root{
@@ -89,9 +90,24 @@ h3{font-size:var(--text-xl);font-weight:600}
 
 /* ============ FILM LAYER (Level 3, desktop only) ============ */
 #film{position:absolute;inset:0 auto auto 0;width:100%;height:0;overflow:visible;pointer-events:none;z-index:30;display:none}
-.fitem{position:absolute;left:0;top:0;width:clamp(8.5rem,10vw,11.5rem);background:#FFFDF8;color:var(--color-paper-ink);border:1px solid rgba(30,58,46,.14);border-radius:var(--radius-sm);box-shadow:var(--shadow-md);padding:var(--space-2);will-change:transform}
-.fitem[data-i="0"]{width:clamp(11rem,13vw,14rem)}
-.fitem .ws-full{position:absolute;left:var(--space-2);top:var(--space-2);width:calc(100% - 1rem);height:calc(100% - 1rem);object-fit:cover;object-position:top;border-radius:6px;clip-path:inset(0 0 100% 0)}
+.fitem{position:absolute;left:0;top:0;width:10rem;filter:drop-shadow(0 10px 22px rgba(4,14,10,.45));will-change:transform}
+.fitem img{display:block;width:100%;height:auto}
+.fitem[data-i="1"]{width:11rem}
+.fitem[data-i="2"]{width:11rem}
+.fitem[data-i="3"]{width:6.5rem}
+.fitem[data-i="4"]{width:12rem}
+.fitem[data-i="5"]{width:8rem}
+.callout{position:absolute;font-family:'Caveat',cursive;font-size:1.4rem;font-weight:600;color:var(--color-ui);white-space:nowrap;display:flex;align-items:center;gap:.35rem;filter:none}
+.co-line{width:42px;height:18px;color:var(--color-ui);opacity:.8;flex:0 0 auto}
+.fitem[data-i="0"] .callout{left:20%;top:-2.3rem}
+.fitem[data-i="1"] .callout{left:-10%;bottom:-2.2rem}
+.fitem[data-i="2"] .callout{right:-12%;top:-2.2rem}
+.fitem[data-i="3"] .callout{right:100%;top:36%;margin-right:.4rem}
+.fitem[data-i="4"] .callout{left:8%;bottom:-2.2rem}
+.fitem[data-i="5"] .callout{left:70%;top:-2.2rem}
+.ws-bg{position:absolute;inset:-5% -8%;background:var(--color-paper);border-radius:var(--radius-md);box-shadow:var(--shadow-lift);z-index:-1}
+.fitem[data-i="0"]{width:17rem}
+.fitem .ws-full{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;border-radius:8px;clip-path:inset(0 0 100% 0)}
 .fcrate{position:absolute;left:0;top:0;width:10.5rem;color:var(--color-paper);will-change:transform}
 .fcrate .lid{transform-origin:8% 88%}
 .slot{position:absolute;width:6.6rem;height:5.4rem;visibility:hidden;pointer-events:none}
@@ -99,12 +115,12 @@ h3{font-size:var(--text-xl);font-weight:600}
 
 /* hero scatter slots live inside .hero-cards */
 .hero-cards{position:relative;height:clamp(20rem,44vw,26rem)}
-.hero-cards .slot[data-slot="h0"]{top:2%;left:0}
-.hero-cards .slot[data-slot="h1"]{top:0;left:56%}
-.hero-cards .slot[data-slot="h2"]{top:34%;left:28%}
-.hero-cards .slot[data-slot="h3"]{top:38%;left:70%}
-.hero-cards .slot[data-slot="h4"]{top:68%;left:4%}
-.hero-cards .slot[data-slot="h5"]{top:70%;left:46%}
+.hero-cards .slot[data-slot="h0"]{top:8%;left:8%}
+.hero-cards .slot[data-slot="h1"]{top:26%;left:2%}
+.hero-cards .slot[data-slot="h2"]{top:24%;left:56%}
+.hero-cards .slot[data-slot="h3"]{top:46%;left:84%}
+.hero-cards .slot[data-slot="h4"]{top:72%;left:10%}
+.hero-cards .slot[data-slot="h5"]{top:60%;left:46%}
 /* mobile hero visual: static mini-grid of the kit (film off) */
 .hero-kit-static{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3)}
 .hero-kit-static .sitem{background:#FFFDF8;color:var(--color-paper-ink);border:1px solid rgba(30,58,46,.14);border-radius:var(--radius-sm);box-shadow:var(--shadow-sm);padding:var(--space-2)}
@@ -182,6 +198,7 @@ h3{font-size:var(--text-xl);font-weight:600}
 .mode .slot[data-slot="k3"]{top:60%;right:20%;left:auto}
 .mode .slot[data-slot="k4"]{top:76%;right:11%;left:auto}
 .mode .slot[data-slot="k5"]{top:34%;right:9%;left:auto}
+@media (min-width:1024px){ #modeOne h3, #modeOne .pricepair, #modeOne p, #modeOne .micro { max-width: calc(100% - 12rem); } }
 .stat-foot{margin-top:var(--space-6);color:var(--color-muted)}
 .quote-aside{margin-top:var(--space-8);border-left:2px solid var(--color-accent);padding-left:var(--space-4);max-width:var(--max-width-text)}
 .quote-aside p{font-size:var(--text-base);color:var(--color-ink-soft);font-style:italic}
@@ -381,12 +398,12 @@ footer .wordmark{color:var(--color-on-deep)}
 <!-- ============ FILM LAYER — the traveling Pottery Studio Kit ============ -->
 <div id="film" aria-hidden="true">
   <!-- ASSET: film items — 6 pottery cutouts on bone, 10:7 (replace line art) -->
-  <div class="fitem" data-i="0"><img src="assets/img/kit-surf-board.webp" width="1280" height="832" alt="Longboard"></div>
-  <div class="fitem" data-i="1"><img src="assets/img/kit-surf-tent.webp" width="1280" height="832" alt="Packed tent"></div>
-  <div class="fitem" data-i="2"><img src="assets/img/kit-surf-stove.webp" width="1280" height="832" alt="Camp stove and kettle"></div>
-  <div class="fitem" data-i="3"><img src="assets/img/kit-surf-shower.webp" width="1280" height="832" alt="Portable shower"></div>
-  <div class="fitem" data-i="4"><img src="assets/img/kit-surf-firepit.webp" width="1280" height="832" alt="Fire pit and mugs"></div>
-  <div class="fitem" data-i="5"><img src="assets/img/kit-surf-wetsuit.webp" width="1280" height="832" alt="Folded wetsuit"><img class="ws-full" src="assets/img/kit-surf-wetsuit-full.webp" width="768" height="1024" alt="Full wetsuit, unfolded"></div>
+  <div class="fitem" data-i="0"><span class="callout">the 9&#8217;8 board<svg class="co-line" viewBox="0 0 60 24" aria-hidden="true"><path d="M4 20 Q22 2 56 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span><img src="assets/img/cut-board.webp" width="640" height="159" alt="Longboard"></div>
+  <div class="fitem" data-i="1"><span class="callout"><svg class="co-line" viewBox="0 0 60 24" aria-hidden="true"><path d="M4 20 Q22 2 56 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>tent, sleeps 2</span><img src="assets/img/cut-tent.webp" width="640" height="389" alt="Packed tent"></div>
+  <div class="fitem" data-i="2"><span class="callout">two-burner stove<svg class="co-line" viewBox="0 0 60 24" aria-hidden="true"><path d="M4 20 Q22 2 56 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span><img src="assets/img/cut-stove.webp" width="640" height="417" alt="Two-burner camp stove"></div>
+  <div class="fitem" data-i="3"><span class="callout">hot shower<svg class="co-line" viewBox="0 0 60 24" aria-hidden="true"><path d="M4 20 Q22 2 56 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span><img src="assets/img/cut-shower.webp" width="412" height="644" alt="Portable camp shower"></div>
+  <div class="fitem" data-i="4"><span class="callout"><svg class="co-line" viewBox="0 0 60 24" aria-hidden="true"><path d="M4 20 Q22 2 56 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>firepit &amp; mugs</span><img src="assets/img/cut-firepit.webp" width="640" height="166" alt="Fire pit and mugs"></div>
+  <div class="fitem" data-i="5"><span class="callout">the wetsuit<svg class="co-line" viewBox="0 0 60 24" aria-hidden="true"><path d="M4 20 Q22 2 56 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span><div class="ws-bg"></div><img src="assets/img/cut-wetsuit.webp" width="390" height="454" alt="Folded wetsuit"><img class="ws-full" src="assets/img/kit-surf-wetsuit-full.webp" width="768" height="1024" alt="Full wetsuit, unfolded"></div>
   <div class="fcrate" id="fcrate">
     <svg viewBox="0 0 140 100">
       <rect x="12" y="34" width="116" height="58" rx="8" fill="#F6F2E8" stroke="#8F6A1E" stroke-width="2"/>
@@ -535,7 +552,6 @@ footer .wordmark{color:var(--color-on-deep)}
           <p class="cap"><b>Apron &amp; sponge</b></p>
         </div>
       </div>
-      <div class="sig-pack" id="sigPack"><button class="btn" id="packBtn" type="button">Pack the kit <span class="arr" aria-hidden="true">&rarr;</span></button></div>
       <div class="sig-end">
         <p class="cap"><span class="pulse"></span>Borrow the whole kit — or any piece of it.</p>
         <a class="btn" href="https://cachekits.com/browse">Browse items &amp; kits <span class="arr" aria-hidden="true">→</span></a>
@@ -772,7 +788,7 @@ footer .wordmark{color:var(--color-on-deep)}
 
   /* zoom-crop the cutout photos so the gear fills each card (generated images
      have generous cream margins by design) */
-  document.querySelectorAll(".fitem img:not(.ws-full), .sig-item img, .hero-kit-static .sitem img, .kitcard img").forEach(function(img){
+  document.querySelectorAll(".sig-item img, .hero-kit-static .sitem img, .kitcard img").forEach(function(img){
     var w = document.createElement("div");
     w.style.cssText = "overflow:hidden;border-radius:6px";
     img.parentNode.insertBefore(w, img);
@@ -955,10 +971,12 @@ footer .wordmark{color:var(--color-on-deep)}
         var wsFull = ws.querySelector(".ws-full");
         gsap.set(ws, { height: function(){ return ws.offsetHeight; } });
 
+        gsap.set(".ws-bg", { autoAlpha: 0 });
         var compile = gsap.timeline({
           scrollTrigger: { trigger: "#modes", start: "top 90%", end: "top 30%", scrub: 0.8, invalidateOnRefresh: true },
           defaults: { ease: "none" }
         });
+        compile.to(".callout", { autoAlpha: 0, duration: 1.2 }, 0);
         fitems.forEach(function(it, i){
           if (i === 5) return;
           compile.to(it, {
@@ -975,9 +993,10 @@ footer .wordmark{color:var(--color-on-deep)}
           rotation: 0, duration: 4.5
         }, 0.5);
         compile.to(ws, {
-          height: function(){ return ws.clientWidth * 4 / 3 + 8; },
+          height: function(){ return ws.clientWidth * 4 / 3; },
           scale: 1.15, duration: 3
         }, 5.2);
+        compile.to(".ws-bg", { autoAlpha: 1, duration: 2 }, 5.4);
         compile.to(wsFull, { clipPath: "inset(0% 0% 0% 0%)", duration: 3 }, 5.6);
 
         /* SEGMENT 4 — crate rides to the handoff (appears after the pin) */
@@ -1050,15 +1069,10 @@ footer .wordmark{color:var(--color-on-deep)}
       });
       sigTl.call(function(){ crate.classList.add("solid"); }, null, 8.2);
       sigTl.to(sigEnd, { autoAlpha: 1, y: 0, duration: 1 }, 8.4);
-      var packBtn = document.getElementById("packBtn");
-      if (packBtn){
-        packBtn.addEventListener("click", function(){
-          gsap.to("#sigPack", { autoAlpha: 0, duration: 0.3, onComplete: function(){
-            document.getElementById("sigPack").style.display = "none";
-          }});
-          sigTl.play();
-        });
-      }
+      ScrollTrigger.create({
+        trigger: ".sig-stage", start: "top 60%", once: true,
+        onEnter: function(){ sigTl.play(); }
+      });
 
       /* ---------- Protected, performed (pinned) ---------- */
       /* PROTECTED — an auto-playing movie of the full rental lifecycle
