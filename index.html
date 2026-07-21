@@ -864,7 +864,7 @@ footer .wordmark{color:var(--color-on-deep)}
   (function startRotation(){
     var rot = document.getElementById("rot");
     if (!rot || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    var worlds = ["whole hobby.", "surf trip.", "listening room.", "darkroom.", "campsite."];
+    var worlds = ["whole hobby.", "surf trip.", "ski weekend.", "jam session.", "pottery wheel."];
     var wi = 0;
     setInterval(function(){
       gsap.to(rot, { autoAlpha: 0, y: "0.35em", duration: 0.26, overwrite: "auto", onComplete: function(){
