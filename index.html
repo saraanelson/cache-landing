@@ -420,7 +420,7 @@ footer .wordmark{color:var(--color-on-deep)}
   <div class="fitem" data-i="0"><span class="callout">the 9&#8217;8 board<svg class="co-line" viewBox="0 0 60 24" aria-hidden="true"><path d="M4 20 Q22 2 56 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span><img src="assets/img/cut-board.webp" width="640" height="159" alt="Longboard"></div>
   <div class="fitem" data-i="1"><span class="callout"><svg class="co-line" viewBox="0 0 60 24" aria-hidden="true"><path d="M4 20 Q22 2 56 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>tent, sleeps 2</span><img src="assets/img/cut-tent.webp" width="640" height="389" alt="Packed tent"></div>
   <div class="fitem" data-i="2"><span class="callout">two-burner stove<svg class="co-line" viewBox="0 0 60 24" aria-hidden="true"><path d="M4 20 Q22 2 56 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span><img src="assets/img/cut-stove.webp" width="640" height="417" alt="Two-burner camp stove"></div>
-  <div class="fitem" data-i="3"><span class="callout">hot shower<svg class="co-line" viewBox="0 0 60 24" aria-hidden="true"><path d="M4 20 Q22 2 56 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span><img src="assets/img/cut-shower.webp" width="412" height="644" alt="Portable camp shower"></div>
+  <div class="fitem" data-i="3"><span class="callout">portable shower<svg class="co-line" viewBox="0 0 60 24" aria-hidden="true"><path d="M4 20 Q22 2 56 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span><img src="assets/img/cut-shower.webp" width="412" height="644" alt="Portable camp shower"></div>
   <div class="fitem" data-i="4"><span class="callout"><svg class="co-line" viewBox="0 0 60 24" aria-hidden="true"><path d="M4 20 Q22 2 56 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>firepit &amp; mugs</span><img src="assets/img/cut-firepit.webp" width="640" height="166" alt="Fire pit and mugs"></div>
   <div class="fitem" data-i="5"><span class="callout">the wetsuit<svg class="co-line" viewBox="0 0 60 24" aria-hidden="true"><path d="M4 20 Q22 2 56 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span><div class="ws-bg"></div><img src="assets/img/cut-wetsuit.webp" width="390" height="454" alt="Folded wetsuit"><img class="ws-full" src="assets/img/kit-surf-wetsuit-full.webp" width="768" height="1024" alt="Full wetsuit, unfolded"></div>
   <div class="fcursor" id="dragCursor" aria-hidden="true"><svg viewBox="-1 -1 26 26" width="27" height="27"><path d="M23 5.5V20c0 2.2-1.8 4-4 4h-7.3c-1.08 0-2.1-.43-2.85-1.19L1 14.83s1.26-1.23 1.3-1.25c.22-.19.49-.29.79-.29.22 0 .42.06.6.16.04.01 4.31 2.46 4.31 2.46V4c0-.83.67-1.5 1.5-1.5S11 3.17 11 4v7h1V1.5c0-.83.67-1.5 1.5-1.5S15 .67 15 1.5V11h1V2.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5V11h1V5.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5z" fill="#161310" stroke="#FFFFFF" stroke-width="1.2" stroke-linejoin="round"/></svg></div>
@@ -982,8 +982,26 @@ footer .wordmark{color:var(--color-on-deep)}
           gsap.set(fcrate, { autoAlpha: 0 });
         }
         seatHero();
-        ScrollTrigger.addEventListener("refreshInit", seatHero);
-        cleanupFns.push(function(){ ScrollTrigger.removeEventListener("refreshInit", seatHero); });
+        /* aim each handwritten squiggle at its item — computed, not guessed:
+           rotate the line so it points from the callout toward the cutout */
+        function aimCallouts(){
+          fitems.forEach(function(it){
+            var img = it.querySelector("img:not(.ws-full)");
+            var line = it.querySelector(".co-line");
+            if (!img || !line) return;
+            var ir = img.getBoundingClientRect(), lr = line.getBoundingClientRect();
+            var ang = Math.atan2((ir.top + ir.height / 2) - (lr.top + lr.height / 2),
+                                 (ir.left + ir.width / 2) - (lr.left + lr.width / 2)) * 180 / Math.PI;
+            /* the squiggle's natural direction runs ~-11 deg (left-bottom to right-top) */
+            gsap.set(line, { rotation: ang + 11, transformOrigin: "50% 50%" });
+          });
+        }
+        aimCallouts();
+        window.addEventListener("load", aimCallouts);
+        cleanupFns.push(function(){ window.removeEventListener("load", aimCallouts); });
+        function onRefreshInit(){ seatHero(); aimCallouts(); }
+        ScrollTrigger.addEventListener("refreshInit", onRefreshInit);
+        cleanupFns.push(function(){ ScrollTrigger.removeEventListener("refreshInit", onRefreshInit); });
 
         gsap.from(fitems, { autoAlpha: 0, y: "+=18", duration: 0.8, delay: 0.25, stagger: 0.1 });
 
