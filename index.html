@@ -1082,7 +1082,7 @@ footer .wordmark{color:var(--color-on-deep)}
 
       /* button-played pack animation (founder: "started by a button, not scroll") */
       var sigTl = gsap.timeline({ paused: true, defaults: { ease: "power2.inOut" } });
-      sigTl.timeScale(2);
+      sigTl.timeScale(2.6);
       sigTl.to(caps, { autoAlpha: 1, duration: 2, stagger: 0.35 }, 0);
       sigTl.to(crate, { autoAlpha: 1, duration: 1.5 }, 2.5);
       stageItems.forEach(function(it, i){
@@ -1098,7 +1098,7 @@ footer .wordmark{color:var(--color-on-deep)}
       sigTl.call(function(){ crate.classList.add("solid"); }, null, 8.2);
       sigTl.to(sigEnd, { autoAlpha: 1, y: 0, duration: 1 }, 8.4);
       ScrollTrigger.create({
-        trigger: ".sig-stage", start: "top 60%", once: true,
+        trigger: ".sig-stage", start: "top 78%", once: true,
         onEnter: function(){ sigTl.play(); }
       });
 
@@ -1125,7 +1125,8 @@ footer .wordmark{color:var(--color-on-deep)}
       }
       protHideAll();
 
-      var protTl = gsap.timeline({ paused: true, repeat: -1, repeatDelay: 1.2, defaults: { ease: "power2.out" } });
+      var protTl = gsap.timeline({ paused: true, repeat: -1, repeatDelay: 0.8, defaults: { ease: "power2.out" } });
+      protTl.timeScale(1.4);
       function capSwap(key, at){
         protTl.to(capEl, { autoAlpha: 0, duration: 0.2 }, at);
         protTl.call(function(){ capEl.textContent = CAPS[key]; }, null, at + 0.2);
