@@ -92,21 +92,21 @@ h3{font-size:var(--text-xl);font-weight:600}
 #film{position:absolute;inset:0 auto auto 0;width:100%;height:0;overflow:visible;pointer-events:none;z-index:30;display:none}
 .fitem{position:absolute;left:0;top:0;width:10rem;filter:drop-shadow(0 10px 22px rgba(4,14,10,.45));will-change:transform}
 .fitem img{display:block;width:100%;height:auto}
-.fitem[data-i="1"]{width:11rem}
-.fitem[data-i="2"]{width:11rem}
-.fitem[data-i="3"]{width:6.5rem}
-.fitem[data-i="4"]{width:12rem}
-.fitem[data-i="5"]{width:8rem}
+.fitem[data-i="1"]{width:10.5rem}
+.fitem[data-i="2"]{width:10.5rem}
+.fitem[data-i="3"]{width:6rem}
+.fitem[data-i="4"]{width:11rem}
+.fitem[data-i="5"]{width:7.5rem}
 .callout{position:absolute;font-family:'Caveat',cursive;font-size:1.4rem;font-weight:600;color:var(--color-ui);white-space:nowrap;display:flex;align-items:center;gap:.35rem;filter:none}
 .co-line{width:42px;height:18px;color:var(--color-ui);opacity:.8;flex:0 0 auto}
-.fitem[data-i="0"] .callout{left:20%;top:-2.3rem}
-.fitem[data-i="1"] .callout{left:-10%;bottom:-2.2rem}
-.fitem[data-i="2"] .callout{right:-12%;top:-2.2rem}
-.fitem[data-i="3"] .callout{right:100%;top:36%;margin-right:.4rem}
-.fitem[data-i="4"] .callout{left:8%;bottom:-2.2rem}
-.fitem[data-i="5"] .callout{left:70%;top:-2.2rem}
+.fitem[data-i="0"] .callout{left:34%;bottom:-2.5rem;top:auto}
+.fitem[data-i="1"] .callout{left:-2%;bottom:-2.5rem}
+.fitem[data-i="2"] .callout{right:-4%;top:-2.5rem}
+.fitem[data-i="3"] .callout{left:-42%;bottom:-2.6rem;top:auto}
+.fitem[data-i="4"] .callout{left:12%;bottom:-2.5rem}
+.fitem[data-i="5"] .callout{left:50%;bottom:-2.5rem}
 .ws-bg{position:absolute;inset:-5% -8%;background:var(--color-paper);border-radius:var(--radius-md);box-shadow:var(--shadow-lift);z-index:-1}
-.fitem[data-i="0"]{width:17rem}
+.fitem[data-i="0"]{width:15rem}
 .fitem .ws-full{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;border-radius:8px;clip-path:inset(0 0 100% 0)}
 .fcrate{position:absolute;left:0;top:0;width:10.5rem;color:var(--color-paper);will-change:transform}
 .fcrate .lid{transform-origin:8% 88%}
@@ -114,13 +114,13 @@ h3{font-size:var(--text-xl);font-weight:600}
 @media (min-width:1024px){ #film.on{display:block} }
 
 /* hero scatter slots live inside .hero-cards */
-.hero-cards{position:relative;height:clamp(20rem,44vw,26rem)}
-.hero-cards .slot[data-slot="h0"]{top:8%;left:8%}
-.hero-cards .slot[data-slot="h1"]{top:26%;left:2%}
-.hero-cards .slot[data-slot="h2"]{top:24%;left:56%}
-.hero-cards .slot[data-slot="h3"]{top:46%;left:84%}
-.hero-cards .slot[data-slot="h4"]{top:72%;left:10%}
-.hero-cards .slot[data-slot="h5"]{top:60%;left:46%}
+.hero-cards{position:relative;height:clamp(22rem,46vw,30rem)}
+.hero-cards .slot[data-slot="h0"]{top:2%;left:4%}
+.hero-cards .slot[data-slot="h1"]{top:28%;left:0}
+.hero-cards .slot[data-slot="h2"]{top:26%;left:58%}
+.hero-cards .slot[data-slot="h3"]{top:50%;left:86%}
+.hero-cards .slot[data-slot="h4"]{top:78%;left:6%}
+.hero-cards .slot[data-slot="h5"]{top:60%;left:44%}
 /* mobile hero visual: static mini-grid of the kit (film off) */
 .hero-kit-static{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3)}
 .hero-kit-static .sitem{background:#FFFDF8;color:var(--color-paper-ink);border:1px solid rgba(30,58,46,.14);border-radius:var(--radius-sm);box-shadow:var(--shadow-sm);padding:var(--space-2)}
@@ -438,12 +438,12 @@ footer .wordmark{color:var(--color-on-deep)}
     </div>
     <div class="hero-cards">
       <!-- film waypoints (desktop) -->
-      <span class="slot" data-slot="h0" data-r="-7"></span>
-      <span class="slot" data-slot="h1" data-r="5"></span>
-      <span class="slot" data-slot="h2" data-r="3"></span>
-      <span class="slot" data-slot="h3" data-r="-5"></span>
-      <span class="slot" data-slot="h4" data-r="8"></span>
-      <span class="slot" data-slot="h5" data-r="-4"></span>
+      <span class="slot" data-slot="h0" data-r="-4"></span>
+      <span class="slot" data-slot="h1" data-r="3"></span>
+      <span class="slot" data-slot="h2" data-r="2"></span>
+      <span class="slot" data-slot="h3" data-r="-3"></span>
+      <span class="slot" data-slot="h4" data-r="4"></span>
+      <span class="slot" data-slot="h5" data-r="-2"></span>
       <!-- mobile static kit grid -->
       <div class="hero-kit-static" aria-hidden="false">
         <div class="sitem"><img src="assets/img/kit-surf-board.webp" width="1280" height="832" alt="Longboard"><p class="cap">Board</p></div>
@@ -679,7 +679,7 @@ footer .wordmark{color:var(--color-on-deep)}
             <p class="mono">Incoming request</p>
             <p class="kitline">Pottery Studio Kit · 2 days</p>
             <span class="req-chip" id="reqChip">Pending — you approve</span>
-            <p class="dep-line mono" id="depLine">Deposit held &#183; $50</p>
+            <p class="dep-line mono" id="depLine">Damage cap: $50 &#183; nothing held up front</p>
           </div>
           <div class="prot-shots">
             <span class="day-chip mono" id="dayChip">Day 1</span>
@@ -692,7 +692,7 @@ footer .wordmark{color:var(--color-on-deep)}
           </div>
           <div class="pay-card" id="payCard">
             <p class="mono">Rental complete</p>
-            <p class="kitline">Deposit returned in full</p>
+            <p class="kitline">Condition matched — no extra charges</p>
             <span class="req-chip ok">Payout sent — curator keeps 90%</span>
           </div>
           <p class="prot-caption mono" id="protCaption">Request first — you approve who borrows. Nothing is charged until you accept.</p>
@@ -712,7 +712,7 @@ footer .wordmark{color:var(--color-on-deep)}
     </div>
     <div class="cov">
       <span class="mono">Protected handoffs</span>
-      <p><b>Pickup and return photos document every rental.</b> Deposits and protection policies back the rest.</p>
+      <p><b>Pickup and return photos document every rental.</b> Nothing is held up front — a damage charge needs a real receipt, and never exceeds the cap posted on the listing.</p>
     </div>
   </div>
 
@@ -724,7 +724,7 @@ footer .wordmark{color:var(--color-on-deep)}
     </details>
     <details>
       <summary>What if I break something?</summary>
-      <p class="a">Tell your curator — accidents are part of gear that actually gets used. Pickup and return photos document the condition on both ends, so there’s no he-said-she-said, and deposits and protection policies cover what the photos show. Details are in each listing before you request.</p>
+      <p class="a">Tell your curator — accidents are part of gear that actually gets used. Pickup and return photos document the condition on both ends, so there’s no he-said-she-said. Nothing is held up front: if something genuinely breaks, the owner submits a real repair or replacement receipt and your card on file covers it — only ever up to the damage cap posted on the listing. Normal wear never counts.</p>
     </details>
     <details>
       <summary>How do I know the gear isn’t junk?</summary>
@@ -771,7 +771,7 @@ footer .wordmark{color:var(--color-on-deep)}
         <a href="https://cachekits.com/browse">Browse</a>
         <a href="https://cachekits.com">Become a founding curator</a>
         <a href="#protected">How Cache protects you</a>
-        <a href="#faq">Deposits</a>
+        <a href="#faq">Damage caps</a>
       </div>
     </div>
     <p class="foot-legal">© 2026 Cache · cachekits.com</p>
@@ -977,27 +977,30 @@ footer .wordmark{color:var(--color-on-deep)}
           defaults: { ease: "none" }
         });
         compile.to(".callout", { autoAlpha: 0, duration: 1.2 }, 0);
+        /* items stream in ONE BY ONE — each accelerates into the card, vanishes
+           at the mouth, and the card pulses as it swallows the piece */
         fitems.forEach(function(it, i){
           if (i === 5) return;
           compile.to(it, {
             x: function(){ return itemXY(it, "k-abs").x; },
             y: function(){ return itemXY(it, "k-abs").y; },
-            scale: 0.3, rotation: 0, duration: 6
-          }, i * 0.35);
-          compile.to(it, { autoAlpha: 0, duration: 1.2 }, 5 + i * 0.35);
+            scale: 0.18, rotation: 0, duration: 4.2, ease: "power1.in"
+          }, i * 0.9);
+          compile.to(it, { autoAlpha: 0, duration: 0.7 }, i * 0.9 + 3.6);
+          compile.to(".kitcard", { scale: 1.03, duration: 0.25, yoyo: true, repeat: 1, ease: "power1.inOut" }, i * 0.9 + 4.0);
         });
-        compile.to(".kitcard .art", { autoAlpha: 1, scale: 1, duration: 1.8, ease: "power1.out" }, 6.2);
+        compile.to(".kitcard .art", { autoAlpha: 1, scale: 1, duration: 1.6, ease: "power1.out" }, 8.1);
         compile.to(ws, {
           x: function(){ return itemXY(ws, "k5").x; },
           y: function(){ return itemXY(ws, "k5").y; },
-          rotation: 0, duration: 4.5
-        }, 0.5);
+          rotation: 0, duration: 5
+        }, 0.6);
         compile.to(ws, {
           height: function(){ return ws.clientWidth * 4 / 3; },
-          scale: 1.15, duration: 3
-        }, 5.2);
-        compile.to(".ws-bg", { autoAlpha: 1, duration: 2 }, 5.4);
-        compile.to(wsFull, { clipPath: "inset(0% 0% 0% 0%)", duration: 3 }, 5.6);
+          scale: 1.15, duration: 2.6
+        }, 6.6);
+        compile.to(".ws-bg", { autoAlpha: 1, duration: 1.8 }, 6.8);
+        compile.to(wsFull, { clipPath: "inset(0% 0% 0% 0%)", duration: 2.6 }, 7.0);
 
         /* SEGMENT 4 — crate rides to the handoff (appears after the pin) */
         gsap.set(fcrate, { autoAlpha: 0 });
@@ -1076,7 +1079,7 @@ footer .wordmark{color:var(--color-on-deep)}
 
       /* ---------- Protected, performed (pinned) ---------- */
       /* PROTECTED — an auto-playing movie of the full rental lifecycle
-         (request -> accept -> deposit -> documented pickup -> the days ->
+         (request -> accept -> damage cap -> documented pickup -> the days ->
          matched return -> payout). Plays on entering view, loops, no scroll. */
       var chip = document.getElementById("reqChip");
       var stampEl = document.getElementById("protStamp");
@@ -1085,8 +1088,8 @@ footer .wordmark{color:var(--color-on-deep)}
       var CAPS = {
         a: "Request first — you approve who borrows. Nothing is charged until you accept.",
         b: "Pickup photographed — condition locked in on both sides.",
-        c: "Two days of making. The deposit just sits there.",
-        d: "Return matched \u00b7 deposit back in full \u00b7 payout sent — you keep 90%."
+        c: "Two days of making. Card on file — nothing held, nothing charged.",
+        d: "Condition matched \u00b7 no extra charges \u00b7 payout sent — curator keeps 90%."
       };
       function protHideAll(){
         gsap.set("#reqCard", { autoAlpha: 0, x: -40 });
@@ -1111,7 +1114,7 @@ footer .wordmark{color:var(--color-on-deep)}
         capEl.textContent = CAPS.a;
         dayEl.textContent = "Day 1";
       }, null, 0);
-      /* A — request + accept + deposit */
+      /* A — request + accept + damage cap */
       protTl.to("#reqCard", { autoAlpha: 1, x: 0, duration: 0.6 }, 0.2);
       protTl.to(capEl, { autoAlpha: 1, duration: 0.4 }, 0.5);
       protTl.call(function(){ chip.classList.add("ok"); chip.textContent = "Accepted — now you\u2019re charged"; }, null, 1.7);
