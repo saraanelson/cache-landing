@@ -70,6 +70,7 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:clip}
 body{background:var(--color-bg);color:var(--color-ink);font-family:var(--font-body);font-size:var(--text-base);line-height:var(--leading-body);-webkit-font-smoothing:antialiased}
 img,svg{display:block;max-width:100%}
 a{color:inherit}
@@ -89,7 +90,7 @@ h3{font-size:var(--text-xl);font-weight:600}
 .mline{display:block}
 
 /* ============ FILM LAYER (Level 3, desktop only) ============ */
-#film{position:absolute;inset:0 auto auto 0;width:100%;height:0;overflow:visible;pointer-events:none;z-index:30;display:none}
+#film{position:absolute;inset:0 auto auto 0;width:100%;height:0;overflow-x:clip;overflow-y:visible;pointer-events:none;z-index:30;display:none}
 .fitem{position:absolute;left:0;top:0;width:10rem;filter:drop-shadow(0 10px 22px rgba(4,14,10,.45));will-change:transform}
 .fitem img{display:block;width:100%;height:auto}
 .fitem[data-i="1"]{width:10.5rem}
@@ -367,6 +368,16 @@ h3{font-size:var(--text-xl);font-weight:600}
 .final h2{font-size:clamp(2rem,1.5rem + 3vw,3.6rem)}
 .final p{color:var(--color-ink-soft);margin-top:var(--space-4)}
 .final .slot[data-slot="f-crate"]{left:50%;top:1.5rem;margin-left:-4.5rem;width:9rem;height:7rem}
+/* wordmark tile band — the brand as wallpaper, cropped at the edges */
+.markband{overflow:hidden;background:var(--color-bg);line-height:.78;user-select:none;padding-top:var(--space-8)}
+.markband .markrow{display:flex;gap:.32em;white-space:nowrap;width:max-content;font-family:var(--font-display);font-weight:700;font-size:clamp(4.5rem,12vw,9rem);letter-spacing:var(--tracking-display)}
+.markband i{font-style:normal}
+.mr1{color:var(--color-ink)}
+.mr1 i{color:var(--color-accent)}
+.mr1 .hot i{color:var(--color-signal)}
+.mr2{color:var(--color-accent);margin-left:-1.4em;margin-bottom:-.24em;opacity:.92}
+.mr2 i{color:var(--color-signal)}
+
 footer{background:var(--color-bg-deep);color:var(--color-on-deep);padding-block:var(--space-16)}
 .foot-grid{display:flex;flex-wrap:wrap;gap:var(--space-8);justify-content:space-between;align-items:center}
 footer .wordmark{color:var(--color-on-deep)}
@@ -798,6 +809,16 @@ footer .wordmark{color:var(--color-on-deep)}
   <p class="rv mono" style="margin-top:var(--space-6);color:var(--color-muted)">Coming later — Sessions: borrow a space. Meet other serial hobbyists.</p>
 </section>
 
+<!-- ============ WORDMARK TILE BAND — type as texture (Polén-style) ============ -->
+<div class="markband" aria-hidden="true">
+  <div class="markrow mr1">
+    <span>c<i>a</i>che</span><span>c<i>a</i>che</span><span>c<i>a</i>che</span><span class="hot">c<i>a</i>che</span><span>c<i>a</i>che</span><span>c<i>a</i>che</span><span>c<i>a</i>che</span><span>c<i>a</i>che</span>
+  </div>
+  <div class="markrow mr2">
+    <span>c<i>a</i>che</span><span>c<i>a</i>che</span><span>c<i>a</i>che</span><span>c<i>a</i>che</span><span>c<i>a</i>che</span><span>c<i>a</i>che</span><span>c<i>a</i>che</span><span>c<i>a</i>che</span>
+  </div>
+</div>
+
 <footer>
   <div class="shell">
     <div class="foot-grid">
@@ -955,6 +976,12 @@ footer .wordmark{color:var(--color-on-deep)}
       /* pull-quote slow drift */
       gsap.fromTo(".pull blockquote", { y: 40 }, { y: -20, ease: "none",
         scrollTrigger: { trigger: ".pull", start: "top bottom", end: "bottom top", scrub: 1.2 } });
+
+      /* wordmark tile band — rows drift against each other on scroll */
+      gsap.to(".mr1", { xPercent: -5, ease: "none",
+        scrollTrigger: { trigger: ".markband", start: "top bottom", end: "bottom top", scrub: 1 } });
+      gsap.fromTo(".mr2", { xPercent: -5 }, { xPercent: 0, ease: "none",
+        scrollTrigger: { trigger: ".markband", start: "top bottom", end: "bottom top", scrub: 1 } });
 
       /* magnetic CTAs (desktop pointer only) */
       if (window.matchMedia("(pointer: fine)").matches){
