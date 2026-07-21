@@ -225,12 +225,12 @@ h3{font-size:var(--text-xl);font-weight:600}
 .sig-head{position:absolute;top:var(--space-6);left:var(--space-8);z-index:5}
 .sig-head .mono{color:var(--color-paper-muted)}
 .sig-head h2{font-size:var(--text-xl);margin-top:var(--space-2)}
-.manifest{align-self:end;padding:var(--space-8);z-index:4}
+.manifest{align-self:center;padding:var(--space-8);z-index:4}
 .manifest li{list-style:none;display:flex;justify-content:space-between;gap:var(--space-4);font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:var(--tracking-mono);text-transform:uppercase;color:var(--color-paper-muted);padding-block:.4em;border-bottom:1px solid rgba(30,58,46,.16)}
 .manifest .total{border-bottom:0;border-top:2px solid var(--color-paper-ink);font-weight:500;color:var(--color-paper-ink);margin-top:.3em}
 .manifest .total .sum{color:var(--color-brass-ink)}
 .sig-field{position:relative}
-.sig-crate{position:absolute;inset:16% 8% 14% 6%;border:1.5px dashed rgba(30,58,46,.22);border-radius:var(--radius-lg)}
+.sig-crate{position:absolute;inset:16% 8% 20% 6%;border:1.5px dashed rgba(30,58,46,.22);border-radius:var(--radius-lg)}
 .sig-crate.solid{border-style:solid;border-color:var(--color-brass-ink)}
 .sig-crate .cornertag{position:absolute;top:.65em;left:var(--space-4);background:var(--color-paper);padding-inline:var(--space-2);color:var(--color-paper-muted)}
 .sig-item{position:absolute;width:20%;min-width:6.2rem;background:#FFFDF8;color:var(--color-paper-ink);border:1px solid rgba(30,58,46,.14);border-radius:var(--radius-sm);box-shadow:0 1px 2px rgba(30,58,46,.08),0 2px 8px rgba(30,58,46,.07);padding:var(--space-2)}
@@ -241,7 +241,7 @@ h3{font-size:var(--text-xl);font-weight:600}
 .sig-pack .btn{background:var(--color-btn-ink);color:var(--color-ink)}
 .sig-pack .btn:hover{background:var(--color-bg)}
 @media (prefers-reduced-motion:reduce){.sig-pack{display:none}}
-.sig-end{position:absolute;bottom:var(--space-6);left:0;right:0;text-align:center;z-index:6}
+.sig-end{position:absolute;bottom:var(--space-6);left:17.5rem;right:0;text-align:center;z-index:6}
 .sig-end .cap{margin-bottom:var(--space-3);color:var(--color-paper-ink);font-weight:500}
 .sig-end .btn{background:var(--color-btn-ink);color:var(--color-ink)}
 .sig-end .btn:hover{background:var(--color-bg)}
@@ -1114,7 +1114,7 @@ footer .wordmark{color:var(--color-on-deep)}
       sigTl.call(function(){ crate.classList.add("solid"); }, null, 8.2);
       sigTl.to(sigEnd, { autoAlpha: 1, y: 0, duration: 1 }, 8.4);
       ScrollTrigger.create({
-        trigger: ".sig-stage", start: "top 78%", once: true,
+        trigger: ".sig-stage", start: "top 52%", once: true,
         onEnter: function(){ sigTl.play(); }
       });
 
