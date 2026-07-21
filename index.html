@@ -802,7 +802,7 @@ footer .wordmark{color:var(--color-on-deep)}
 <script>
 (function(){
   gsap.registerPlugin(ScrollTrigger);
-  gsap.defaults({ ease: "power3.out", duration: 0.6 });
+  gsap.defaults({ ease: "power3.out", duration: 0.45 });
 
   /* zoom-crop the cutout photos so the gear fills each card (generated images
      have generous cream margins by design) */
@@ -988,6 +988,7 @@ footer .wordmark{color:var(--color-on-deep)}
         gsap.set(".kit-label", { autoAlpha: 0 });
 
         var kitTl = gsap.timeline({ paused: true, defaults: { ease: "power1.out" } });
+        kitTl.timeScale(1.6);
         kitTl.to(pieces, { autoAlpha: 1, y: 0, duration: 0.55, stagger: 0.22, ease: "back.out(1.5)" }, 0.1);
         kitTl.fromTo(".kit-label", { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.5 }, 1.6);
         /* the .rv reveal leaves an identity transform on the cards — a
@@ -1015,8 +1016,27 @@ footer .wordmark{color:var(--color-on-deep)}
         kitTl.to(wsFull2, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.8, ease: "power2.inOut" }, 3.75);
 
         ScrollTrigger.create({
-          trigger: ".kitcard", start: "top 78%", once: true,
+          trigger: ".kitcard", start: "top 65%", once: true,
           onEnter: function(){ kitTl.play(); }
+        });
+
+        /* THE DESCENT — the hero pieces ride the scroll down toward the kit,
+           each aimed at its twin's spot on the board, dissolving on arrival as
+           the in-card assembly takes over. Unpinned, scrubbed, reversible. */
+        var flyScale = [0.57, 0.51, 0.51, 0.52, 0.51, 0.56];
+        var descend = gsap.timeline({
+          scrollTrigger: { trigger: "#modes", start: "clamp(top 112%)", end: "clamp(top 30%)", scrub: 1, invalidateOnRefresh: true },
+          defaults: { ease: "none" }
+        });
+        descend.to(".callout", { autoAlpha: 0, duration: 1.2 }, 0);
+        fitems.forEach(function(it, i){
+          var twin = document.querySelector('.kitcard .sp[data-i="' + i + '"]');
+          descend.to(it, {
+            x: function(){ var r = twin.getBoundingClientRect(); return r.left + r.width / 2 + window.pageXOffset - it.offsetWidth / 2; },
+            y: function(){ var r = twin.getBoundingClientRect(); return r.top + r.height / 2 + window.pageYOffset - it.offsetHeight / 2; },
+            scale: flyScale[i], rotation: 0, duration: 6
+          }, i * 0.45);
+          descend.to(it, { autoAlpha: 0, duration: 0.9 }, i * 0.45 + 5.1);
         });
 
         /* SEGMENT 4 — crate rides to the handoff (appears after the pin) */
@@ -1074,7 +1094,7 @@ footer .wordmark{color:var(--color-on-deep)}
 
       /* button-played pack animation (founder: "started by a button, not scroll") */
       var sigTl = gsap.timeline({ paused: true, defaults: { ease: "power2.inOut" } });
-      sigTl.timeScale(2.6);
+      sigTl.timeScale(3.2);
       sigTl.to(caps, { autoAlpha: 1, duration: 2, stagger: 0.35 }, 0);
       sigTl.to(crate, { autoAlpha: 1, duration: 1.5 }, 2.5);
       stageItems.forEach(function(it, i){
@@ -1117,8 +1137,8 @@ footer .wordmark{color:var(--color-on-deep)}
       }
       protHideAll();
 
-      var protTl = gsap.timeline({ paused: true, repeat: -1, repeatDelay: 0.8, defaults: { ease: "power2.out" } });
-      protTl.timeScale(1.4);
+      var protTl = gsap.timeline({ paused: true, repeat: -1, repeatDelay: 0.6, defaults: { ease: "power2.out" } });
+      protTl.timeScale(1.8);
       function capSwap(key, at){
         protTl.to(capEl, { autoAlpha: 0, duration: 0.2 }, at);
         protTl.call(function(){ capEl.textContent = CAPS[key]; }, null, at + 0.2);
