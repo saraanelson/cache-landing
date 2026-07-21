@@ -423,7 +423,7 @@ footer .wordmark{color:var(--color-on-deep)}
   <div class="fitem" data-i="3"><span class="callout">hot shower<svg class="co-line" viewBox="0 0 60 24" aria-hidden="true"><path d="M4 20 Q22 2 56 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span><img src="assets/img/cut-shower.webp" width="412" height="644" alt="Portable camp shower"></div>
   <div class="fitem" data-i="4"><span class="callout"><svg class="co-line" viewBox="0 0 60 24" aria-hidden="true"><path d="M4 20 Q22 2 56 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>firepit &amp; mugs</span><img src="assets/img/cut-firepit.webp" width="640" height="166" alt="Fire pit and mugs"></div>
   <div class="fitem" data-i="5"><span class="callout">the wetsuit<svg class="co-line" viewBox="0 0 60 24" aria-hidden="true"><path d="M4 20 Q22 2 56 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span><div class="ws-bg"></div><img src="assets/img/cut-wetsuit.webp" width="390" height="454" alt="Folded wetsuit"><img class="ws-full" src="assets/img/kit-surf-wetsuit-full.webp" width="768" height="1024" alt="Full wetsuit, unfolded"></div>
-  <div class="fcursor" id="dragCursor" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M5.5 3l13 10.2-5.6 1 3.2 5.6-2.4 1.4-3.2-5.6L5.5 20z" fill="#161310" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+  <div class="fcursor" id="dragCursor" aria-hidden="true"><svg viewBox="-1 -1 26 26" width="27" height="27"><path d="M23 5.5V20c0 2.2-1.8 4-4 4h-7.3c-1.08 0-2.1-.43-2.85-1.19L1 14.83s1.26-1.23 1.3-1.25c.22-.19.49-.29.79-.29.22 0 .42.06.6.16.04.01 4.31 2.46 4.31 2.46V4c0-.83.67-1.5 1.5-1.5S11 3.17 11 4v7h1V1.5c0-.83.67-1.5 1.5-1.5S15 .67 15 1.5V11h1V2.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5V11h1V5.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5z" fill="#161310" stroke="#FFFFFF" stroke-width="1.2" stroke-linejoin="round"/></svg></div>
   <div class="fcrate" id="fcrate">
     <svg viewBox="0 0 140 100">
       <rect x="12" y="34" width="116" height="58" rx="8" fill="#F6F2E8" stroke="#8F6A1E" stroke-width="2"/>
@@ -1017,11 +1017,11 @@ footer .wordmark{color:var(--color-on-deep)}
         /* THE DRAG-AND-DROP: a cursor grabs the wetsuit from the kit spread
            and drops it into the suit-shaped outline in the item card */
         kitTl.set("#dragCursor", {
-          x: function(){ var r = wsPiece.getBoundingClientRect(); return r.left + r.width / 2 + window.pageXOffset - 6; },
-          y: function(){ var r = wsPiece.getBoundingClientRect(); return r.top + r.height / 2 + window.pageYOffset - 4; }
+          x: function(){ var r = wsPiece.getBoundingClientRect(); return r.left + r.width / 2 + window.pageXOffset - 13; },
+          y: function(){ var r = wsPiece.getBoundingClientRect(); return r.top + r.height / 2 + window.pageYOffset - 12; }
         }, 2.2);
         kitTl.to("#dragCursor", { autoAlpha: 1, duration: 0.25 }, 2.2);
-        kitTl.to("#dragCursor", { scale: 0.82, transformOrigin: "6px 4px", duration: 0.14, ease: "power2.out" }, 2.55); /* press */
+        kitTl.to("#dragCursor", { scale: 0.78, scaleY: 0.7, rotation: -10, transformOrigin: "50% 55%", duration: 0.16, ease: "power2.out" }, 2.55); /* the hand closes into a grab */
         kitTl.to(wsPiece, { scale: 1.07, duration: 0.16 }, 2.55); /* pick up */
         kitTl.to(wsPiece, {
           x: function(){
@@ -1035,13 +1035,13 @@ footer .wordmark{color:var(--color-on-deep)}
           rotation: 0, duration: 1.1, ease: "power2.inOut"
         }, 2.75);
         kitTl.to("#dragCursor", {
-          x: function(){ var k = slotXY("k5"); return k.x - 6; },
-          y: function(){ var k = slotXY("k5"); return k.y - 4; },
+          x: function(){ var k = slotXY("k5"); return k.x - 13; },
+          y: function(){ var k = slotXY("k5"); return k.y - 12; },
           duration: 1.1, ease: "power2.inOut"
         }, 2.75);
         /* the drop: outline fills, cursor releases and slips away */
         kitTl.to(".suit-ghost", { autoAlpha: 0, duration: 0.3 }, 3.85);
-        kitTl.to("#dragCursor", { scale: 1, duration: 0.15 }, 3.9);
+        kitTl.to("#dragCursor", { scale: 1, scaleY: 1, rotation: 0, duration: 0.2, ease: "back.out(2)" }, 3.9); /* the hand opens on release */
         kitTl.to(wsPiece, {
           scale: 1.65,
           height: function(){ return wsPiece.offsetWidth * 903 / 472; },
