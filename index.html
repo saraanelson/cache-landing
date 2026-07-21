@@ -193,6 +193,10 @@ h3{font-size:var(--text-xl);font-weight:600}
 .kitcard .sp[data-i="4"]{width:5.6rem;top:70%;left:24%;transform:rotate(-2deg)}
 .kitcard .sp[data-i="5"]{width:4.2rem;top:48%;left:42%;z-index:7}
 .sp-ws img{width:100%;display:block;height:auto}
+.sp-ws .ws-card{position:absolute;left:-16%;right:-16%;top:-9%;bottom:-46%;background:var(--color-paper);border-radius:var(--radius-md);box-shadow:var(--shadow-lift);opacity:0;z-index:-1}
+.sp-ws .ws-label{position:absolute;left:9%;bottom:5%;white-space:nowrap}
+.sp-ws .ws-label .mono{display:block;font-size:.42rem;color:var(--color-paper-muted)}
+.sp-ws .ws-label em{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:550;font-size:.9rem;color:var(--color-paper-ink);letter-spacing:-.01em}
 .sp-ws .ws-full2{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:top;clip-path:inset(0 0 100% 0)}
 .kit-label{position:absolute;left:var(--space-4);top:var(--space-3);z-index:5}
 .kit-label .mono{display:block;color:var(--color-paper-muted);font-size:.62rem}
@@ -208,7 +212,7 @@ h3{font-size:var(--text-xl);font-weight:600}
 .mode .slot[data-slot="k2"]{top:42%;right:10%;left:auto}
 .mode .slot[data-slot="k3"]{top:60%;right:20%;left:auto}
 .mode .slot[data-slot="k4"]{top:76%;right:11%;left:auto}
-.mode .slot[data-slot="k5"]{top:22rem;left:50%;margin-left:-3.3rem;right:auto}
+.mode .slot[data-slot="k5"]{top:23.5rem;left:50%;margin-left:-3.3rem;right:auto}
 .stat-foot{margin-top:var(--space-6);color:var(--color-muted)}
 .quote-aside{margin-top:var(--space-8);border-left:2px solid var(--color-accent);padding-left:var(--space-4);max-width:var(--max-width-text)}
 .quote-aside p{font-size:var(--text-base);color:var(--color-ink-soft);font-style:italic}
@@ -507,7 +511,7 @@ footer .wordmark{color:var(--color-on-deep)}
           <img class="sp" data-i="2" src="assets/img/cut-stove.webp" width="640" height="417" alt="">
           <img class="sp" data-i="3" src="assets/img/cut-shower.webp" width="412" height="644" alt="">
           <img class="sp" data-i="4" src="assets/img/cut-firepit.webp" width="640" height="166" alt="">
-          <div class="sp sp-ws" data-i="5" id="wsPiece"><img src="assets/img/cut-wetsuit.webp" width="390" height="454" alt=""><img class="ws-full2" src="assets/img/kit-surf-wetsuit-cut.webp" width="472" height="903" alt=""></div>
+          <div class="sp sp-ws" data-i="5" id="wsPiece"><div class="ws-card"><p class="ws-label"><span class="mono">One item &#183; $10/day</span><em>The Wetsuit</em></p></div><img class="ws-folded" src="assets/img/cut-wetsuit.webp" width="390" height="454" alt=""><img class="ws-full2" src="assets/img/kit-surf-wetsuit-cut.webp" width="472" height="903" alt=""></div>
         </div>
       </div>
       <p class="micro mono">Beach shops charge $95/day for the board and wetsuits alone.</p>
@@ -1007,10 +1011,12 @@ footer .wordmark{color:var(--color-on-deep)}
           rotation: 0, duration: 1.1, ease: "power2.inOut"
         }, 2.5);
         kitTl.to(wsPiece, {
-          scale: 1.7,
+          scale: 1.6,
           height: function(){ return wsPiece.offsetWidth * 903 / 472; },
           duration: 0.7, ease: "power2.inOut"
         }, 3.6);
+        kitTl.to(".sp-ws .ws-card", { autoAlpha: 1, duration: 0.45 }, 3.7);
+        kitTl.to(".sp-ws .ws-folded", { autoAlpha: 0, duration: 0.5 }, 3.8);
         kitTl.to(wsFull2, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.8, ease: "power2.inOut" }, 3.75);
 
         ScrollTrigger.create({
