@@ -32,13 +32,13 @@
 @font-face{font-family:'Fraunces';font-style:italic;font-weight:400 700;src:url("assets/fonts/fraunces-italic.woff2") format('woff2');font-display:swap}
 
 :root{
-  --color-bg:#0F1B15; --color-surface:#17281F; --color-ink:#F2EDE2;
-  --color-muted:#93A79A; --color-accent:#D9A441; --color-signal:#E4572E;
-  --color-ink-soft:#CFDCD2; --color-accent-ink:#C08F2F;
-  --color-line:rgba(242,237,226,.14); --color-bg-deep:#F4F0E5; --color-on-deep:#14281F;
-  --color-paper:#F6F2E8; --color-paper-ink:#1E3A2E; --color-paper-muted:#5F7263;
-  --color-brass-ink:#8F6A1E; --color-btn-ink:#14281F;
-  --color-ui:#9EC5BD; --color-ui-ink:#44706A;
+  --color-bg:#FFFFFF; --color-surface:#F7F3EC; --color-ink:#161310;
+  --color-muted:#6E6459; --color-accent:#C95C24; --color-signal:#C95C24;
+  --color-ink-soft:#3E3830; --color-accent-ink:#A34714;
+  --color-line:rgba(22,19,16,.14); --color-bg-deep:#243B2E; --color-on-deep:#F7F3EC;
+  --color-paper:#EFE8DC; --color-paper-ink:#161310; --color-paper-muted:#6E6459;
+  --color-brass-ink:#C95C24; --color-btn-ink:#161310;
+  --color-ui:#243B2E; --color-ui-ink:#C95C24;
 
   --font-display:'Bricolage Grotesque',"Arial Black",sans-serif;
   --font-body:'Instrument Sans',"Helvetica Neue",Arial,sans-serif;
@@ -61,9 +61,9 @@
 
   --radius-sm:8px;--radius-md:14px;--radius-lg:22px;--radius-pill:999px;
 
-  --shadow-sm:0 1px 2px rgba(4,14,10,.18),0 2px 8px rgba(4,14,10,.14);
-  --shadow-md:0 2px 4px rgba(4,14,10,.16),0 12px 28px -8px rgba(4,14,10,.38);
-  --shadow-lift:0 4px 8px rgba(4,14,10,.18),0 20px 44px -12px rgba(4,14,10,.5);
+  --shadow-sm:0 1px 2px rgba(22,19,16,.10),0 2px 8px rgba(22,19,16,.08);
+  --shadow-md:0 2px 4px rgba(22,19,16,.10),0 12px 28px -8px rgba(22,19,16,.22);
+  --shadow-lift:0 4px 8px rgba(22,19,16,.12),0 20px 44px -12px rgba(22,19,16,.3);
 
   --ease-out:cubic-bezier(.22,1,.36,1); --ease-inout:cubic-bezier(.65,0,.35,1);
   --dur-fast:180ms; --dur-base:450ms; --dur-slow:800ms;
@@ -140,7 +140,7 @@ h3{font-size:var(--text-xl);font-weight:600}
 .nav-links a.textlink{text-decoration:none;font-weight:500;font-size:var(--text-sm);color:var(--color-ink-soft)}
 .nav-links a.textlink:hover{color:var(--color-ui)}
 
-.btn{display:inline-flex;align-items:center;gap:var(--space-2);background:var(--color-ink);color:var(--color-btn-ink);font-family:var(--font-body);font-weight:600;font-size:var(--text-sm);border:0;border-radius:var(--radius-pill);padding:.72em 1.35em;cursor:pointer;text-decoration:none;transition:background var(--dur-fast) var(--ease-out)}
+.btn{display:inline-flex;align-items:center;gap:var(--space-2);background:var(--color-bg-deep);color:var(--color-on-deep);font-family:var(--font-body);font-weight:600;font-size:var(--text-sm);border:0;border-radius:var(--radius-pill);padding:.72em 1.35em;cursor:pointer;text-decoration:none;transition:background var(--dur-fast) var(--ease-out)}
 .btn:hover{background:#FFFFFF}
 .btn .arr{transition:transform var(--dur-fast) var(--ease-out)}
 .btn:hover .arr{transform:translateX(3px)}
@@ -175,7 +175,7 @@ h3{font-size:var(--text-xl);font-weight:600}
 .mode{background:var(--color-surface);border:1px solid var(--color-line);border-radius:var(--radius-lg);padding:var(--space-8);transition:box-shadow var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out);position:relative;will-change:auto}
 /* hover lift is shadow-only: a transform here would create a stacking context
    and trap the traveling wetsuit beneath the neighboring card */
-.mode:hover{box-shadow:0 10px 30px rgba(0,0,0,.3);border-color:rgba(158,197,189,.28)}
+.mode:hover{box-shadow:0 10px 30px rgba(22,19,16,.13);border-color:rgba(201,92,36,.3)}
 .mode h3{margin-bottom:var(--space-3)}
 .mode .pricepair{font-family:var(--font-display);font-weight:700;font-size:var(--text-xl);letter-spacing:var(--tracking-display);margin-block:var(--space-4)}
 .mode .pricepair .buy{color:var(--color-muted);text-decoration:line-through;text-decoration-thickness:2px;text-decoration-color:var(--color-signal)}
@@ -183,7 +183,7 @@ h3{font-size:var(--text-xl);font-weight:600}
 .mode p{color:var(--color-ink-soft);max-width:34ch}
 .mode .micro{margin-top:var(--space-4);color:var(--color-muted);font-size:var(--text-sm)}
 /* surf inset card (the commercial flagship keeps its visual) */
-.kitcard{position:relative;margin-top:var(--space-6);background:var(--color-paper);color:var(--color-paper-ink);border-radius:var(--radius-md);box-shadow:var(--shadow-sm);padding:var(--space-3);max-width:24rem;min-height:19rem}
+.kitcard{position:relative;margin-top:var(--space-6);background:var(--color-paper);color:var(--color-paper-ink);border:1px solid rgba(22,19,16,.08);border-radius:var(--radius-md);box-shadow:var(--shadow-sm);padding:var(--space-3);max-width:24rem;min-height:19rem}
 .kitcard .spread{position:absolute;inset:0}
 .kitcard .sp{position:absolute;display:block;height:auto}
 .kitcard .sp[data-i="0"]{width:8.5rem;top:24%;left:9%;transform:rotate(-8deg)}
@@ -193,10 +193,8 @@ h3{font-size:var(--text-xl);font-weight:600}
 .kitcard .sp[data-i="4"]{width:5.6rem;top:70%;left:24%;transform:rotate(-2deg)}
 .kitcard .sp[data-i="5"]{width:4.2rem;top:48%;left:42%;z-index:7}
 .sp-ws img{width:100%;display:block;height:auto}
-.sp-ws .ws-card{position:absolute;left:-16%;right:-16%;top:-9%;bottom:-46%;background:var(--color-paper);border-radius:var(--radius-md);box-shadow:var(--shadow-lift);opacity:0;z-index:-1}
-.sp-ws .ws-label{position:absolute;left:9%;bottom:5%;white-space:nowrap}
-.sp-ws .ws-label .mono{display:block;font-size:.42rem;color:var(--color-paper-muted)}
-.sp-ws .ws-label em{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:550;font-size:.9rem;color:var(--color-paper-ink);letter-spacing:-.01em}
+.onecard .one-suit{position:absolute;left:50%;top:56%;transform:translate(-50%,-50%);width:6.93rem;height:auto}
+.onecard .slot[data-slot="k5"]{left:50%;top:56%;margin-left:-3.3rem;margin-top:-2.7rem}
 .sp-ws .ws-full2{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:top;clip-path:inset(0 0 100% 0)}
 .kit-label{position:absolute;left:var(--space-4);top:var(--space-3);z-index:5}
 .kit-label .mono{display:block;color:var(--color-paper-muted);font-size:.62rem}
@@ -212,7 +210,6 @@ h3{font-size:var(--text-xl);font-weight:600}
 .mode .slot[data-slot="k2"]{top:42%;right:10%;left:auto}
 .mode .slot[data-slot="k3"]{top:60%;right:20%;left:auto}
 .mode .slot[data-slot="k4"]{top:76%;right:11%;left:auto}
-.mode .slot[data-slot="k5"]{top:23.5rem;left:50%;margin-left:-3.3rem;right:auto}
 .stat-foot{margin-top:var(--space-6);color:var(--color-muted)}
 .quote-aside{margin-top:var(--space-8);border-left:2px solid var(--color-accent);padding-left:var(--space-4);max-width:var(--max-width-text)}
 .quote-aside p{font-size:var(--text-base);color:var(--color-ink-soft);font-style:italic}
@@ -238,13 +235,13 @@ h3{font-size:var(--text-xl);font-weight:600}
 .sig-item .cap b{font-weight:500;color:var(--color-paper-ink)}
 .sig-item .cap .who{color:var(--color-ui-ink)}
 .sig-pack{position:absolute;bottom:var(--space-6);left:0;right:0;text-align:center;z-index:7}
-.sig-pack .btn{background:var(--color-btn-ink);color:var(--color-ink)}
+.sig-pack .btn{background:var(--color-bg-deep);color:var(--color-on-deep)}
 .sig-pack .btn:hover{background:var(--color-bg)}
 @media (prefers-reduced-motion:reduce){.sig-pack{display:none}}
 .sig-end{position:absolute;bottom:var(--space-6);left:17.5rem;right:0;text-align:center;z-index:6}
 .sig-end .cap{margin-bottom:var(--space-3);color:var(--color-paper-ink);font-weight:500}
-.sig-end .btn{background:var(--color-btn-ink);color:var(--color-ink)}
-.sig-end .btn:hover{background:var(--color-bg)}
+.sig-end .btn{background:var(--color-bg-deep);color:var(--color-on-deep)}
+.sig-end .btn:hover{background:var(--color-ink)}
 .pulse{display:inline-block;width:.55em;height:.55em;border-radius:50%;background:var(--color-signal);margin-right:.5em;vertical-align:1px}
 .sig-epigraph{position:absolute;top:var(--space-6);right:var(--space-8);max-width:22rem;text-align:right;color:var(--color-paper-muted);font-size:var(--text-xs);font-family:var(--font-mono);letter-spacing:.02em;z-index:5}
 
@@ -315,7 +312,7 @@ h3{font-size:var(--text-xl);font-weight:600}
 .covered .fear em{font-style:italic;color:var(--color-muted)}
 .prot-viewport{display:flex;align-items:center;padding-block:var(--space-8)}
 .dep-line{margin-top:var(--space-2);color:var(--color-brass-ink)}
-.day-chip{position:absolute;top:-1.4em;right:0;color:var(--color-ui);background:var(--color-surface);border:1px solid rgba(158,197,189,.4);border-radius:999px;padding:.2em .8em;z-index:4}
+.day-chip{position:absolute;top:-1.4em;right:0;color:var(--color-ui);background:var(--color-surface);border:1px solid rgba(36,59,46,.35);border-radius:999px;padding:.2em .8em;z-index:4}
 .pay-card{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);background:var(--color-paper);color:var(--color-paper-ink);border-radius:var(--radius-md);box-shadow:var(--shadow-lift);padding:var(--space-4) var(--space-6);width:min(22rem,92%);z-index:6}
 .pay-card .mono{color:var(--color-paper-muted)}
 .pay-card .kitline{font-weight:600;margin-block:var(--space-1)}
@@ -325,8 +322,8 @@ h3{font-size:var(--text-xl);font-weight:600}
 .req-card{background:var(--color-paper);color:var(--color-paper-ink);border-radius:var(--radius-md);box-shadow:var(--shadow-md);padding:var(--space-4) var(--space-6);width:min(22rem,100%)}
 .req-card .mono{color:var(--color-paper-muted)}
 .req-card .kitline{font-weight:600;margin-block:var(--space-1)}
-.req-chip{display:inline-block;font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:var(--tracking-mono);text-transform:uppercase;border-radius:var(--radius-pill);padding:.3em .9em;margin-top:var(--space-2);background:rgba(217,164,65,.18);color:var(--color-brass-ink)}
-.req-chip.ok{background:rgba(158,197,189,.2);color:var(--color-ui-ink)}
+.req-chip{display:inline-block;font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:var(--tracking-mono);text-transform:uppercase;border-radius:var(--radius-pill);padding:.3em .9em;margin-top:var(--space-2);background:rgba(201,92,36,.14);color:var(--color-brass-ink)}
+.req-chip.ok{background:rgba(36,59,46,.12);color:#243B2E}
 .prot-shots{position:relative;width:100%}
 .prot-photos{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3)}
 .pphoto{position:relative;aspect-ratio:10/7;background:var(--color-paper);border-radius:var(--radius-sm);box-shadow:var(--shadow-sm);overflow:hidden}
@@ -515,16 +512,20 @@ footer .wordmark{color:var(--color-on-deep)}
           <img class="sp" data-i="2" src="assets/img/cut-stove.webp" width="640" height="417" alt="">
           <img class="sp" data-i="3" src="assets/img/cut-shower.webp" width="412" height="644" alt="">
           <img class="sp" data-i="4" src="assets/img/cut-firepit.webp" width="640" height="166" alt="">
-          <div class="sp sp-ws" data-i="5" id="wsPiece"><div class="ws-card"><p class="ws-label"><span class="mono">One item &#183; $10/day</span><em>The Wetsuit</em></p></div><img class="ws-folded" src="assets/img/cut-wetsuit.webp" width="390" height="454" alt=""><img class="ws-full2" src="assets/img/kit-surf-wetsuit-cut.webp" width="472" height="903" alt=""></div>
+          <div class="sp sp-ws" data-i="5" id="wsPiece"><img class="ws-folded" src="assets/img/cut-wetsuit.webp" width="390" height="454" alt=""><img class="ws-full2" src="assets/img/kit-surf-wetsuit-cut.webp" width="472" height="903" alt=""></div>
         </div>
       </div>
       <p class="micro mono">Beach shops charge $95/day for the board and wetsuits alone.</p>
     </div>
     <div class="mode rv" id="modeOne">
-      <span class="slot" data-slot="k5"></span>
       <h3>…or just the one thing</h3>
       <p class="pricepair"><span class="rent">Wetsuit, $10/day.</span></p>
       <p>The piece you’re missing — or the exact model you’ve had your eye on. Someone in your neighborhood already owns it.</p>
+      <div class="kitcard onecard">
+        <p class="kit-label"><span class="mono">One item &#183; $10/day &#183; Ocean Beach</span><em>The Wetsuit</em></p>
+        <span class="slot" data-slot="k5"></span>
+        <img class="one-suit" src="assets/img/kit-surf-wetsuit-cut.webp" width="472" height="903" alt="Full wetsuit, unfolded">
+      </div>
       <p class="micro mono">Single items from $7/day in San Diego</p>
     </div>
   </div>
@@ -992,6 +993,7 @@ footer .wordmark{color:var(--color-on-deep)}
         var wsFull2 = wsPiece.querySelector(".ws-full2");
         gsap.set(wsPiece, { height: function(){ return wsPiece.offsetHeight; } });
         gsap.set(pieces, { autoAlpha: 0, y: -46 });
+        gsap.set(".one-suit", { autoAlpha: 0 });
         gsap.set(".kit-label", { autoAlpha: 0 });
 
         var kitTl = gsap.timeline({ paused: true, defaults: { ease: "power1.out" } });
@@ -1015,12 +1017,14 @@ footer .wordmark{color:var(--color-on-deep)}
           rotation: 0, duration: 1.1, ease: "power2.inOut"
         }, 2.5);
         kitTl.to(wsPiece, {
-          scale: 1.6,
+          scale: 1.65,
           height: function(){ return wsPiece.offsetWidth * 903 / 472; },
           duration: 0.7, ease: "power2.inOut"
         }, 3.6);
-        kitTl.to(".sp-ws .ws-card", { autoAlpha: 1, duration: 0.45 }, 3.7);
         kitTl.to(".sp-ws .ws-folded", { autoAlpha: 0, duration: 0.5 }, 3.8);
+        /* handoff: the traveling cutout becomes the card's own suit */
+        kitTl.to(".one-suit", { autoAlpha: 1, duration: 0.2 }, 4.6);
+        kitTl.to(wsPiece, { autoAlpha: 0, duration: 0.2 }, 4.65);
         kitTl.to(wsFull2, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.8, ease: "power2.inOut" }, 3.75);
 
         ScrollTrigger.create({
