@@ -282,7 +282,12 @@ h3{font-size:var(--text-xl);font-weight:600}
 .covered{padding-block:var(--section-pad)}
 .covered .fear{font-family:var(--font-display);font-weight:600;font-size:var(--text-xl);letter-spacing:var(--tracking-display);max-width:44rem;margin-bottom:var(--space-12)}
 .covered .fear em{font-style:italic;color:var(--color-muted)}
-.prot-viewport{min-height:100vh;display:flex;align-items:center;padding-block:5rem var(--space-8)}
+.prot-viewport{display:flex;align-items:center;padding-block:var(--space-8)}
+.dep-line{margin-top:var(--space-2);color:var(--color-brass-ink)}
+.day-chip{position:absolute;top:-1.4em;right:0;color:var(--color-ui);background:var(--color-surface);border:1px solid rgba(158,197,189,.4);border-radius:999px;padding:.2em .8em;z-index:4}
+.pay-card{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);background:var(--color-paper);color:var(--color-paper-ink);border-radius:var(--radius-md);box-shadow:var(--shadow-lift);padding:var(--space-4) var(--space-6);width:min(22rem,92%);z-index:6}
+.pay-card .mono{color:var(--color-paper-muted)}
+.pay-card .kitline{font-weight:600;margin-block:var(--space-1)}
 .prot-stage{position:relative;background:var(--color-surface);border:1px solid var(--color-line);border-radius:var(--radius-lg);width:100%;min-height:min(72vh,38rem);overflow:hidden;display:flex;align-items:center;justify-content:center;padding:var(--space-16) var(--space-6) var(--space-8)}
 .prot-head{position:absolute;top:var(--space-6);left:var(--space-8);color:var(--color-muted)}
 .prot-inner{position:relative;width:min(40rem,100%);display:flex;flex-direction:column;align-items:center;gap:var(--space-6)}
@@ -658,8 +663,10 @@ footer .wordmark{color:var(--color-on-deep)}
             <p class="mono">Incoming request</p>
             <p class="kitline">Pottery Studio Kit · 2 days</p>
             <span class="req-chip" id="reqChip">Pending — you approve</span>
+            <p class="dep-line mono" id="depLine">Deposit held &#183; $50</p>
           </div>
           <div class="prot-shots">
+            <span class="day-chip mono" id="dayChip">Day 1</span>
             <div class="prot-photos" id="protPhotos">
               <div class="pphoto"><img src="assets/img/prot-condition.webp" width="1280" height="832" alt="Condition photo of the pottery wheel" loading="lazy"><span class="mono">Condition · 1/3</span></div>
               <div class="pphoto"><img src="assets/img/prot-included.webp" width="1280" height="832" alt="Everything included, laid out" loading="lazy"><span class="mono">Included · 2/3</span></div>
@@ -667,7 +674,12 @@ footer .wordmark{color:var(--color-on-deep)}
             </div>
             <div class="stamp" id="protStamp">Documented</div>
           </div>
-          <p class="prot-caption mono" id="protCaption">Request first → photos at both ends → deposits &amp; protection policies</p>
+          <div class="pay-card" id="payCard">
+            <p class="mono">Rental complete</p>
+            <p class="kitline">Deposit returned in full</p>
+            <span class="req-chip ok">Payout sent — curator keeps 90%</span>
+          </div>
+          <p class="prot-caption mono" id="protCaption">Request first — you approve who borrows. Nothing is charged until you accept.</p>
         </div>
       </div>
     </div>
@@ -844,7 +856,8 @@ footer .wordmark{color:var(--color-on-deep)}
       /* ---------- REDUCED MOTION: final frames only ---------- */
       if (c.reduceMotion){
         placeStageFinal(c.isMobile);
-        gsap.set("#reqCard, #protPhotos > *, #protStamp, #protCaption", { autoAlpha: 1, x: 0, y: 0, scale: 1 });
+        gsap.set("#reqCard, #protPhotos > *, #protStamp, #protCaption, #depLine", { autoAlpha: 1, x: 0, y: 0, scale: 1 });
+        gsap.set("#dayChip, #payCard", { autoAlpha: 0 });
         document.getElementById("reqChip").classList.add("ok");
         document.getElementById("reqChip").textContent = "Accepted — now you’re charged";
         var sp = document.getElementById("sigPack"); if (sp) sp.style.display = "none";
@@ -1048,31 +1061,74 @@ footer .wordmark{color:var(--color-on-deep)}
       }
 
       /* ---------- Protected, performed (pinned) ---------- */
+      /* PROTECTED — an auto-playing movie of the full rental lifecycle
+         (request -> accept -> deposit -> documented pickup -> the days ->
+         matched return -> payout). Plays on entering view, loops, no scroll. */
       var chip = document.getElementById("reqChip");
-      gsap.set("#reqCard", { autoAlpha: 0, x: -40 });
-      gsap.set("#protPhotos > *", { autoAlpha: 0, y: 24, scale: 0.92 });
-      gsap.set("#protStamp", { autoAlpha: 0, scale: 1.5 });
-      gsap.set("#protCaption", { autoAlpha: 0 });
+      var stampEl = document.getElementById("protStamp");
+      var capEl = document.getElementById("protCaption");
+      var dayEl = document.getElementById("dayChip");
+      var CAPS = {
+        a: "Request first — you approve who borrows. Nothing is charged until you accept.",
+        b: "Pickup photographed — condition locked in on both sides.",
+        c: "Two days of making. The deposit just sits there.",
+        d: "Return matched \u00b7 deposit back in full \u00b7 payout sent — you keep 90%."
+      };
+      function protHideAll(){
+        gsap.set("#reqCard", { autoAlpha: 0, x: -40 });
+        gsap.set("#depLine", { autoAlpha: 0 });
+        gsap.set("#protPhotos > *", { autoAlpha: 0, y: 24, scale: 0.92 });
+        gsap.set("#protStamp", { autoAlpha: 0, scale: 1.5 });
+        gsap.set("#protCaption, #dayChip, #payCard", { autoAlpha: 0 });
+      }
+      protHideAll();
 
-      var protTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".prot-track",
-          start: "top top",
-          end: "+=140%",
-          pin: true,
-          scrub: 1.1,
-          refreshPriority: 1
-        },
-        defaults: { ease: "none" }
-      });
-      protTl.to("#reqCard", { autoAlpha: 1, x: 0, duration: 1.5 }, 0);
+      var protTl = gsap.timeline({ paused: true, repeat: -1, repeatDelay: 1.2, defaults: { ease: "power2.out" } });
+      function capSwap(key, at){
+        protTl.to(capEl, { autoAlpha: 0, duration: 0.2 }, at);
+        protTl.call(function(){ capEl.textContent = CAPS[key]; }, null, at + 0.2);
+        protTl.to(capEl, { autoAlpha: 1, duration: 0.3 }, at + 0.25);
+      }
+      /* reset (also runs at each loop start) */
       protTl.call(function(){
-        var accepted = chip.classList.toggle("ok");
-        chip.textContent = accepted ? "Accepted — now you’re charged" : "Pending — you approve";
-      }, null, 1.8);
-      protTl.to("#protPhotos > *", { autoAlpha: 1, y: 0, scale: 1, duration: 1.2, stagger: 0.5, ease: "back.out(1.4)" }, 2.2);
-      protTl.to("#protStamp", { autoAlpha: 1, scale: 1, duration: 1, ease: "back.out(1.7)" }, 4.4);
-      protTl.to("#protCaption", { autoAlpha: 1, duration: 0.8 }, 5.2);
+        protHideAll();
+        chip.classList.remove("ok"); chip.textContent = "Pending — you approve";
+        stampEl.textContent = "Documented";
+        capEl.textContent = CAPS.a;
+        dayEl.textContent = "Day 1";
+      }, null, 0);
+      /* A — request + accept + deposit */
+      protTl.to("#reqCard", { autoAlpha: 1, x: 0, duration: 0.6 }, 0.2);
+      protTl.to(capEl, { autoAlpha: 1, duration: 0.4 }, 0.5);
+      protTl.call(function(){ chip.classList.add("ok"); chip.textContent = "Accepted — now you\u2019re charged"; }, null, 1.7);
+      protTl.fromTo(chip, { scale: 0.9 }, { scale: 1, duration: 0.35, ease: "back.out(2)" }, 1.72);
+      protTl.to("#depLine", { autoAlpha: 1, duration: 0.4 }, 2.1);
+      /* B — documented pickup */
+      capSwap("b", 3.0);
+      protTl.to("#protPhotos > *", { autoAlpha: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.35, ease: "back.out(1.4)" }, 3.2);
+      protTl.to("#protStamp", { autoAlpha: 1, scale: 1, duration: 0.6, ease: "back.out(1.7)" }, 4.7);
+      /* C — the rental days */
+      capSwap("c", 5.9);
+      protTl.to(dayEl, { autoAlpha: 1, duration: 0.3 }, 6.1);
+      protTl.call(function(){ dayEl.textContent = "Day 2"; }, null, 7.1);
+      protTl.fromTo(dayEl, { scale: 0.85 }, { scale: 1, duration: 0.3, ease: "back.out(2)" }, 7.12);
+      /* D — matched return + payout */
+      capSwap("d", 8.1);
+      protTl.to("#protStamp", { autoAlpha: 0, duration: 0.2 }, 8.2);
+      protTl.call(function(){ stampEl.textContent = "Returned — matched"; }, null, 8.4);
+      protTl.to("#protStamp", { autoAlpha: 1, scale: 1, duration: 0.5, ease: "back.out(1.7)" }, 8.5);
+      protTl.to("#reqCard, #protPhotos > *", { autoAlpha: 0.22, duration: 0.5 }, 9.3);
+      protTl.fromTo("#payCard", { autoAlpha: 0, scale: 0.9 }, { autoAlpha: 1, scale: 1, duration: 0.6, ease: "back.out(1.5)" }, 9.4);
+      /* hold, then fade out for the loop */
+      protTl.to("#reqCard, #depLine, #protPhotos > *, #protStamp, #protCaption, #dayChip, #payCard", { autoAlpha: 0, duration: 0.6 }, 12.4);
+
+      ScrollTrigger.create({
+        trigger: ".prot-stage", start: "top 80%",
+        onEnter: function(){ protTl.play(); },
+        onEnterBack: function(){ protTl.play(); },
+        onLeave: function(){ protTl.pause(); },
+        onLeaveBack: function(){ protTl.pause(); }
+      });
 
       /* cleanup on breakpoint change: remove global listeners this run added */
       return function(){ cleanupFns.forEach(function(fn){ fn(); }); };
