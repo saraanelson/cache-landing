@@ -172,8 +172,10 @@ h3{font-size:var(--text-xl);font-weight:600}
 /* ============ 4 · KITS VS PIECES ============ */
 .modes{padding-block:var(--section-pad)}
 .mode-grid{display:grid;gap:var(--space-6);grid-template-columns:1fr}
-.mode{background:var(--color-surface);border:1px solid var(--color-line);border-radius:var(--radius-lg);padding:var(--space-8);transition:transform var(--dur-fast) var(--ease-out);position:relative}
-.mode:hover{transform:translateY(-4px)}
+.mode{background:var(--color-surface);border:1px solid var(--color-line);border-radius:var(--radius-lg);padding:var(--space-8);transition:box-shadow var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out);position:relative;will-change:auto}
+/* hover lift is shadow-only: a transform here would create a stacking context
+   and trap the traveling wetsuit beneath the neighboring card */
+.mode:hover{box-shadow:0 10px 30px rgba(0,0,0,.3);border-color:rgba(158,197,189,.28)}
 .mode h3{margin-bottom:var(--space-3)}
 .mode .pricepair{font-family:var(--font-display);font-weight:700;font-size:var(--text-xl);letter-spacing:var(--tracking-display);margin-block:var(--space-4)}
 .mode .pricepair .buy{color:var(--color-muted);text-decoration:line-through;text-decoration-thickness:2px;text-decoration-color:var(--color-signal)}
@@ -182,12 +184,17 @@ h3{font-size:var(--text-xl);font-weight:600}
 .mode .micro{margin-top:var(--space-4);color:var(--color-muted);font-size:var(--text-sm)}
 /* surf inset card (the commercial flagship keeps its visual) */
 .kitcard{position:relative;margin-top:var(--space-6);background:var(--color-paper);color:var(--color-paper-ink);border-radius:var(--radius-md);box-shadow:var(--shadow-sm);padding:var(--space-3);max-width:24rem;min-height:19rem}
-.kitcard .slot[data-slot="s0"]{top:24%;left:10%}
-.kitcard .slot[data-slot="s1"]{top:48%;left:4%}
-.kitcard .slot[data-slot="s2"]{top:42%;left:52%}
-.kitcard .slot[data-slot="s3"]{top:64%;left:74%}
-.kitcard .slot[data-slot="s4"]{top:66%;left:26%}
-.kitcard .slot[data-slot="s5"]{top:52%;left:42%}
+.kitcard .spread{position:absolute;inset:0}
+.kitcard .sp{position:absolute;display:block;height:auto}
+.kitcard .sp[data-i="0"]{width:8.5rem;top:24%;left:9%;transform:rotate(-8deg)}
+.kitcard .sp[data-i="1"]{width:5.4rem;top:44%;left:7%;transform:rotate(2deg)}
+.kitcard .sp[data-i="2"]{width:5.4rem;top:40%;left:56%;transform:rotate(-2deg)}
+.kitcard .sp[data-i="3"]{width:3.1rem;top:60%;left:80%;transform:rotate(3deg)}
+.kitcard .sp[data-i="4"]{width:5.6rem;top:70%;left:24%;transform:rotate(-2deg)}
+.kitcard .sp[data-i="5"]{width:4.2rem;top:48%;left:42%;z-index:7}
+.sp-ws img{width:100%;display:block;height:auto}
+.sp-ws .ws-bg2{position:absolute;inset:-6% -9%;background:var(--color-paper);border-radius:var(--radius-md);box-shadow:var(--shadow-lift);opacity:0;z-index:-1}
+.sp-ws .ws-full2{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;border-radius:8px;clip-path:inset(0 0 100% 0)}
 .kit-label{position:absolute;left:var(--space-4);top:var(--space-3);z-index:5}
 .kit-label .mono{display:block;color:var(--color-paper-muted);font-size:.62rem}
 .kit-label em{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:550;font-size:1.5rem;color:var(--color-paper-ink);letter-spacing:-.01em}
@@ -494,10 +501,15 @@ footer .wordmark{color:var(--color-on-deep)}
       <p>You don’t have to know what you need — the kit knows. Board, wetsuit, stove, tent, portable shower: every piece listed, one price, one curator.</p>
       <!-- ASSET: kitcard — Surf Trip Kit cutout flat-lay on bone, 10:7 -->
       <div class="kitcard">
-        <span class="slot" data-slot="s0"></span><span class="slot" data-slot="s1"></span>
-        <span class="slot" data-slot="s2"></span><span class="slot" data-slot="s3"></span>
-        <span class="slot" data-slot="s4"></span><span class="slot" data-slot="s5"></span>
         <p class="kit-label"><span class="mono">The whole kit &#183; $80/day &#183; Ocean Beach</span><em>Coastal Surf Kit</em></p>
+        <div class="spread" aria-hidden="true">
+          <img class="sp" data-i="0" src="assets/img/cut-board.webp" width="640" height="159" alt="">
+          <img class="sp" data-i="1" src="assets/img/cut-tent.webp" width="640" height="389" alt="">
+          <img class="sp" data-i="2" src="assets/img/cut-stove.webp" width="640" height="417" alt="">
+          <img class="sp" data-i="3" src="assets/img/cut-shower.webp" width="412" height="644" alt="">
+          <img class="sp" data-i="4" src="assets/img/cut-firepit.webp" width="640" height="166" alt="">
+          <div class="sp sp-ws" data-i="5" id="wsPiece"><div class="ws-bg2"></div><img src="assets/img/cut-wetsuit.webp" width="390" height="454" alt=""><img class="ws-full2" src="assets/img/kit-surf-wetsuit-full.webp" width="768" height="1024" alt=""></div>
+        </div>
       </div>
       <p class="micro mono">Beach shops charge $95/day for the board and wetsuits alone.</p>
     </div>
@@ -794,7 +806,7 @@ footer .wordmark{color:var(--color-on-deep)}
 
   /* zoom-crop the cutout photos so the gear fills each card (generated images
      have generous cream margins by design) */
-  document.querySelectorAll(".sig-item img, .hero-kit-static .sitem img, .kitcard img").forEach(function(img){
+  document.querySelectorAll(".sig-item img, .hero-kit-static .sitem img").forEach(function(img){
     var w = document.createElement("div");
     w.style.cssText = "overflow:hidden;border-radius:6px";
     img.parentNode.insertBefore(w, img);
@@ -923,12 +935,6 @@ footer .wordmark{color:var(--color-on-deep)}
         });
       });
 
-      /* ambient parallax: kitcard photo breathes as it enters */
-      var kimg = document.querySelector(".kitcard img");
-      if (kimg){
-        gsap.fromTo(kimg, { scale: 1.12 }, { scale: 1, ease: "none",
-          scrollTrigger: { trigger: ".kitcard", start: "top bottom", end: "top 30%", scrub: 1 } });
-      }
       /* pull-quote slow drift */
       gsap.fromTo(".pull blockquote", { y: 40 }, { y: -20, ease: "none",
         scrollTrigger: { trigger: ".pull", start: "top bottom", end: "bottom top", scrub: 1.2 } });
@@ -967,94 +973,51 @@ footer .wordmark{color:var(--color-on-deep)}
 
         gsap.from(fitems, { autoAlpha: 0, y: "+=18", duration: 0.8, delay: 0.25, stagger: 0.1 });
 
-        /* THE COMPILE — one scrubbed sequence driven by the cards scrolling
-           into view: the five pieces fly from the hero straight into the kit
-           card, shrinking and dissolving as the compiled flat-lay reveals
-           beneath them; the wetsuit peels off to "the one thing" and unfolds —
-           all of it live under the visitor's scroll (and reversible). */
-        var ws = fitems[5];
-        var wsFull = ws.querySelector(".ws-full");
-        gsap.set(ws, { height: function(){ return ws.offsetHeight; } });
-        gsap.set(".ws-bg", { autoAlpha: 0 });
+        /* THE ASSEMBLY — the hero scatter stays put (callouts and all); the
+           Coastal Surf Kit assembles itself INSIDE the card the moment the
+           visitor arrives, matching the page's language: sections perform on
+           reveal. Finale: the wetsuit is pulled from the spread across into
+           "the one thing", landing under its text and unfolding. */
+        gsap.set(".ws-bg", { autoAlpha: 0 }); /* hero wetsuit keeps no backing */
+
+        var pieces = gsap.utils.toArray(".kitcard .sp");
+        var wsPiece = document.getElementById("wsPiece");
+        var wsFull2 = wsPiece.querySelector(".ws-full2");
+        gsap.set(wsPiece, { height: function(){ return wsPiece.offsetHeight; } });
+        gsap.set(pieces, { autoAlpha: 0, y: -46 });
         gsap.set(".kit-label", { autoAlpha: 0 });
 
-        /* THE SPREAD — the section PINS and the film plays as slow theater:
-           the six pieces rain down one by one into a labeled kit spread on the
-           paper board, then the wetsuit is pulled sideways out of the spread
-           into the adjacent "one thing" card, landing under its text.
-           The section is pinned, so slot positions shift vs the document each
-           frame — items are therefore glued to LIVE slot rects on every update
-           (proxy progress values, not baked coordinates). */
-        var spreadScale = [0.55, 0.5, 0.5, 0.5, 0.5, 0.5];
-        var spreadRot = [-8, 2, -2, 3, -2, 2];
-        var P = [0, 1, 2, 3, 4, 5].map(function(){ return { p: 0 }; });
-        var pull = { p: 0 };
-        function glue(){
-          /* the corridor: pieces travel above the cards, drop down the SEAM
-             between the two cards, then tuck sideways onto the board — the
-             path never crosses either card's text */
-          var mk = document.getElementById("modeKit").getBoundingClientRect();
-          var mo = document.getElementById("modeOne").getBoundingClientRect();
-          var gapX = (mk.right + mo.left) / 2 + window.pageXOffset - 18;
-          var topY = mk.top + window.pageYOffset - 80;
-          fitems.forEach(function(it, i){
-            var h = slotXY("h" + i), d = slotXY("s" + i);
-            var p = P[i].p, cx, cy;
-            if (p < 0.35) {
-              var t = p / 0.35;
-              cx = h.x + (gapX - h.x) * (1 - Math.pow(1 - t, 2));
-              cy = h.y + (topY - h.y) * t;
-            } else if (p < 0.78) {
-              var t2 = (p - 0.35) / 0.43;
-              cx = gapX;
-              cy = topY + (d.y - topY) * t2;
-            } else {
-              var t3 = (p - 0.78) / 0.22;
-              cx = gapX + (d.x - gapX) * (t3 * t3 * (3 - 2 * t3));
-              cy = d.y;
-            }
-            if (i === 5 && pull.p > 0) {
-              var k = slotXY("k5");
-              cx = d.x + (k.x - d.x) * pull.p;
-              cy = d.y + (k.y - d.y) * pull.p;
-            }
-            gsap.set(it, { x: cx - it.offsetWidth / 2, y: cy - it.offsetHeight / 2 });
-          });
-        }
-        var compile = gsap.timeline({
-          scrollTrigger: {
-            trigger: "#modes", pin: true, anticipatePin: 1,
-            /* pin so the CARDS top out near the viewport top — the section
-               label may scroll off, but the spread + landing stay in view on
-               short screens; numeric start re-computed each refresh */
-            start: function(){
-              var grid = document.querySelector("#modes .mode-grid");
-              var top = grid.getBoundingClientRect().top + window.pageYOffset;
-              return Math.max(0, Math.round(top - window.innerHeight * 0.04));
-            },
-            end: "+=200%",
-            scrub: 1.2, invalidateOnRefresh: true
+        var kitTl = gsap.timeline({ paused: true, defaults: { ease: "power1.out" } });
+        kitTl.to(pieces, { autoAlpha: 1, y: 0, duration: 0.55, stagger: 0.22, ease: "back.out(1.5)" }, 0.1);
+        kitTl.fromTo(".kit-label", { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.5 }, 1.6);
+        /* the .rv reveal leaves an identity transform on the cards — a
+           stacking context that would paint the traveling wetsuit beneath the
+           neighboring card. The reveals are done by now; strip them. */
+        kitTl.set("#modeKit, #modeOne", { clearProps: "transform" }, 2.4);
+        /* the pull — deltas resolve at play time, when layout is settled */
+        kitTl.to(wsPiece, {
+          x: function(){
+            var k = slotXY("k5"), r = wsPiece.getBoundingClientRect();
+            return k.x - (r.left + r.width / 2 + window.pageXOffset);
           },
-          defaults: { ease: "none" },
-          onUpdate: glue
+          y: function(){
+            var k = slotXY("k5"), r = wsPiece.getBoundingClientRect();
+            return k.y - (r.top + r.height / 2 + window.pageYOffset);
+          },
+          rotation: 0, duration: 1.1, ease: "power2.inOut"
+        }, 2.5);
+        kitTl.to(wsPiece, {
+          scale: 2.1,
+          height: function(){ return wsPiece.offsetWidth * 4 / 3; },
+          duration: 0.7, ease: "power2.inOut"
+        }, 3.6);
+        kitTl.to(".sp-ws .ws-bg2", { autoAlpha: 1, duration: 0.4 }, 3.65);
+        kitTl.to(wsFull2, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.8, ease: "power2.inOut" }, 3.75);
+
+        ScrollTrigger.create({
+          trigger: ".kitcard", start: "top 78%", once: true,
+          onEnter: function(){ kitTl.play(); }
         });
-        compile.to(".callout", { autoAlpha: 0, duration: 2 }, 0);
-        fitems.forEach(function(it, i){
-          compile.to(P[i], { p: 1, duration: 8 }, i * 1.6);
-          /* shrink early — pieces reach spread size before dropping the seam,
-             so even the board clears both text columns */
-          compile.to(it, { scale: spreadScale[i], rotation: spreadRot[i], duration: 3 }, i * 1.6);
-        });
-        compile.fromTo(".kit-label", { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 2, ease: "power1.out" }, 16.5);
-        /* the pull — out of the spread, across into the one-item card */
-        compile.to(pull, { p: 1, duration: 5 }, 18);
-        compile.to(ws, { rotation: 0, duration: 5 }, 18);
-        compile.to(ws, {
-          height: function(){ return ws.clientWidth * 4 / 3; },
-          scale: 1.15, duration: 3
-        }, 21);
-        compile.to(".ws-bg", { autoAlpha: 1, duration: 2 }, 21.3);
-        compile.to(wsFull, { clipPath: "inset(0% 0% 0% 0%)", duration: 3 }, 21.6);
 
         /* SEGMENT 4 — crate rides to the handoff (appears after the pin) */
         gsap.set(fcrate, { autoAlpha: 0 });
