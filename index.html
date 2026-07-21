@@ -240,6 +240,21 @@ h3{font-size:var(--text-xl);font-weight:600}
 .cat h3{font-size:1.15rem;margin-bottom:var(--space-1);transition:color var(--dur-fast) var(--ease-out)}
 .cat .count{color:var(--color-muted)}
 .cat .kitnote{position:absolute;top:var(--space-4);right:var(--space-4);color:var(--color-accent)}
+/* real-listings rail — actual Cache inventory */
+.kitrail-head{color:var(--color-muted);margin:var(--space-12) 0 var(--space-4)}
+.kitrail-head b{color:var(--color-ui);font-weight:500}
+.kitrail{overflow:hidden}
+.krtrack{display:flex;gap:var(--space-4);width:max-content;animation:kr 55s linear infinite}
+.krtrack:hover{animation-play-state:paused}
+@keyframes kr{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.krcard{flex:0 0 auto;width:15rem;background:var(--color-paper);color:var(--color-paper-ink);border-radius:var(--radius-md);box-shadow:var(--shadow-md);padding:var(--space-2);text-decoration:none;transition:transform var(--dur-fast) var(--ease-out)}
+.krcard:hover{transform:translateY(-4px)}
+.krcard img{display:block;width:100%;height:auto;border-radius:var(--radius-sm)}
+.krcard .tag{font-family:var(--font-mono);font-size:.66rem;letter-spacing:var(--tracking-mono);text-transform:uppercase;color:var(--color-paper-muted);line-height:1.7;padding:var(--space-2) var(--space-1) var(--space-1)}
+.krcard .tag b{font-weight:500;color:var(--color-paper-ink)}
+.krcard .tag .price{color:var(--color-brass-ink)}
+.krcard .tag .kitbadge{color:var(--color-ui-ink)}
+@media (prefers-reduced-motion:reduce){.krtrack{animation:none}.kitrail{overflow-x:auto}}
 .browse-aside{margin-top:var(--space-8);color:var(--color-muted);max-width:var(--max-width-text)}
 .browse-aside em{color:var(--color-ink-soft)}
 
@@ -576,6 +591,29 @@ footer .wordmark{color:var(--color-on-deep)}
         <h3>Escape</h3><p class="count mono">Go adventure</p>
         <p class="count" style="margin-top:.35rem">Surf, snow, desert trips, picnics.</p>
       </a>
+    </div>
+    <div class="rv">
+      <p class="kitrail-head mono">Listed on Cache <b>right now</b> — real gear, real curators</p>
+      <div class="kitrail" aria-label="Real listings on Cache right now">
+        <div class="krtrack">
+      <a class="krcard" href="https://cachekits.com/browse"><img src="assets/img/live-snorkel-set.webp" width="480" height="360" alt="Snorkeling Set kit" loading="lazy"><p class="tag"><b>Snorkeling Set</b> <span class="kitbadge">· Kit Vol. 074</span><br><b class="price">$12/day</b> · San Diego</p></a>
+      <a class="krcard" href="https://cachekits.com/browse"><img src="assets/img/live-listening-room.webp" width="480" height="360" alt="Listening Room kit" loading="lazy"><p class="tag"><b>Listening Room</b> <span class="kitbadge">· Kit Vol. 009</span><br><b class="price">$18/day</b> · La Jolla</p></a>
+      <a class="krcard" href="https://cachekits.com/items/18a4c42a-647a-4d9b-b09b-4422879da263"><img src="assets/img/live-longboard.webp" width="480" height="360" alt="Custom 9-foot-8 longboard" loading="lazy"><p class="tag"><b>Custom 9&#8217;8 Longboard</b><br><b class="price">$50/day</b> · San Diego</p></a>
+      <a class="krcard" href="https://cachekits.com/items/b21a6aa3-30e6-492e-ad03-dc8c737e91e0"><img src="assets/img/live-tent.webp" width="480" height="360" alt="Lightweight backpacking tent" loading="lazy"><p class="tag"><b>Backpacking Tent &#183; 2P</b><br><b class="price">$10/day</b> · San Diego</p></a>
+      <a class="krcard" href="https://cachekits.com/items/e2934fff-fc47-446b-9b4e-780b35b0284e"><img src="assets/img/live-wetsuit.webp" width="480" height="360" alt="Wetsuit" loading="lazy"><p class="tag"><b>Wetsuit</b><br><b class="price">$10/day</b> · San Diego</p></a>
+      <a class="krcard" href="https://cachekits.com/items/50676779-b0f6-4b7f-ac33-6cabb333b347"><img src="assets/img/live-guitar.webp" width="480" height="360" alt="Yamaha acoustic guitar" loading="lazy"><p class="tag"><b>Yamaha Acoustic Guitar</b><br><b class="price">$10/day</b> · San Diego</p></a>
+      <a class="krcard" href="https://cachekits.com/items/6699673a-477b-4050-84e9-2422b322b0a1"><img src="assets/img/live-skis.webp" width="480" height="360" alt="Armada skis, 164 centimeters" loading="lazy"><p class="tag"><b>Armada Skis &#183; 164cm</b><br><b class="price">$15/day</b> · San Diego</p></a>
+      <a class="krcard" href="https://cachekits.com/items/7aee14ee-ba24-48af-aefd-ec8b552d8857"><img src="assets/img/live-sewing.webp" width="480" height="360" alt="Sewing machine" loading="lazy"><p class="tag"><b>Sewing Machine</b><br><b class="price">$8/day</b> · San Diego</p></a>
+      <a class="krcard" href="https://cachekits.com/browse"><img src="assets/img/live-snorkel-set.webp" width="480" height="360" alt="Snorkeling Set kit" loading="lazy"><p class="tag"><b>Snorkeling Set</b> <span class="kitbadge">· Kit Vol. 074</span><br><b class="price">$12/day</b> · San Diego</p></a>
+      <a class="krcard" href="https://cachekits.com/browse"><img src="assets/img/live-listening-room.webp" width="480" height="360" alt="Listening Room kit" loading="lazy"><p class="tag"><b>Listening Room</b> <span class="kitbadge">· Kit Vol. 009</span><br><b class="price">$18/day</b> · La Jolla</p></a>
+      <a class="krcard" href="https://cachekits.com/items/18a4c42a-647a-4d9b-b09b-4422879da263"><img src="assets/img/live-longboard.webp" width="480" height="360" alt="Custom 9-foot-8 longboard" loading="lazy"><p class="tag"><b>Custom 9&#8217;8 Longboard</b><br><b class="price">$50/day</b> · San Diego</p></a>
+      <a class="krcard" href="https://cachekits.com/items/b21a6aa3-30e6-492e-ad03-dc8c737e91e0"><img src="assets/img/live-tent.webp" width="480" height="360" alt="Lightweight backpacking tent" loading="lazy"><p class="tag"><b>Backpacking Tent &#183; 2P</b><br><b class="price">$10/day</b> · San Diego</p></a>
+      <a class="krcard" href="https://cachekits.com/items/e2934fff-fc47-446b-9b4e-780b35b0284e"><img src="assets/img/live-wetsuit.webp" width="480" height="360" alt="Wetsuit" loading="lazy"><p class="tag"><b>Wetsuit</b><br><b class="price">$10/day</b> · San Diego</p></a>
+      <a class="krcard" href="https://cachekits.com/items/50676779-b0f6-4b7f-ac33-6cabb333b347"><img src="assets/img/live-guitar.webp" width="480" height="360" alt="Yamaha acoustic guitar" loading="lazy"><p class="tag"><b>Yamaha Acoustic Guitar</b><br><b class="price">$10/day</b> · San Diego</p></a>
+      <a class="krcard" href="https://cachekits.com/items/6699673a-477b-4050-84e9-2422b322b0a1"><img src="assets/img/live-skis.webp" width="480" height="360" alt="Armada skis, 164 centimeters" loading="lazy"><p class="tag"><b>Armada Skis &#183; 164cm</b><br><b class="price">$15/day</b> · San Diego</p></a>
+      <a class="krcard" href="https://cachekits.com/items/7aee14ee-ba24-48af-aefd-ec8b552d8857"><img src="assets/img/live-sewing.webp" width="480" height="360" alt="Sewing machine" loading="lazy"><p class="tag"><b>Sewing Machine</b><br><b class="price">$8/day</b> · San Diego</p></a>
+        </div>
+      </div>
     </div>
     <p class="browse-aside rv"><em>“I was able to find some bush clippers for rent — for cheaper than Home Depot.”</em> <span class="mono">— an app-store review of a peer rental app</span></p>
   </div>
