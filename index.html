@@ -932,55 +932,40 @@ footer .wordmark{color:var(--color-on-deep)}
 
         gsap.from(fitems, { autoAlpha: 0, y: "+=18", duration: 0.8, delay: 0.25, stagger: 0.1 });
 
-        /* SEGMENT 1 — hero scatter → kits-vs-pieces regroup (5 cluster + 1 apart) */
-        var seg1 = gsap.timeline({
-          scrollTrigger: { trigger: "#modes", start: "top 98%", end: "top 60%", scrub: 1, invalidateOnRefresh: true },
-          defaults: { ease: "none" }
-        });
-        fitems.forEach(function(it, i){
-          var v = {
-            x: function(){ return itemXY(it, "k" + i).x; },
-            y: function(){ return itemXY(it, "k" + i).y; },
-            rotation: i === 5 ? 4 : -2 + i,
-            duration: 1
-          };
-          if (i !== 5) v.scale = 0.7;   /* seg2 owns the wetsuit's scale */
-          seg1.to(it, v, i * 0.06);
-        });
-
-        /* SEGMENT 2 — the five pieces converge into the kit card and dissolve
-           (scrubbed, resolves while the section is arriving on screen) */
+        /* THE COMPILE — one scrubbed sequence driven by the cards scrolling
+           into view: the five pieces fly from the hero straight into the kit
+           card, shrinking and dissolving as the compiled flat-lay reveals
+           beneath them; the wetsuit peels off to "the one thing" and unfolds —
+           all of it live under the visitor's scroll (and reversible). */
         gsap.set(".kitcard .art", { autoAlpha: 0, scale: 0.92 });
-        var seg2 = gsap.timeline({
-          scrollTrigger: { trigger: "#modes", start: "top 60%", end: "top 35%", scrub: 1, invalidateOnRefresh: true },
+        var ws = fitems[5];
+        var wsFull = ws.querySelector(".ws-full");
+        gsap.set(ws, { height: function(){ return ws.offsetHeight; } });
+
+        var compile = gsap.timeline({
+          scrollTrigger: { trigger: "#modes", start: "top 90%", end: "top 30%", scrub: 0.8, invalidateOnRefresh: true },
           defaults: { ease: "none" }
         });
         fitems.forEach(function(it, i){
           if (i === 5) return;
-          seg2.to(it, {
+          compile.to(it, {
             x: function(){ return itemXY(it, "k-abs").x; },
             y: function(){ return itemXY(it, "k-abs").y; },
-            scale: 0.3, rotation: 0, duration: 0.9
-          }, i * 0.04);
-          seg2.to(it, { autoAlpha: 0, duration: 0.25 }, 0.72 + i * 0.04);
+            scale: 0.3, rotation: 0, duration: 6
+          }, i * 0.35);
+          compile.to(it, { autoAlpha: 0, duration: 1.2 }, 5 + i * 0.35);
         });
-
-        /* THE REVEAL — plays once, on its own, the moment the cards are in view:
-           flat-lay pops in; the wetsuit card UNFOLDS (grows to portrait while the
-           full-suit photo wipes down over the folded one) */
-        var ws = fitems[5];
-        var wsFull = ws.querySelector(".ws-full");
-        gsap.set(ws, { height: function(){ return ws.offsetHeight; } });
-        var revealTl = gsap.timeline({
-          scrollTrigger: { trigger: "#modes", start: "top 50%", toggleActions: "play none none reverse" },
-          defaults: { ease: "power2.inOut" }
-        });
-        revealTl.to(".kitcard .art", { autoAlpha: 1, scale: 1, duration: 0.5, ease: "back.out(1.4)" }, 0.15);
-        revealTl.to(ws, {
+        compile.to(".kitcard .art", { autoAlpha: 1, scale: 1, duration: 1.8, ease: "power1.out" }, 6.2);
+        compile.to(ws, {
+          x: function(){ return itemXY(ws, "k5").x; },
+          y: function(){ return itemXY(ws, "k5").y; },
+          rotation: 0, duration: 4.5
+        }, 0.5);
+        compile.to(ws, {
           height: function(){ return ws.clientWidth * 4 / 3 + 8; },
-          scale: 1.15, rotation: 0, duration: 0.8
-        }, 0.3);
-        revealTl.to(wsFull, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.8 }, 0.42);
+          scale: 1.15, duration: 3
+        }, 5.2);
+        compile.to(wsFull, { clipPath: "inset(0% 0% 0% 0%)", duration: 3 }, 5.6);
 
         /* SEGMENT 4 — crate rides to the handoff (appears after the pin) */
         gsap.set(fcrate, { autoAlpha: 0 });
