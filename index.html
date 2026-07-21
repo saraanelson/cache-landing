@@ -202,8 +202,7 @@ h3{font-size:var(--text-xl);font-weight:600}
 .mode .slot[data-slot="k2"]{top:42%;right:10%;left:auto}
 .mode .slot[data-slot="k3"]{top:60%;right:20%;left:auto}
 .mode .slot[data-slot="k4"]{top:76%;right:11%;left:auto}
-.mode .slot[data-slot="k5"]{top:auto;bottom:5rem;left:50%;margin-left:-3.3rem;right:auto}
-@media (min-width:1024px){ #modeOne{padding-bottom:14rem} }
+.mode .slot[data-slot="k5"]{top:22rem;left:50%;margin-left:-3.3rem;right:auto}
 .stat-foot{margin-top:var(--space-6);color:var(--color-muted)}
 .quote-aside{margin-top:var(--space-8);border-left:2px solid var(--color-accent);padding-left:var(--space-4);max-width:var(--max-width-text)}
 .quote-aside p{font-size:var(--text-base);color:var(--color-ink-soft);font-style:italic}
@@ -499,7 +498,6 @@ footer .wordmark{color:var(--color-on-deep)}
         <span class="slot" data-slot="s2"></span><span class="slot" data-slot="s3"></span>
         <span class="slot" data-slot="s4"></span><span class="slot" data-slot="s5"></span>
         <p class="kit-label"><span class="mono">The whole kit &#183; $80/day &#183; Ocean Beach</span><em>Coastal Surf Kit</em></p>
-      </div>
       </div>
       <p class="micro mono">Beach shops charge $95/day for the board and wetsuits alone.</p>
     </div>
@@ -980,37 +978,54 @@ footer .wordmark{color:var(--color-on-deep)}
         gsap.set(".ws-bg", { autoAlpha: 0 });
         gsap.set(".kit-label", { autoAlpha: 0 });
 
-        /* THE SPREAD — a long, slow descent: the six pieces drift down from the
-           hero and arrange themselves into a labeled kit spread on the paper
-           board; then the wetsuit is PULLED from the spread into "the one thing",
-           landing under the text and unfolding. All scrubbed, all reversible. */
+        /* THE SPREAD — the section PINS and the film plays as slow theater:
+           the six pieces rain down one by one into a labeled kit spread on the
+           paper board, then the wetsuit is pulled sideways out of the spread
+           into the adjacent "one thing" card, landing under its text.
+           The section is pinned, so slot positions shift vs the document each
+           frame — items are therefore glued to LIVE slot rects on every update
+           (proxy progress values, not baked coordinates). */
         var spreadScale = [0.55, 0.5, 0.5, 0.5, 0.5, 0.5];
         var spreadRot = [-8, 2, -2, 3, -2, 2];
+        var P = [0, 1, 2, 3, 4, 5].map(function(){ return { p: 0 }; });
+        var pull = { p: 0 };
+        function glue(){
+          fitems.forEach(function(it, i){
+            var h = slotXY("h" + i), d = slotXY("s" + i);
+            var cx = h.x + (d.x - h.x) * P[i].p;
+            var cy = h.y + (d.y - h.y) * P[i].p;
+            if (i === 5 && pull.p > 0) {
+              var k = slotXY("k5");
+              cx = d.x + (k.x - d.x) * pull.p;
+              cy = d.y + (k.y - d.y) * pull.p;
+            }
+            gsap.set(it, { x: cx - it.offsetWidth / 2, y: cy - it.offsetHeight / 2 });
+          });
+        }
         var compile = gsap.timeline({
-          scrollTrigger: { trigger: "#modes", start: "clamp(top 115%)", end: "clamp(top 12%)", scrub: 1.2, invalidateOnRefresh: true },
-          defaults: { ease: "none" }
+          scrollTrigger: {
+            trigger: "#modes", pin: true, anticipatePin: 1,
+            start: "clamp(top 10%)", end: "+=200%",
+            scrub: 1.2, invalidateOnRefresh: true
+          },
+          defaults: { ease: "none" },
+          onUpdate: glue
         });
-        compile.to(".callout", { autoAlpha: 0, duration: 1.5 }, 0);
+        compile.to(".callout", { autoAlpha: 0, duration: 2 }, 0);
         fitems.forEach(function(it, i){
-          compile.to(it, {
-            x: function(){ return itemXY(it, "s" + i).x; },
-            y: function(){ return itemXY(it, "s" + i).y; },
-            scale: spreadScale[i], rotation: spreadRot[i], duration: 7
-          }, i * 0.5);
+          compile.to(P[i], { p: 1, duration: 8 }, i * 1.6);
+          compile.to(it, { scale: spreadScale[i], rotation: spreadRot[i], duration: 8 }, i * 1.6);
         });
-        compile.fromTo(".kit-label", { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 1.5, ease: "power1.out" }, 8.2);
-        /* the pull */
-        compile.to(ws, {
-          x: function(){ return itemXY(ws, "k5").x; },
-          y: function(){ return itemXY(ws, "k5").y; },
-          rotation: 0, duration: 3.5
-        }, 10.0);
+        compile.fromTo(".kit-label", { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 2, ease: "power1.out" }, 16.5);
+        /* the pull — out of the spread, across into the one-item card */
+        compile.to(pull, { p: 1, duration: 5 }, 18);
+        compile.to(ws, { rotation: 0, duration: 5 }, 18);
         compile.to(ws, {
           height: function(){ return ws.clientWidth * 4 / 3; },
-          scale: 1.15, duration: 2.5
-        }, 12.0);
-        compile.to(".ws-bg", { autoAlpha: 1, duration: 1.8 }, 12.2);
-        compile.to(wsFull, { clipPath: "inset(0% 0% 0% 0%)", duration: 2.5 }, 12.4);
+          scale: 1.15, duration: 3
+        }, 21);
+        compile.to(".ws-bg", { autoAlpha: 1, duration: 2 }, 21.3);
+        compile.to(wsFull, { clipPath: "inset(0% 0% 0% 0%)", duration: 3 }, 21.6);
 
         /* SEGMENT 4 — crate rides to the handoff (appears after the pin) */
         gsap.set(fcrate, { autoAlpha: 0 });
