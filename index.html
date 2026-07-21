@@ -255,7 +255,7 @@ h3{font-size:var(--text-xl);font-weight:600}
 .step .n{font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:var(--tracking-mono);color:var(--color-accent);display:block;margin-bottom:var(--space-3)}
 .step h3{font-size:1.25rem;margin-bottom:var(--space-2)}
 .step p{color:var(--color-ink-soft);font-size:var(--text-sm)}
-.step .slot{top:-3.4rem;left:50%;margin-left:-3.3rem}
+.step .slot{top:-4.2rem;left:50%;margin-left:-3.3rem}
 .how-stats{margin-top:var(--space-8);color:var(--color-ui)}
 .how-quotes{margin-top:var(--space-8);max-width:var(--max-width-text)}
 .how-quotes p{color:var(--color-ink-soft)}
@@ -1052,10 +1052,10 @@ footer .wordmark{color:var(--color-on-deep)}
         seg4.fromTo(fcrate,
           { x: function(){ return itemXY(fcrate, "porch").x - 260; },
             y: function(){ return itemXY(fcrate, "porch").y - 140; },
-            rotation: -6, autoAlpha: 0 },
+            rotation: -6, scale: 0.55, autoAlpha: 0 },
           { x: function(){ return itemXY(fcrate, "porch").x; },
             y: function(){ return itemXY(fcrate, "porch").y; },
-            rotation: 0, autoAlpha: 1, duration: 1, immediateRender: false }, 0);
+            rotation: 0, scale: 0.55, autoAlpha: 1, duration: 1, immediateRender: false }, 0);
         /* park & fade as the section leaves */
         gsap.to(fcrate, {
           autoAlpha: 0, ease: "none",
