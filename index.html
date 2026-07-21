@@ -59,7 +59,8 @@
   --gutter:clamp(1.25rem,4vw,2.5rem);
   --max-width:72rem; --max-width-text:38rem;
 
-  --radius-sm:8px;--radius-md:14px;--radius-lg:22px;--radius-pill:999px;
+  /* slab system (Polén rework): square corners everywhere except pills */
+  --radius-sm:0;--radius-md:0;--radius-lg:0;--radius-pill:999px;
 
   --shadow-sm:0 1px 2px rgba(4,14,10,.18),0 2px 8px rgba(4,14,10,.14);
   --shadow-md:0 2px 4px rgba(4,14,10,.16),0 12px 28px -8px rgba(4,14,10,.38);
@@ -158,7 +159,7 @@ h3{font-size:var(--text-xl);font-weight:600}
 .hero-sub strong{font-weight:600;color:var(--color-ink)}
 .hero-cta{margin-top:var(--space-8)}
 .hero-note{margin-top:var(--space-3);color:var(--color-ui)}
-.fitem img,.sig-item img,.sitem img{display:block;width:100%;height:auto;border-radius:6px}
+.fitem img,.sig-item img,.sitem img{display:block;width:100%;height:auto}
 .ink-line{stroke:currentColor;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .ink-fill{fill:currentColor}
 
@@ -173,8 +174,15 @@ h3{font-size:var(--text-xl);font-weight:600}
 
 /* ============ 4 · KITS VS PIECES ============ */
 .modes{padding-block:var(--section-pad)}
-.mode-grid{display:grid;gap:var(--space-6);grid-template-columns:1fr}
-.mode{background:var(--color-surface);border:1px solid var(--color-line);border-radius:var(--radius-lg);padding:var(--space-8);transition:box-shadow var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out);position:relative;will-change:auto}
+.mode-grid{display:grid;gap:0;grid-template-columns:1fr}
+.mode{background:var(--color-surface);border:0;padding:var(--space-8);transition:box-shadow var(--dur-fast) var(--ease-out);position:relative;will-change:auto}
+/* slab panels: the kit side goes paper, hard edge against the surface side */
+#modeKit{background:var(--color-paper);color:var(--color-paper-ink)}
+#modeKit .pricepair .buy{color:var(--color-paper-muted)}
+#modeKit .pricepair .rent{color:var(--color-brass-ink)}
+#modeKit p{color:var(--color-paper-ink)}
+#modeKit .micro{color:var(--color-paper-muted)}
+#modeKit .kitcard{border-color:rgba(30,58,46,.16)}
 /* hover lift is shadow-only: a transform here would create a stacking context
    and trap the traveling wetsuit beneath the neighboring card */
 .mode:hover{box-shadow:0 10px 30px rgba(0,0,0,.3);border-color:rgba(158,197,189,.28)}
@@ -364,9 +372,22 @@ h3{font-size:var(--text-xl);font-weight:600}
 .pull cite{display:block;margin-top:var(--space-6);font-style:normal;font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:var(--tracking-mono);text-transform:uppercase;color:var(--color-muted)}
 
 /* ============ 11 · FINAL + FOOTER ============ */
-.final{padding-block:var(--section-pad);text-align:center;position:relative}
+/* the ember slab — the page's one loud color commitment */
+.final{background:var(--color-signal);color:var(--color-btn-ink);padding-block:var(--section-pad);text-align:center;position:relative;overflow:clip}
 .final h2{font-size:clamp(2rem,1.5rem + 3vw,3.6rem)}
-.final p{color:var(--color-ink-soft);margin-top:var(--space-4)}
+.final h2 em{color:inherit}
+.final p{color:rgba(20,40,31,.82);margin-top:var(--space-4)}
+.final .btn{background:var(--color-btn-ink);color:var(--color-ink)}
+.final .btn:hover{background:var(--color-bg)}
+.final .corner{position:absolute;top:var(--space-6);color:rgba(20,40,31,.6)}
+.final .c1{left:var(--gutter)}
+.final .c2{right:var(--gutter)}
+/* oversized cropped section numerals (Foundry device) */
+.secnum{position:absolute;top:-.1em;right:-.04em;font-family:var(--font-display);font-weight:700;font-size:clamp(9rem,24vw,21rem);line-height:.8;letter-spacing:-.03em;opacity:.06;pointer-events:none;user-select:none}
+.how{overflow:clip}
+.owners{position:relative;overflow:clip}
+.owners .secnum{opacity:.09}
+.covered{position:relative;overflow:clip}
 .final .slot[data-slot="f-crate"]{left:50%;top:1.5rem;margin-left:-4.5rem;width:9rem;height:7rem}
 /* wordmark tile band — the brand as wallpaper, cropped at the edges */
 .markband{overflow:hidden;background:var(--color-bg);line-height:.78;user-select:none;padding-top:var(--space-8)}
@@ -417,6 +438,7 @@ footer .wordmark{color:var(--color-on-deep)}
   .prot-head{left:var(--space-6)}
   .btn{padding:.85em 1.5em}
   .foot-links a{display:inline-block;padding:1em .1em}
+  .final .corner{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   .ticker{animation:none}
@@ -607,6 +629,7 @@ footer .wordmark{color:var(--color-on-deep)}
 
 <!-- ============ 6 · HOW IT WORKS ============ -->
 <section class="how shell" id="how">
+  <span class="secnum" aria-hidden="true">03</span>
   <p class="sect-label mono rv">03 — The handoff</p>
   <h2 class="rv">Every kit comes with a serial hobbyist attached.</h2>
   <div class="how-grid rv-kids" style="margin-top:var(--space-12)">
@@ -681,6 +704,7 @@ footer .wordmark{color:var(--color-on-deep)}
 
 <!-- ============ 8 · THE CURATORS ============ -->
 <section class="owners">
+  <span class="secnum" aria-hidden="true">05</span>
   <div class="shell">
     <p class="sect-label mono rv">05 — The curators</p>
     <h2 class="rv">Your gear could be on this page.</h2>
@@ -711,6 +735,7 @@ footer .wordmark{color:var(--color-on-deep)}
 
 <!-- ============ 9 · PROTECTED, CALMLY + FAQ ============ -->
 <section class="covered shell" id="protected">
+  <span class="secnum" aria-hidden="true">06</span>
   <p class="sect-label mono rv">06 — Protected, calmly</p>
   <p class="fear rv"><em>“Lend my turntable to a stranger? Oh definitely not.”</em> — that’s the right first reaction. Here’s what changes it:</p>
 
@@ -801,12 +826,16 @@ footer .wordmark{color:var(--color-on-deep)}
 </section>
 
 <!-- ============ 11 · FINAL CTA ============ -->
-<section class="final shell" id="final">
+<section class="final" id="final">
   <span class="slot" data-slot="f-crate"></span>
-  <h2 class="rv">Your next hobby is <em>already</em> in San Diego.</h2>
-  <p class="rv">Kits and single pieces, from serial hobbyists, this weekend.</p>
-  <p class="rv" style="margin-top:var(--space-8)"><a class="btn" href="https://cachekits.com/browse">Browse items &amp; kits <span class="arr" aria-hidden="true">→</span></a></p>
-  <p class="rv mono" style="margin-top:var(--space-6);color:var(--color-muted)">Coming later — Sessions: borrow a space. Meet other serial hobbyists.</p>
+  <span class="corner c1 mono">Go — this weekend</span>
+  <span class="corner c2 mono">San Diego · SLC · Seattle · SF soon</span>
+  <div class="shell">
+    <h2 class="rv">Your next hobby is <em>already</em> in San Diego.</h2>
+    <p class="rv">Kits and single pieces, from serial hobbyists, this weekend.</p>
+    <p class="rv" style="margin-top:var(--space-8)"><a class="btn" href="https://cachekits.com/browse">Browse items &amp; kits <span class="arr" aria-hidden="true">→</span></a></p>
+    <p class="rv mono" style="margin-top:var(--space-6);color:rgba(20,40,31,.6)">Coming later — Sessions: borrow a space. Meet other serial hobbyists.</p>
+  </div>
 </section>
 
 <!-- ============ WORDMARK TILE BAND — type as texture (Polén-style) ============ -->
