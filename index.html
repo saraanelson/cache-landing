@@ -1,0 +1,1038 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cache — Borrow the whole hobby | Kits & gear in San Diego</title>
+<meta name="description" content="Complete hobby kits — or the one piece you're missing — from serial hobbyists near you in San Diego. Request today, pick up this weekend.">
+<meta property="og:title" content="Borrow the whole hobby.">
+<meta property="og:description" content="Kits and single pieces from San Diego curators. $1,900 to buy the surf trip — $80 a day to try it.">
+<meta property="og:type" content="website">
+<!-- ASSET: og-image 1200x630 — one kit flat-lay cutout on bone #F6F2E8, wordmark clear-space, no other text -->
+<meta property="og:image" content="assets/img/og-cache.png">
+<meta property="og:image:width" content="2688">
+<meta property="og:image:height" content="1536">
+
+<link rel="preload" href="assets/fonts/bricolage.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/instrument.woff2" as="font" type="font/woff2" crossorigin>
+
+<style>
+/* ============================================================
+   CACHE (cachekits.com) — production landing page
+   Direction: "Night Workshop" (briefs/02b-direction-final.md)
+   Motion: LEVEL 3 — the continuous journey (desktop film layer);
+   mobile + reduced-motion fall back to Level 2 / final frames.
+   Tokens are canon — no ad-hoc hex/px values.
+   ============================================================ */
+@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:600 700;font-stretch:100%;src:url("assets/fonts/bricolage.woff2") format('woff2');font-display:swap}
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:400 600;src:url("assets/fonts/instrument.woff2") format('woff2');font-display:swap}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;src:url("assets/fonts/plex400.woff2") format('woff2');font-display:swap}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;src:url("assets/fonts/plex500.woff2") format('woff2');font-display:swap}
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:400 700;src:url("assets/fonts/fraunces-italic.woff2") format('woff2');font-display:swap}
+
+:root{
+  --color-bg:#0F1B15; --color-surface:#17281F; --color-ink:#F2EDE2;
+  --color-muted:#93A79A; --color-accent:#D9A441; --color-signal:#E4572E;
+  --color-ink-soft:#CFDCD2; --color-accent-ink:#C08F2F;
+  --color-line:rgba(242,237,226,.14); --color-bg-deep:#F4F0E5; --color-on-deep:#14281F;
+  --color-paper:#F6F2E8; --color-paper-ink:#1E3A2E; --color-paper-muted:#5F7263;
+  --color-brass-ink:#8F6A1E; --color-btn-ink:#14281F;
+  --color-ui:#9EC5BD; --color-ui-ink:#44706A;
+
+  --font-display:'Bricolage Grotesque',"Arial Black",sans-serif;
+  --font-body:'Instrument Sans',"Helvetica Neue",Arial,sans-serif;
+  --font-mono:'IBM Plex Mono',"Courier New",monospace;
+
+  --text-xs:.75rem; --text-sm:.875rem; --text-base:1.0625rem;
+  --text-lg:clamp(1.25rem,1.1rem + .7vw,1.5rem);
+  --text-xl:clamp(1.5rem,1.3rem + 1.2vw,2rem);
+  --text-2xl:clamp(2rem,1.6rem + 2.2vw,3rem);
+  --text-hero:clamp(2.625rem,1.9rem + 4.5vw,4.75rem);
+
+  --leading-head:1.15; --leading-body:1.55;
+  --tracking-display:-0.025em; --tracking-mono:0.06em;
+
+  --space-1:.25rem;--space-2:.5rem;--space-3:.75rem;--space-4:1rem;--space-6:1.5rem;
+  --space-8:2rem;--space-12:3rem;--space-16:4rem;--space-24:6rem;
+  --section-pad:clamp(4rem,3rem + 6vw,8rem);
+  --gutter:clamp(1.25rem,4vw,2.5rem);
+  --max-width:72rem; --max-width-text:38rem;
+
+  --radius-sm:8px;--radius-md:14px;--radius-lg:22px;--radius-pill:999px;
+
+  --shadow-sm:0 1px 2px rgba(4,14,10,.18),0 2px 8px rgba(4,14,10,.14);
+  --shadow-md:0 2px 4px rgba(4,14,10,.16),0 12px 28px -8px rgba(4,14,10,.38);
+  --shadow-lift:0 4px 8px rgba(4,14,10,.18),0 20px 44px -12px rgba(4,14,10,.5);
+
+  --ease-out:cubic-bezier(.22,1,.36,1); --ease-inout:cubic-bezier(.65,0,.35,1);
+  --dur-fast:180ms; --dur-base:450ms; --dur-slow:800ms;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--color-bg);color:var(--color-ink);font-family:var(--font-body);font-size:var(--text-base);line-height:var(--leading-body);-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--color-ui);outline-offset:3px;border-radius:2px}
+
+.shell{max-width:var(--max-width);margin-inline:auto;padding-inline:var(--gutter)}
+.mono{font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:var(--tracking-mono);text-transform:uppercase}
+.sect-label{display:flex;align-items:center;gap:var(--space-3);color:var(--color-muted);margin-bottom:var(--space-8)}
+.sect-label::before{content:"";width:26px;height:2px;background:var(--color-accent);border-radius:1px}
+h1,h2,h3{font-family:var(--font-display);letter-spacing:var(--tracking-display);line-height:var(--leading-head);text-wrap:balance}
+h2{font-size:var(--text-2xl);font-weight:700}
+h3{font-size:var(--text-xl);font-weight:600}
+.rv,.rv-kids > *{will-change:opacity,transform}
+/* film-grain finish */
+#grain{position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E")}
+@media (prefers-reduced-motion:reduce){#grain{display:none}}
+.mline{display:block}
+
+/* ============ FILM LAYER (Level 3, desktop only) ============ */
+#film{position:absolute;inset:0 auto auto 0;width:100%;height:0;overflow:visible;pointer-events:none;z-index:30;display:none}
+.fitem{position:absolute;left:0;top:0;width:6.6rem;background:#FFFDF8;color:var(--color-paper-ink);border:1px solid rgba(30,58,46,.14);border-radius:var(--radius-sm);box-shadow:var(--shadow-md);padding:var(--space-2);will-change:transform}
+.fcrate{position:absolute;left:0;top:0;width:9rem;color:var(--color-paper);will-change:transform}
+.fcrate .lid{transform-origin:8% 88%}
+.slot{position:absolute;width:6.6rem;height:5.4rem;visibility:hidden;pointer-events:none}
+@media (min-width:1024px){ #film.on{display:block} }
+
+/* hero scatter slots live inside .hero-cards */
+.hero-cards{position:relative;height:clamp(20rem,44vw,26rem)}
+.hero-cards .slot[data-slot="h0"]{top:4%;left:6%}
+.hero-cards .slot[data-slot="h1"]{top:0;left:52%}
+.hero-cards .slot[data-slot="h2"]{top:30%;left:26%}
+.hero-cards .slot[data-slot="h3"]{top:34%;left:70%}
+.hero-cards .slot[data-slot="h4"]{top:64%;left:12%}
+.hero-cards .slot[data-slot="h5"]{top:66%;left:50%}
+/* mobile hero visual: static mini-grid of the kit (film off) */
+.hero-kit-static{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3)}
+.hero-kit-static .sitem{background:#FFFDF8;color:var(--color-paper-ink);border:1px solid rgba(30,58,46,.14);border-radius:var(--radius-sm);box-shadow:var(--shadow-sm);padding:var(--space-2)}
+.hero-kit-static .cap{font-family:var(--font-mono);font-size:.58rem;letter-spacing:var(--tracking-mono);text-transform:uppercase;color:var(--color-paper-muted);margin-top:var(--space-1)}
+@media (min-width:1024px){ .hero-kit-static{display:none} }
+@media (max-width:1023px){ .hero-cards .slot{display:none} .hero-cards{height:auto} }
+.hero-kit-tag{margin-top:var(--space-4);color:var(--color-muted)}
+.hero-kit-tag b{color:var(--color-accent);font-weight:500}
+@media (min-width:1024px){ .hero-kit-tag{position:absolute;bottom:-2.6rem;left:0;right:0;margin-top:0} }
+
+/* ============ 1 · NAV ============ */
+.nav-wrap{position:sticky;top:var(--space-3);z-index:50;padding-inline:var(--gutter)}
+.nav{max-width:var(--max-width);margin-inline:auto;background:var(--color-surface);border-radius:var(--radius-pill);box-shadow:var(--shadow-md);display:flex;align-items:center;justify-content:space-between;padding:var(--space-2) var(--space-2) var(--space-2) var(--space-6);gap:var(--space-4)}
+.wordmark{font-family:var(--font-display);font-weight:700;font-size:1.375rem;letter-spacing:var(--tracking-display);text-decoration:none;color:var(--color-ink)}
+.wordmark i{font-style:normal;color:var(--color-accent)}
+.nav-links{display:flex;align-items:center;gap:var(--space-6)}
+.nav-links a.textlink{text-decoration:none;font-weight:500;font-size:var(--text-sm);color:var(--color-ink-soft)}
+.nav-links a.textlink:hover{color:var(--color-ui)}
+
+.btn{display:inline-flex;align-items:center;gap:var(--space-2);background:var(--color-ink);color:var(--color-btn-ink);font-family:var(--font-body);font-weight:600;font-size:var(--text-sm);border:0;border-radius:var(--radius-pill);padding:.72em 1.35em;cursor:pointer;text-decoration:none;transition:background var(--dur-fast) var(--ease-out)}
+.btn:hover{background:#FFFFFF}
+.btn .arr{transition:transform var(--dur-fast) var(--ease-out)}
+.btn:hover .arr{transform:translateX(3px)}
+
+/* ============ 2 · HERO ============ */
+.hero{padding-block:var(--space-16) var(--section-pad);overflow:clip}
+.hero-grid{display:grid;gap:var(--space-12);align-items:center;grid-template-columns:1fr}
+.hero h1{font-size:var(--text-hero);font-weight:700}
+.hero h1 em,.final h2 em{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;color:var(--color-accent);letter-spacing:-.01em}
+#rot{display:inline-block}
+.hero h1 .ln{display:block}
+.hero-sub{font-size:var(--text-lg);color:var(--color-ink-soft);max-width:34rem;margin-top:var(--space-6)}
+.hero-sub strong{font-weight:600;color:var(--color-ink)}
+.hero-cta{margin-top:var(--space-8)}
+.hero-note{margin-top:var(--space-3);color:var(--color-ui)}
+.fitem img,.sig-item img,.sitem img{display:block;width:100%;height:auto;border-radius:6px}
+.kitcard .art{padding:0;background:none}
+.kitcard .art img{display:block;width:100%;height:auto;border-radius:var(--radius-sm)}
+.ink-line{stroke:currentColor;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ink-fill{fill:currentColor}
+
+/* ============ 3 · PROOF TICKER ============ */
+.ticker-sect{border-block:1px solid var(--color-line);padding-block:var(--space-4);overflow:hidden}
+.ticker-head{color:var(--color-muted);margin-bottom:var(--space-2)}
+.ticker{display:flex;gap:var(--space-12);white-space:nowrap;width:max-content;animation:marquee 42s linear infinite}
+.ticker:hover{animation-play-state:paused}
+.ticker span{font-family:var(--font-mono);font-size:var(--text-sm);letter-spacing:var(--tracking-mono);text-transform:uppercase;color:var(--color-ink-soft)}
+.ticker .dot{color:var(--color-signal)}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ============ 4 · KITS VS PIECES ============ */
+.modes{padding-block:var(--section-pad)}
+.mode-grid{display:grid;gap:var(--space-6);grid-template-columns:1fr}
+.mode{background:var(--color-surface);border:1px solid var(--color-line);border-radius:var(--radius-lg);padding:var(--space-8);transition:transform var(--dur-fast) var(--ease-out);position:relative}
+.mode:hover{transform:translateY(-4px)}
+.mode h3{margin-bottom:var(--space-3)}
+.mode .pricepair{font-family:var(--font-display);font-weight:700;font-size:var(--text-xl);letter-spacing:var(--tracking-display);margin-block:var(--space-4)}
+.mode .pricepair .buy{color:var(--color-muted);text-decoration:line-through;text-decoration-thickness:2px;text-decoration-color:var(--color-signal)}
+.mode .pricepair .rent{color:var(--color-accent)}
+.mode p{color:var(--color-ink-soft);max-width:34ch}
+.mode .micro{margin-top:var(--space-4);color:var(--color-muted);font-size:var(--text-sm)}
+/* surf inset card (the commercial flagship keeps its visual) */
+.kitcard{position:relative;margin-top:var(--space-6);background:var(--color-paper);color:var(--color-paper-ink);border-radius:var(--radius-md);box-shadow:var(--shadow-sm);padding:var(--space-3);max-width:15rem}
+.kitcard .art{background:rgba(30,58,46,.06);border-radius:var(--radius-sm);padding:var(--space-2);margin-bottom:var(--space-2)}
+.kitcard .tag{font-family:var(--font-mono);font-size:.66rem;letter-spacing:var(--tracking-mono);text-transform:uppercase;color:var(--color-paper-muted);line-height:1.7}
+.kitcard .tag b{font-weight:500;color:var(--color-paper-ink)}
+.kitcard .tag .price{color:var(--color-brass-ink)}
+.kitcard .tag .who{color:var(--color-ui-ink)}
+/* film slot zones inside the mode cards */
+/* cluster hugs the card's empty right rail; film items scale to .7 there */
+.kitcard .slot[data-slot="k-abs"]{top:20%;left:25%}
+.mode .slot[data-slot="k0"]{top:8%;right:9%;left:auto}
+.mode .slot[data-slot="k1"]{top:24%;right:19%;left:auto}
+.mode .slot[data-slot="k2"]{top:42%;right:10%;left:auto}
+.mode .slot[data-slot="k3"]{top:60%;right:20%;left:auto}
+.mode .slot[data-slot="k4"]{top:76%;right:11%;left:auto}
+.mode .slot[data-slot="k5"]{top:22%;right:14%;left:auto}
+.stat-foot{margin-top:var(--space-6);color:var(--color-muted)}
+.quote-aside{margin-top:var(--space-8);border-left:2px solid var(--color-accent);padding-left:var(--space-4);max-width:var(--max-width-text)}
+.quote-aside p{font-size:var(--text-base);color:var(--color-ink-soft);font-style:italic}
+.quote-aside cite{display:block;margin-top:var(--space-2);font-style:normal}
+
+/* ============ 5 · SIGNATURE — ANATOMY OF A KIT ============ */
+.sig-track{position:relative}
+.sig-viewport{min-height:100vh;display:flex;align-items:center;padding-block:5rem var(--space-8)}
+.sig-stage{position:relative;background:var(--color-paper);color:var(--color-paper-ink);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);width:100%;height:min(80vh,44rem);overflow:hidden;display:grid;grid-template-columns:15rem 1fr}
+.sig-head{position:absolute;top:var(--space-6);left:var(--space-8);z-index:5}
+.sig-head .mono{color:var(--color-paper-muted)}
+.sig-head h2{font-size:var(--text-xl);margin-top:var(--space-2)}
+.manifest{align-self:end;padding:var(--space-8);z-index:4}
+.manifest li{list-style:none;display:flex;justify-content:space-between;gap:var(--space-4);font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:var(--tracking-mono);text-transform:uppercase;color:var(--color-paper-muted);padding-block:.4em;border-bottom:1px solid rgba(30,58,46,.16)}
+.manifest .total{border-bottom:0;border-top:2px solid var(--color-paper-ink);font-weight:500;color:var(--color-paper-ink);margin-top:.3em}
+.manifest .total .sum{color:var(--color-brass-ink)}
+.sig-field{position:relative}
+.sig-crate{position:absolute;inset:16% 8% 14% 6%;border:1.5px dashed rgba(30,58,46,.22);border-radius:var(--radius-lg)}
+.sig-crate.solid{border-style:solid;border-color:var(--color-brass-ink)}
+.sig-crate .cornertag{position:absolute;top:-1.4em;left:var(--space-4);background:var(--color-paper);padding-inline:var(--space-2);color:var(--color-paper-muted)}
+.sig-item{position:absolute;width:16%;min-width:5.2rem;background:#FFFDF8;color:var(--color-paper-ink);border:1px solid rgba(30,58,46,.14);border-radius:var(--radius-sm);box-shadow:0 1px 2px rgba(30,58,46,.08),0 2px 8px rgba(30,58,46,.07);padding:var(--space-2)}
+.sig-item .cap{font-family:var(--font-mono);font-size:.62rem;letter-spacing:var(--tracking-mono);text-transform:uppercase;color:var(--color-paper-muted);margin-top:var(--space-1);line-height:1.5}
+.sig-item .cap b{font-weight:500;color:var(--color-paper-ink)}
+.sig-item .cap .who{color:var(--color-ui-ink)}
+.sig-cue{position:absolute;bottom:var(--space-6);left:0;right:0;text-align:center;color:var(--color-paper-muted);z-index:6}
+.sig-cue .dn{display:inline-block;animation:cue-bob 1.4s ease-in-out infinite}
+@keyframes cue-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+@media (prefers-reduced-motion:reduce){.sig-cue{display:none}}
+.sig-end{position:absolute;bottom:var(--space-6);left:0;right:0;text-align:center;z-index:6}
+.sig-end .cap{margin-bottom:var(--space-3);color:var(--color-paper-ink);font-weight:500}
+.sig-end .btn{background:var(--color-btn-ink);color:var(--color-ink)}
+.sig-end .btn:hover{background:var(--color-bg)}
+.pulse{display:inline-block;width:.55em;height:.55em;border-radius:50%;background:var(--color-signal);margin-right:.5em;vertical-align:1px}
+.sig-epigraph{position:absolute;top:var(--space-6);right:var(--space-8);max-width:22rem;text-align:right;color:var(--color-paper-muted);font-size:var(--text-xs);font-family:var(--font-mono);letter-spacing:.02em;z-index:5}
+
+/* ============ 6 · HOW IT WORKS ============ */
+.how{padding-block:var(--section-pad);position:relative}
+.how-grid{display:grid;gap:var(--space-6);grid-template-columns:1fr}
+.step{background:var(--color-surface);border:1px solid var(--color-line);border-radius:var(--radius-md);padding:var(--space-6);position:relative}
+.step .n{font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:var(--tracking-mono);color:var(--color-accent);display:block;margin-bottom:var(--space-3)}
+.step h3{font-size:1.25rem;margin-bottom:var(--space-2)}
+.step p{color:var(--color-ink-soft);font-size:var(--text-sm)}
+.step .slot{top:-3.4rem;left:50%;margin-left:-3.3rem}
+.how-quotes{margin-top:var(--space-8);max-width:var(--max-width-text)}
+.how-quotes p{color:var(--color-ink-soft)}
+.how-quotes .worry{font-style:italic;color:var(--color-muted)}
+.how-quotes .answer{margin-top:var(--space-3);font-style:italic}
+.how-quotes cite{font-style:normal}
+
+/* ============ 7 · HOST / MAKE / ESCAPE ============ */
+.browse{padding-block:var(--section-pad);background:var(--color-surface)}
+.cat-grid{display:grid;gap:var(--space-4);grid-template-columns:repeat(2,1fr)}
+.cat{background:var(--color-bg);border:1px solid var(--color-line);border-radius:var(--radius-md);padding:var(--space-6);text-decoration:none;transition:transform var(--dur-fast) var(--ease-out);position:relative}
+.cat:hover{transform:translateY(-4px)}
+.cat:hover h3{color:var(--color-ui)}
+.cat svg{width:2.6rem;height:2.6rem;margin-bottom:var(--space-4)}
+.cat h3{font-size:1.15rem;margin-bottom:var(--space-1);transition:color var(--dur-fast) var(--ease-out)}
+.cat .count{color:var(--color-muted)}
+.cat .kitnote{position:absolute;top:var(--space-4);right:var(--space-4);color:var(--color-accent)}
+.browse-aside{margin-top:var(--space-8);color:var(--color-muted);max-width:var(--max-width-text)}
+.browse-aside em{color:var(--color-ink-soft)}
+
+/* ============ 8 · THE CURATORS ============ */
+.owners{background:var(--color-bg-deep);color:var(--color-on-deep);padding-block:var(--section-pad)}
+.owners .sect-label{color:rgba(22,52,42,.55)}
+.owners h2{color:var(--color-on-deep)}
+.owners .epigraph{font-style:italic;color:rgba(22,52,42,.78);max-width:var(--max-width-text);margin-block:var(--space-4) var(--space-12)}
+.owners .epigraph cite{font-style:normal;font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:var(--tracking-mono);text-transform:uppercase;display:block;margin-top:var(--space-2);color:rgba(22,52,42,.5)}
+.own-grid{display:grid;gap:var(--space-4);grid-template-columns:1fr}
+.own{border:1px solid rgba(22,52,42,.16);border-radius:var(--radius-md);padding:var(--space-6);background:#FFFDF8}
+.own .avatar{width:3rem;height:3rem;border-radius:50%;background:var(--color-accent);color:var(--color-btn-ink);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;margin-bottom:var(--space-4)}
+.own h3{font-size:1.15rem;color:var(--color-on-deep);margin-bottom:var(--space-2)}
+.own .lends{font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:var(--tracking-mono);text-transform:uppercase;color:rgba(22,52,42,.66);line-height:1.8}
+.own .lends .keeps{color:var(--color-brass-ink)}
+.lister-strip{margin-top:var(--space-12);border-top:1px solid rgba(22,52,42,.16);padding-top:var(--space-8);max-width:var(--max-width-text)}
+.lister-strip p{color:rgba(22,52,42,.82)}
+.lister-strip a{color:var(--color-ui-ink);text-decoration:none;font-weight:500}
+.lister-strip a:hover{text-decoration:underline}
+.mock-note{margin-top:var(--space-8);color:rgba(22,52,42,.45)}
+
+/* ============ 9 · PROTECTED, CALMLY + performed beat + FAQ ============ */
+.covered{padding-block:var(--section-pad)}
+.covered .fear{font-family:var(--font-display);font-weight:600;font-size:var(--text-xl);letter-spacing:var(--tracking-display);max-width:44rem;margin-bottom:var(--space-12)}
+.covered .fear em{font-style:italic;color:var(--color-muted)}
+.prot-viewport{min-height:100vh;display:flex;align-items:center;padding-block:5rem var(--space-8)}
+.prot-stage{position:relative;background:var(--color-surface);border:1px solid var(--color-line);border-radius:var(--radius-lg);width:100%;min-height:min(72vh,38rem);overflow:hidden;display:flex;align-items:center;justify-content:center;padding:var(--space-16) var(--space-6) var(--space-8)}
+.prot-head{position:absolute;top:var(--space-6);left:var(--space-8);color:var(--color-muted)}
+.prot-inner{position:relative;width:min(40rem,100%);display:flex;flex-direction:column;align-items:center;gap:var(--space-6)}
+.req-card{background:var(--color-paper);color:var(--color-paper-ink);border-radius:var(--radius-md);box-shadow:var(--shadow-md);padding:var(--space-4) var(--space-6);width:min(22rem,100%)}
+.req-card .mono{color:var(--color-paper-muted)}
+.req-card .kitline{font-weight:600;margin-block:var(--space-1)}
+.req-chip{display:inline-block;font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:var(--tracking-mono);text-transform:uppercase;border-radius:var(--radius-pill);padding:.3em .9em;margin-top:var(--space-2);background:rgba(217,164,65,.18);color:var(--color-brass-ink)}
+.req-chip.ok{background:rgba(158,197,189,.2);color:var(--color-ui-ink)}
+.prot-shots{position:relative;width:100%}
+.prot-photos{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3)}
+.pphoto{position:relative;aspect-ratio:10/7;background:var(--color-paper);border-radius:var(--radius-sm);box-shadow:var(--shadow-sm);overflow:hidden}
+.pphoto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pphoto .mono{position:absolute;left:var(--space-2);bottom:var(--space-2);color:var(--color-paper-ink);font-size:.58rem;background:rgba(246,242,232,.85);border-radius:4px;padding:.15em .5em}
+.stamp{position:absolute;bottom:-1.1em;left:50%;transform:translateX(-50%);border:2px solid var(--color-ui);color:var(--color-ui);background:var(--color-surface);font-family:var(--font-mono);font-size:var(--text-sm);letter-spacing:.14em;text-transform:uppercase;border-radius:var(--radius-sm);padding:.5em 1.2em;rotate:-4deg}
+.prot-caption{text-align:center;color:var(--color-muted)}
+
+.cov-grid{display:grid;gap:var(--space-6);grid-template-columns:1fr;margin-top:var(--space-12)}
+.cov{border-top:2px solid var(--color-ink);padding-top:var(--space-4)}
+.cov .mono{color:var(--color-accent);display:block;margin-bottom:var(--space-2)}
+.cov p{color:var(--color-ink-soft);font-size:var(--text-sm)}
+.cov p b{color:var(--color-ink)}
+
+.faq{margin-top:var(--space-16);max-width:var(--max-width-text)}
+.faq h3{margin-bottom:var(--space-6)}
+.faq details{border-top:1px solid var(--color-line)}
+.faq details:last-child{border-bottom:1px solid var(--color-line)}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:baseline;gap:var(--space-4);padding-block:var(--space-4);font-family:var(--font-mono);font-size:var(--text-sm);letter-spacing:var(--tracking-mono);text-transform:uppercase;color:var(--color-ink-soft)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--color-ui);font-family:var(--font-body);font-size:1.1rem;flex-shrink:0}
+.faq details[open] summary::after{content:"–"}
+.faq details[open] summary{color:var(--color-ink)}
+.faq .a{padding-bottom:var(--space-6);color:var(--color-ink-soft);font-size:var(--text-sm);max-width:60ch}
+
+/* ============ 10 · PULL QUOTE ============ */
+.pull{padding-block:var(--section-pad);background:var(--color-surface)}
+.pull .mono{color:var(--color-muted);margin-bottom:var(--space-6);display:block}
+.pull blockquote{font-family:var(--font-display);font-weight:600;font-size:var(--text-2xl);letter-spacing:var(--tracking-display);line-height:1.2;max-width:56rem;text-wrap:balance}
+.pull .u{background-image:linear-gradient(var(--color-signal),var(--color-signal));background-repeat:no-repeat;background-size:100% 3px;background-position:0 96%}
+.pull cite{display:block;margin-top:var(--space-6);font-style:normal;font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:var(--tracking-mono);text-transform:uppercase;color:var(--color-muted)}
+
+/* ============ 11 · FINAL + FOOTER ============ */
+.final{padding-block:var(--section-pad);text-align:center;position:relative}
+.final h2{font-size:clamp(2rem,1.5rem + 3vw,3.6rem)}
+.final p{color:var(--color-ink-soft);margin-top:var(--space-4)}
+.final .slot[data-slot="f-crate"]{left:50%;top:1.5rem;margin-left:-4.5rem;width:9rem;height:7rem}
+footer{background:var(--color-bg-deep);color:var(--color-on-deep);padding-block:var(--space-16)}
+.foot-grid{display:flex;flex-wrap:wrap;gap:var(--space-8);justify-content:space-between;align-items:center}
+footer .wordmark{color:var(--color-on-deep)}
+.foot-links{display:flex;flex-wrap:wrap;gap:var(--space-6)}
+.foot-links a{font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:var(--tracking-mono);text-transform:uppercase;color:rgba(22,52,42,.7);text-decoration:none}
+.foot-links a:hover{color:var(--color-on-deep)}
+.foot-legal{margin-top:var(--space-8);color:rgba(22,52,42,.45);font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:var(--tracking-mono);text-transform:uppercase}
+
+/* ============ responsive ============ */
+@media (min-width:760px){
+  .hero-grid{grid-template-columns:1.05fr .95fr}
+  .mode-grid{grid-template-columns:1fr 1fr}
+  .how-grid{grid-template-columns:repeat(3,1fr)}
+  .cat-grid{grid-template-columns:repeat(3,1fr)}
+  .own-grid{grid-template-columns:repeat(3,1fr)}
+  .cov-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width:759px){
+  .nav-links a.textlink{display:none}
+  .sig-stage{display:flex;flex-direction:column;height:min(88vh,46rem);padding-top:6.8rem}
+  .sig-head{top:var(--space-4);left:var(--space-6)}
+  .sig-crate .cornertag{top:auto;bottom:-1.5em}
+  .sig-field{order:1;flex:1;min-height:11rem}
+  .manifest{order:2;align-self:stretch;padding:var(--space-2) var(--space-6)}
+  .manifest li{padding-block:.28em}
+  .sig-end{order:3;position:static;padding:var(--space-3) var(--space-4) var(--space-4)}
+  .sig-crate{inset:2% 3% 2% 3%}
+  .sig-item{width:22%;min-width:4.4rem;padding:var(--space-1)}
+  .sig-item .cap{font-size:.55rem}
+  .sig-epigraph{display:none}
+  .prot-stage{min-height:min(78vh,40rem);padding:var(--space-12) var(--space-4) var(--space-8)}
+  .prot-head{left:var(--space-6)}
+  .btn{padding:.85em 1.5em}
+  .foot-links a{display:inline-block;padding:1em .1em}
+}
+@media (prefers-reduced-motion:reduce){
+  .ticker{animation:none}
+}
+</style>
+</head>
+<body>
+
+<div id="grain" aria-hidden="true"></div>
+
+<!-- ============ FILM LAYER — the traveling Pottery Studio Kit ============ -->
+<div id="film" aria-hidden="true">
+  <!-- ASSET: film items — 6 pottery cutouts on bone, 10:7 (replace line art) -->
+  <div class="fitem" data-i="0"><img src="assets/img/kit-surf-board.webp" width="1280" height="832" alt="Longboard"></div>
+  <div class="fitem" data-i="1"><img src="assets/img/kit-surf-tent.webp" width="1280" height="832" alt="Packed tent"></div>
+  <div class="fitem" data-i="2"><img src="assets/img/kit-surf-stove.webp" width="1280" height="832" alt="Camp stove and kettle"></div>
+  <div class="fitem" data-i="3"><img src="assets/img/kit-surf-shower.webp" width="1280" height="832" alt="Portable shower"></div>
+  <div class="fitem" data-i="4"><img src="assets/img/kit-surf-firepit.webp" width="1280" height="832" alt="Fire pit and mugs"></div>
+  <div class="fitem" data-i="5"><img src="assets/img/kit-surf-wetsuit.webp" width="1280" height="832" alt="Folded wetsuit"></div>
+  <div class="fcrate" id="fcrate">
+    <svg viewBox="0 0 140 100">
+      <rect x="12" y="34" width="116" height="58" rx="8" fill="#F6F2E8" stroke="#8F6A1E" stroke-width="2"/>
+      <path d="M24 50 h92 M24 62 h92 M24 74 h92" stroke="rgba(30,58,46,.25)" stroke-width="1.4" fill="none"/>
+      <g class="lid"><rect x="8" y="22" width="124" height="14" rx="6" fill="#F6F2E8" stroke="#8F6A1E" stroke-width="2"/></g>
+      <text x="70" y="86" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" letter-spacing="1.5" fill="#5F7263">CACHE</text>
+    </svg>
+  </div>
+</div>
+
+<!-- ============ 1 · NAV ============ -->
+<div class="nav-wrap">
+  <nav class="nav" aria-label="Main">
+    <a class="wordmark" href="#top">c<i>a</i>che</a>
+    <div class="nav-links">
+      <a class="textlink" href="#browse">Browse</a>
+      <a class="btn" href="https://cachekits.com/browse">Browse items &amp; kits</a>
+    </div>
+  </nav>
+</div>
+
+<!-- ============ 2 · HERO ============ -->
+<header class="hero shell" id="top">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <h1><span class="ln">Borrow the</span><span class="ln"><em id="rot" aria-live="off">whole hobby.</em></span></h1>
+      <p class="hero-sub">Complete kits — or the one piece you’re missing — from serial hobbyists and local curators near you. <strong>Request today, pick up this weekend.</strong></p>
+      <div class="hero-cta">
+        <a class="btn" href="https://cachekits.com/browse">Browse items &amp; kits <span class="arr" aria-hidden="true">→</span></a>
+        <p class="hero-note mono">Live in San Diego · Salt Lake City, Seattle &amp; SF soon</p>
+      </div>
+    </div>
+    <div class="hero-cards">
+      <!-- film waypoints (desktop) -->
+      <span class="slot" data-slot="h0" data-r="-7"></span>
+      <span class="slot" data-slot="h1" data-r="5"></span>
+      <span class="slot" data-slot="h2" data-r="3"></span>
+      <span class="slot" data-slot="h3" data-r="-5"></span>
+      <span class="slot" data-slot="h4" data-r="8"></span>
+      <span class="slot" data-slot="h5" data-r="-4"></span>
+      <!-- mobile static kit grid -->
+      <div class="hero-kit-static" aria-hidden="false">
+        <div class="sitem"><img src="assets/img/kit-surf-board.webp" width="1280" height="832" alt="Longboard"><p class="cap">Board</p></div>
+        <div class="sitem"><img src="assets/img/kit-surf-tent.webp" width="1280" height="832" alt="Packed tent"><p class="cap">Tent</p></div>
+        <div class="sitem"><img src="assets/img/kit-surf-stove.webp" width="1280" height="832" alt="Camp stove and kettle"><p class="cap">Stove</p></div>
+        <div class="sitem"><img src="assets/img/kit-surf-shower.webp" width="1280" height="832" alt="Portable shower"><p class="cap">Shower</p></div>
+        <div class="sitem"><img src="assets/img/kit-surf-firepit.webp" width="1280" height="832" alt="Fire pit and mugs"><p class="cap">Firepit</p></div>
+        <div class="sitem"><img src="assets/img/kit-surf-wetsuit.webp" width="1280" height="832" alt="Folded wetsuit"><p class="cap">Wetsuit</p></div>
+      </div>
+      <p class="hero-kit-tag mono">The Surf Trip Kit · Ocean Beach · <b>$80/day</b> — watch it come together as you scroll</p>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 3 · PROOF TICKER ============ -->
+<section class="ticker-sect" aria-label="Recently listed gear">
+  <div class="shell"><p class="ticker-head mono">Recently listed</p></div>
+  <div class="ticker">
+    <span><b class="dot">⦿</b> Listening Room Kit · $18/day → North Park · 2 days ago</span>
+    <span><b class="dot">⦿</b> Snorkeling set · $12/day → Ocean Beach · 3 days ago</span>
+    <span><b class="dot">⦿</b> Jam Session Kit · $28/day → Hillcrest · 4 days ago</span>
+    <span><b class="dot">⦿</b> Backpacking kit · $26/day → Mission Hills · 5 days ago</span>
+    <span><b class="dot">⦿</b> Sewing machine · $8/day → La Jolla · 6 days ago</span>
+    <span><b class="dot">⦿</b> Backyard cinema kit · $15/day → South Park · 1 week ago</span>
+    <span><b class="dot">⦿</b> Listening Room Kit · $18/day → North Park · 2 days ago</span>
+    <span><b class="dot">⦿</b> Snorkeling set · $12/day → Ocean Beach · 3 days ago</span>
+    <span><b class="dot">⦿</b> Jam Session Kit · $28/day → Hillcrest · 4 days ago</span>
+    <span><b class="dot">⦿</b> Backpacking kit · $26/day → Mission Hills · 5 days ago</span>
+    <span><b class="dot">⦿</b> Sewing machine · $8/day → La Jolla · 6 days ago</span>
+    <span><b class="dot">⦿</b> Backyard cinema kit · $15/day → South Park · 1 week ago</span>
+  </div>
+</section>
+
+<!-- ============ 4 · KITS VS PIECES ============ -->
+<section class="modes shell" id="modes">
+  <p class="sect-label mono rv">01 — Two ways to borrow</p>
+  <div class="mode-grid">
+    <div class="mode rv" id="modeKit">
+      <span class="slot" data-slot="k0"></span><span class="slot" data-slot="k1"></span>
+      <span class="slot" data-slot="k2"></span><span class="slot" data-slot="k3"></span>
+      <span class="slot" data-slot="k4"></span>
+      <h3>Borrow the whole kit</h3>
+      <p class="pricepair"><span class="buy">$1,900 to buy it all.</span><br><span class="rent">$80 a day to try it.</span></p>
+      <p>You don’t have to know what you need — the kit knows. Board, wetsuit, stove, tent, portable shower: every piece listed, one price, one curator.</p>
+      <!-- ASSET: kitcard — Surf Trip Kit cutout flat-lay on bone, 10:7 -->
+      <div class="kitcard"><span class="slot" data-slot="k-abs"></span>
+        <div class="art"><img src="assets/img/kit-surf-flatlay.webp" width="1280" height="832" alt="Surf Trip Kit flat-lay: longboard, tent, wetsuits, camp stove, portable shower, fire pit, camp chairs" loading="lazy"></div>
+        <p class="tag"><b>Surf Trip Kit</b> · <span class="who">Ocean Beach</span><br><b class="price">$80/day</b> · request first</p>
+      </div>
+      <p class="micro mono">Beach shops charge $95/day for the board and wetsuits alone.</p>
+    </div>
+    <div class="mode rv" id="modeOne">
+      <span class="slot" data-slot="k5"></span>
+      <h3>…or just the one thing</h3>
+      <p class="pricepair"><span class="rent">Wetsuit, $10/day.</span></p>
+      <p>The piece you’re missing — or the exact model you’ve had your eye on. Someone in your neighborhood already owns it.</p>
+      <p class="micro mono">Single items from $7/day in San Diego</p>
+    </div>
+  </div>
+  <blockquote class="quote-aside rv">
+    <p>“Using [a kit-rental service] saved us money… helped us pack lighter and we were not forced to buy anything.”</p>
+    <cite class="mono">— A kit-rental customer, Celebrate &amp; Explore</cite>
+  </blockquote>
+  <p class="stat-foot mono rv">80% of home fitness gear goes unused after the first month. Borrow first. Buy the day you’re sure.</p>
+</section>
+
+<!-- ============ 5 · SIGNATURE — ANATOMY OF A KIT ============ -->
+<section class="sig-track shell" id="anatomy" aria-label="Anatomy of a kit">
+  <div class="sig-viewport">
+    <div class="sig-stage">
+      <div class="sig-head">
+        <p class="mono">02 — Anatomy of a kit</p>
+        <h2>Watch the whole hobby pack itself.</h2>
+      </div>
+      <p class="sig-epigraph">“I’m 16 and I already have over $2000 worth of gear.” — a photography hobbyist, on how fast creative hobbies add up</p>
+      <ul class="manifest" aria-label="Kit manifest">
+        <li><span>Wheel · Golden Hill</span><span>$22</span></li>
+        <li><span>Clay · 10 lb</span><span>$6</span></li>
+        <li><span>Trimming tools</span><span>$4</span></li>
+        <li><span>Glazes ×6</span><span>$6</span></li>
+        <li><span>Bats ×4</span><span>$4</span></li>
+        <li><span>Apron &amp; sponge</span><span>$3</span></li>
+        <li class="total"><span>Per day</span><span class="sum">$45</span></li>
+      </ul>
+      <div class="sig-field">
+        <div class="sig-crate"><span class="cornertag mono">Pottery Studio Kit · packs into one crate</span></div>
+        <!-- ASSET: sig-items — 6 pottery cutouts on bone, 10:7 each -->
+        <div class="sig-item" data-sx="8"  data-sy="14" data-sr="-7" data-ex="14" data-ey="24" data-eym="8">
+          <img src="assets/img/kit-pottery-wheel.webp" width="1280" height="832" alt="Pottery wheel">
+          <p class="cap"><b>Wheel</b> · <span class="who">Golden Hill</span></p>
+        </div>
+        <div class="sig-item" data-sx="56" data-sy="20" data-sr="5"  data-ex="44" data-ey="24" data-eym="8">
+          <img src="assets/img/kit-pottery-clay.webp" width="1280" height="832" alt="Wedged stoneware clay">
+          <p class="cap"><b>Clay · 10 lb</b></p>
+        </div>
+        <div class="sig-item" data-sx="30" data-sy="52" data-sr="4"  data-ex="74" data-ey="24" data-eym="8">
+          <img src="assets/img/kit-pottery-tools.webp" width="1280" height="832" alt="Trimming tools">
+          <p class="cap"><b>Trimming tools</b></p>
+        </div>
+        <div class="sig-item" data-sx="82" data-sy="44" data-sr="-5" data-ex="14" data-ey="54" data-eym="52">
+          <img src="assets/img/kit-pottery-glazes.webp" width="1280" height="832" alt="Glaze jars">
+          <p class="cap"><b>Glazes ×6</b></p>
+        </div>
+        <div class="sig-item" data-sx="54" data-sy="60" data-sr="8"  data-ex="44" data-ey="54" data-eym="52">
+          <img src="assets/img/kit-pottery-bats.webp" width="1280" height="832" alt="Wheel bats">
+          <p class="cap"><b>Bats ×4</b></p>
+        </div>
+        <div class="sig-item" data-sx="10" data-sy="70" data-sr="-4" data-ex="74" data-ey="54" data-eym="52">
+          <img src="assets/img/kit-pottery-apron.webp" width="1280" height="832" alt="Canvas apron and sponge">
+          <p class="cap"><b>Apron &amp; sponge</b></p>
+        </div>
+      </div>
+      <p class="sig-cue mono" id="sigCue" aria-hidden="true">Scroll — it packs itself <span class="dn">&darr;</span></p>
+      <div class="sig-end">
+        <p class="cap"><span class="pulse"></span>Borrow the whole kit — or any piece of it.</p>
+        <a class="btn" href="https://cachekits.com/browse">Browse items &amp; kits <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6 · HOW IT WORKS ============ -->
+<section class="how shell" id="how">
+  <p class="sect-label mono rv">03 — The handoff</p>
+  <h2 class="rv">Every kit comes with a serial hobbyist attached.</h2>
+  <div class="how-grid rv-kids" style="margin-top:var(--space-12)">
+    <div class="step">
+      <span class="n">Step 1</span>
+      <h3>Request first</h3>
+      <p>Browse kits and single pieces near you and send a request. You aren’t charged until the owner accepts.</p>
+    </div>
+    <div class="step" id="step2">
+      <span class="slot" data-slot="porch"></span>
+      <span class="n">Step 2</span>
+      <h3>Meet your neighbor</h3>
+      <p>Agree a time in chat. Pickup photos document the handoff — plus you get the one tip only the owner knows: “warm the amp up five minutes first.”</p>
+    </div>
+    <div class="step">
+      <span class="n">Step 3</span>
+      <h3>Do the thing</h3>
+      <p>A weekend of records, waves, or trails — then hand it back, return photos and all. Or fall for it and buy your own.</p>
+    </div>
+  </div>
+  <div class="how-quotes rv">
+    <p class="worry">“I am not sure how I would happily cope with the logistics — which I presume involve personal encounters.” <cite class="mono">— a camera owner, Macfilos</cite></p>
+    <p class="answer">“All the people I’ve lent gear to have been really friendly and punctual.” <cite class="mono">— a lender on a peer rental app</cite></p>
+  </div>
+</section>
+
+<!-- ============ 7 · HOST / MAKE / ESCAPE ============ -->
+<section class="browse" id="browse">
+  <div class="shell">
+    <p class="sect-label mono rv">04 — Find a reason to go</p>
+    <h2 class="rv">Host. Make. Escape.</h2>
+    <div class="cat-grid rv-kids" style="margin-top:var(--space-12)">
+      <a class="cat" href="https://cachekits.com/browse">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><rect class="ink-line" x="8" y="18" width="32" height="18" rx="3"/><path class="ink-line" d="M14 18 v-6 h20 v6 M18 42 h12"/><circle class="ink-line" cx="24" cy="27" r="4"/></svg>
+        <h3>Host</h3><p class="count mono">Have people over</p>
+        <p class="count" style="margin-top:.35rem">Dinner parties, game nights, backyard cinema.</p>
+      </a>
+      <a class="cat" href="https://cachekits.com/browse">
+        <span class="kitnote mono">Kits from $7/day</span>
+        <svg viewBox="0 0 48 48" aria-hidden="true"><rect class="ink-line" x="8" y="16" width="32" height="20" rx="4"/><circle class="ink-line" cx="24" cy="26" r="7"/><path class="ink-line" d="M16 16 l3 -5 h10 l3 5"/></svg>
+        <h3>Make</h3><p class="count mono">Make something</p>
+        <p class="count" style="margin-top:.35rem">Cameras, crafts, instruments, sewing.</p>
+      </a>
+      <a class="cat" href="https://cachekits.com/browse">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path class="ink-line" d="M6 38 L24 12 L42 38 Z M24 12 V38 M18 38 L24 27 L30 38"/></svg>
+        <h3>Escape</h3><p class="count mono">Go adventure</p>
+        <p class="count" style="margin-top:.35rem">Surf, snow, desert trips, picnics.</p>
+      </a>
+    </div>
+    <p class="browse-aside rv"><em>“I was able to find some bush clippers for rent — for cheaper than Home Depot.”</em> <span class="mono">— an app-store review of a peer rental app</span></p>
+  </div>
+</section>
+
+<!-- ============ 8 · THE CURATORS ============ -->
+<section class="owners">
+  <div class="shell">
+    <p class="sect-label mono rv">05 — The curators</p>
+    <h2 class="rv">The gear has a person.</h2>
+    <blockquote class="epigraph rv">“I have cameras I seldom use sitting on my shelf, so why not rent them out?”<cite>— Mike Evans, Macfilos</cite></blockquote>
+    <div class="own-grid rv-kids">
+      <!-- ASSET: curator portraits — replace initial avatars with real curator photos at launch -->
+      <div class="own">
+        <div class="avatar" aria-hidden="true">O</div>
+        <h3>A quiver of boards that never dries out.</h3>
+        <p class="lends">Lends: boards · wetsuits · racks<br>Ocean Beach · <span class="keeps">keeps 90%</span></p>
+      </div>
+      <div class="own">
+        <div class="avatar" aria-hidden="true">G</div>
+        <h3>The Golden Hill studio, on loan.</h3>
+        <p class="lends">Lends: wheel · glazes · tools<br>Golden Hill · <span class="keeps">keeps 90%</span></p>
+      </div>
+      <div class="own">
+        <div class="avatar" aria-hidden="true">N</div>
+        <h3>The North Park listening room, on loan.</h3>
+        <p class="lends">Lends: turntable · amp · records<br>North Park · <span class="keeps">keeps 90%</span></p>
+      </div>
+    </div>
+    <div class="lister-strip rv">
+      <p>What you own could be in demand. You keep 90% of every rental — two weekend bookings a month is about $162. <a href="https://cachekits.com">Become a founding curator →</a></p>
+    </div>
+    <p class="mock-note mono rv">Curator cards are illustrative — replaced with real curators at launch.</p>
+  </div>
+</section>
+
+<!-- ============ 9 · PROTECTED, CALMLY + FAQ ============ -->
+<section class="covered shell" id="protected">
+  <p class="sect-label mono rv">06 — Protected, calmly</p>
+  <p class="fear rv"><em>“Lend my turntable to a stranger? Oh definitely not.”</em> — that’s the right first reaction. Here’s what changes it:</p>
+
+  <div class="prot-track">
+    <div class="prot-viewport">
+      <div class="prot-stage" aria-label="How a protected rental works">
+        <p class="prot-head mono">A protected rental, played out</p>
+        <div class="prot-inner">
+          <div class="req-card" id="reqCard">
+            <p class="mono">Incoming request</p>
+            <p class="kitline">Pottery Studio Kit · 2 days</p>
+            <span class="req-chip" id="reqChip">Pending — you approve</span>
+          </div>
+          <div class="prot-shots">
+            <div class="prot-photos" id="protPhotos">
+              <div class="pphoto"><img src="assets/img/prot-condition.webp" width="1280" height="832" alt="Condition photo of the pottery wheel" loading="lazy"><span class="mono">Condition · 1/3</span></div>
+              <div class="pphoto"><img src="assets/img/prot-included.webp" width="1280" height="832" alt="Everything included, laid out" loading="lazy"><span class="mono">Included · 2/3</span></div>
+              <div class="pphoto"><img src="assets/img/prot-pickup.webp" width="1280" height="832" alt="The packed kit at pickup" loading="lazy"><span class="mono">Pickup · 3/3</span></div>
+            </div>
+            <div class="stamp" id="protStamp">Documented</div>
+          </div>
+          <p class="prot-caption mono" id="protCaption">Request first → photos at both ends → deposits &amp; protection policies</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cov-grid rv-kids">
+    <div class="cov">
+      <span class="mono">Request first</span>
+      <p><b>You aren’t charged until the owner accepts.</b> Owners see who’s asking before anything moves.</p>
+    </div>
+    <div class="cov">
+      <span class="mono">Real condition</span>
+      <p>Every listing shows <b>the owner, what’s included, and original condition photos</b> — no stock images.</p>
+    </div>
+    <div class="cov">
+      <span class="mono">Protected handoffs</span>
+      <p><b>Pickup and return photos document every rental.</b> Deposits and protection policies back the rest.</p>
+    </div>
+  </div>
+
+  <div class="faq rv" id="faq">
+    <h3>Asked before every first rental</h3>
+    <details>
+      <summary>Do I get charged when I send a request?</summary>
+      <p class="a">No. Requests are free — you aren’t charged until the owner accepts. Curators see who’s asking before anything moves, and you can sort out timing in chat first.</p>
+    </details>
+    <details>
+      <summary>What if I break something?</summary>
+      <p class="a">Tell your curator — accidents are part of gear that actually gets used. Pickup and return photos document the condition on both ends, so there’s no he-said-she-said, and deposits and protection policies cover what the photos show. Details are in each listing before you request.</p>
+    </details>
+    <details>
+      <summary>How do I know the gear isn’t junk?</summary>
+      <p class="a">Every listing shows the actual owner, everything that’s included, and original condition photos — no stock images. This is gear that’s loved and used, listed by the person who uses it.</p>
+    </details>
+    <details>
+      <summary>How does pickup actually work?</summary>
+      <p class="a">You agree a time in chat and meet your curator — most handoffs take five minutes. Photos at pickup and return document the rental, and you get the one tip only the owner knows.</p>
+    </details>
+    <details>
+      <summary>What does Cache take if I list my gear?</summary>
+      <p class="a">You keep 90% of every rental; Cache takes 10%. No listing fees, no hidden cuts — you see the split before you post. You approve every request, and two weekend bookings a month is about $162.</p>
+    </details>
+    <details>
+      <summary>Where is Cache live?</summary>
+      <p class="a">San Diego, right now — Ocean Beach to North Park. Salt Lake City, Seattle, and San Francisco are next. Listings show the neighborhood so you know how far the gear is before you request.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ============ 10 · PULL QUOTE ============ -->
+<section class="pull">
+  <div class="shell rv">
+    <span class="mono">Why this exists</span>
+    <blockquote>“It allows me to try out various sports <span class="u">without needing to buy</span> all the gear!”</blockquote>
+    <cite>— App-store review of a peer gear-rental app, Jan 2024</cite>
+  </div>
+</section>
+
+<!-- ============ 11 · FINAL CTA ============ -->
+<section class="final shell" id="final">
+  <span class="slot" data-slot="f-crate"></span>
+  <h2 class="rv">Your next hobby is <em>already</em> in San Diego.</h2>
+  <p class="rv">Kits and single pieces, from serial hobbyists, this weekend.</p>
+  <p class="rv" style="margin-top:var(--space-8)"><a class="btn" href="https://cachekits.com/browse">Browse items &amp; kits <span class="arr" aria-hidden="true">→</span></a></p>
+  <p class="rv mono" style="margin-top:var(--space-6);color:var(--color-muted)">Coming later — Sessions: borrow a space. Meet other serial hobbyists.</p>
+</section>
+
+<footer>
+  <div class="shell">
+    <div class="foot-grid">
+      <span class="wordmark">c<i>a</i>che</span>
+      <div class="foot-links">
+        <a href="https://cachekits.com/browse">Browse</a>
+        <a href="https://cachekits.com">Become a founding curator</a>
+        <a href="#protected">How Cache protects you</a>
+        <a href="#faq">Deposits</a>
+      </div>
+    </div>
+    <p class="foot-legal">© 2026 Cache · cachekits.com</p>
+  </div>
+</footer>
+
+<script src="assets/js/lenis.min.js"></script>
+<script src="assets/js/gsap.min.js"></script>
+<script src="assets/js/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.defaults({ ease: "power3.out", duration: 0.6 });
+
+  /* inertia scrolling (the "fluid" backbone); native scroll under reduced motion */
+  var RM = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!RM && typeof Lenis !== "undefined"){
+    var lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
+    lenis.on("scroll", ScrollTrigger.update);
+    gsap.ticker.add(function(time){ lenis.raf(time * 1000); });
+    gsap.ticker.lagSmoothing(0);
+  }
+
+  var stageItems = gsap.utils.toArray(".sig-item");
+  var manifestRows = gsap.utils.toArray(".manifest li");
+  var crate = document.querySelector(".sig-crate");
+  var sigEnd = document.querySelector(".sig-end");
+  var caps = gsap.utils.toArray(".sig-item .cap");
+  var film = document.getElementById("film");
+  var fitems = gsap.utils.toArray(".fitem");
+  var fcrate = document.getElementById("fcrate");
+
+  function placeStageScattered(){
+    stageItems.forEach(function(it){
+      gsap.set(it, { left: it.dataset.sx + "%", top: it.dataset.sy + "%", rotation: +it.dataset.sr });
+    });
+  }
+  function placeStageFinal(mobile){
+    stageItems.forEach(function(it){
+      var ey = (mobile && it.dataset.eym) ? it.dataset.eym : it.dataset.ey;
+      gsap.set(it, { left: it.dataset.ex + "%", top: ey + "%", rotation: 0, autoAlpha: 1 });
+    });
+    gsap.set(caps, { autoAlpha: 1 });
+    gsap.set(manifestRows, { autoAlpha: 1 });
+    gsap.set(crate, { autoAlpha: 1 });
+    crate.classList.add("solid");
+    gsap.set(sigEnd, { autoAlpha: 1 });
+  }
+
+  /* document-space center of a named slot */
+  function slotXY(name){
+    var el = document.querySelector('[data-slot="' + name + '"]');
+    var r = el.getBoundingClientRect();
+    return { x: r.left + window.scrollX + r.width / 2, y: r.top + window.scrollY + r.height / 2 };
+  }
+  function itemXY(el, name, dx, dy){
+    var p = slotXY(name);
+    return { x: p.x - el.offsetWidth / 2 + (dx || 0), y: p.y - el.offsetHeight / 2 + (dy || 0) };
+  }
+
+  /* rotation runs ONCE, globally — never inside matchMedia (re-runs would stack intervals) */
+  (function startRotation(){
+    var rot = document.getElementById("rot");
+    if (!rot || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var worlds = ["whole hobby.", "surf trip.", "listening room.", "darkroom.", "campsite."];
+    var wi = 0;
+    setInterval(function(){
+      gsap.to(rot, { autoAlpha: 0, y: "0.35em", duration: 0.26, overwrite: "auto", onComplete: function(){
+        wi = (wi + 1) % worlds.length;
+        rot.textContent = worlds[wi];
+        gsap.fromTo(rot, { autoAlpha: 0, y: "-0.35em" }, { autoAlpha: 1, y: 0, duration: 0.26 });
+      }});
+    }, 2800);
+  })();
+
+  var mm = gsap.matchMedia();
+
+  mm.add(
+    {
+      isDesktop: "(min-width: 1024px)",
+      isMobile: "(max-width: 1023px)",
+      reduceMotion: "(prefers-reduced-motion: reduce)"
+    },
+    function(context){
+      var c = context.conditions;
+      var cleanupFns = [];
+
+      /* ---------- REDUCED MOTION: final frames only ---------- */
+      if (c.reduceMotion){
+        placeStageFinal(c.isMobile);
+        gsap.set("#reqCard, #protPhotos > *, #protStamp, #protCaption", { autoAlpha: 1, x: 0, y: 0, scale: 1 });
+        document.getElementById("reqChip").classList.add("ok");
+        document.getElementById("reqChip").textContent = "Accepted — now you’re charged";
+        return;
+      }
+
+      /* ---------- entrances: masked line reveals ---------- */
+      function maskWrap(el){
+        var inner = document.createElement("span");
+        inner.className = "mline";
+        while (el.firstChild) inner.appendChild(el.firstChild);
+        el.appendChild(inner);
+        el.style.display = "block"; el.style.overflow = "hidden";
+        return inner;
+      }
+      gsap.utils.toArray(".hero h1 .ln").forEach(function(ln, i){
+        gsap.fromTo(maskWrap(ln), { yPercent: 115 }, { yPercent: 0, duration: 1.1, ease: "power4.out", delay: 0.1 + i * 0.12 });
+      });
+      gsap.from(".hero-sub, .hero-cta", { autoAlpha: 0, y: 24, duration: 1, delay: 0.45, stagger: 0.1 });
+
+      /* section headings get the same masked rise */
+      gsap.utils.toArray("h2.rv, .covered .fear.rv").forEach(function(elh){
+        elh.classList.remove("rv");
+        gsap.fromTo(maskWrap(elh), { yPercent: 115 }, {
+          yPercent: 0, duration: 1, ease: "power4.out",
+          scrollTrigger: { trigger: elh, start: "top 88%", once: true }
+        });
+      });
+
+      /* ---------- reveals ---------- */
+      gsap.utils.toArray(".rv").forEach(function(el){
+        gsap.from(el, {
+          autoAlpha: 0, y: 28, duration: 0.9,
+          scrollTrigger: { trigger: el, start: "top 87%", once: true }
+        });
+      });
+      gsap.utils.toArray(".rv-kids").forEach(function(group){
+        gsap.from(group.children, {
+          autoAlpha: 0, y: 28, duration: 0.9, stagger: 0.09,
+          scrollTrigger: { trigger: group, start: "top 87%", once: true }
+        });
+      });
+
+      /* ambient parallax: kitcard photo breathes as it enters */
+      var kimg = document.querySelector(".kitcard img");
+      if (kimg){
+        gsap.fromTo(kimg, { scale: 1.12 }, { scale: 1, ease: "none",
+          scrollTrigger: { trigger: ".kitcard", start: "top bottom", end: "top 30%", scrub: 1 } });
+      }
+      /* pull-quote slow drift */
+      gsap.fromTo(".pull blockquote", { y: 40 }, { y: -20, ease: "none",
+        scrollTrigger: { trigger: ".pull", start: "top bottom", end: "bottom top", scrub: 1.2 } });
+
+      /* magnetic CTAs (desktop pointer only) */
+      if (window.matchMedia("(pointer: fine)").matches){
+        gsap.utils.toArray(".btn").forEach(function(btn){
+          btn.addEventListener("mousemove", function(e){
+            var r = btn.getBoundingClientRect();
+            gsap.to(btn, { x: (e.clientX - r.left - r.width/2) * 0.18, y: (e.clientY - r.top - r.height/2) * 0.35, scale: 1.03, duration: 0.35, ease: "power2.out" });
+          });
+          btn.addEventListener("mouseleave", function(){
+            gsap.to(btn, { x: 0, y: 0, scale: 1, duration: 0.5, ease: "elastic.out(1, 0.45)" });
+          });
+        });
+      }
+
+      /* ============================================================
+         THE FILM (desktop only): pottery kit travels the page
+         ============================================================ */
+      if (c.isDesktop){
+        film.classList.add("on");
+
+        /* place items at hero slots (re-run on refresh so layout changes re-seat them) */
+        function seatHero(){
+          fitems.forEach(function(it, i){
+            var slot = document.querySelector('[data-slot="h' + i + '"]');
+            var p = itemXY(it, "h" + i);
+            gsap.set(it, { x: p.x, y: p.y, rotation: +slot.dataset.r, autoAlpha: 1 });
+          });
+          gsap.set(fcrate, { autoAlpha: 0 });
+        }
+        seatHero();
+        ScrollTrigger.addEventListener("refreshInit", seatHero);
+        cleanupFns.push(function(){ ScrollTrigger.removeEventListener("refreshInit", seatHero); });
+
+        gsap.from(fitems, { autoAlpha: 0, y: "+=18", duration: 0.8, delay: 0.25, stagger: 0.1 });
+
+        /* SEGMENT 1 — hero scatter → kits-vs-pieces regroup (5 cluster + 1 apart) */
+        var seg1 = gsap.timeline({
+          scrollTrigger: { trigger: "#modes", start: "top 95%", end: "top 30%", scrub: 1, invalidateOnRefresh: true },
+          defaults: { ease: "none" }
+        });
+        fitems.forEach(function(it, i){
+          seg1.to(it, {
+            x: function(){ return itemXY(it, "k" + i).x; },
+            y: function(){ return itemXY(it, "k" + i).y; },
+            rotation: i === 5 ? 6 : -2 + i,
+            scale: 0.7,
+            duration: 1
+          }, i * 0.06);
+        });
+
+        /* SEGMENT 2 — the kit compiles INTO the Surf Trip card; the wetsuit stays on its own card */
+        var seg2 = gsap.timeline({
+          scrollTrigger: { trigger: "#anatomy", start: "top 95%", end: "top 55%", scrub: 1, invalidateOnRefresh: true },
+          defaults: { ease: "none" }
+        });
+        fitems.forEach(function(it, i){
+          if (i === 5){
+            /* the single item: fades out where it landed */
+            seg2.to(it, { scale: 0.5, autoAlpha: 0, duration: 0.6 }, 0.3);
+          } else {
+            seg2.to(it, {
+              x: function(){ return itemXY(it, "k-abs").x; },
+              y: function(){ return itemXY(it, "k-abs").y; },
+              scale: 0.3, autoAlpha: 0, rotation: 0, duration: 1
+            }, i * 0.08);
+          }
+        });
+
+        /* SEGMENT 4 — crate rides to the handoff (appears after the pin) */
+        gsap.set(fcrate, { autoAlpha: 0 });
+        var seg4 = gsap.timeline({
+          scrollTrigger: { trigger: "#how", start: "top 90%", end: "top 35%", scrub: 1, invalidateOnRefresh: true },
+          defaults: { ease: "none" }
+        });
+        seg4.fromTo(fcrate,
+          { x: function(){ return itemXY(fcrate, "porch").x - 260; },
+            y: function(){ return itemXY(fcrate, "porch").y - 140; },
+            rotation: -6, autoAlpha: 0 },
+          { x: function(){ return itemXY(fcrate, "porch").x; },
+            y: function(){ return itemXY(fcrate, "porch").y; },
+            rotation: 0, autoAlpha: 1, duration: 1, immediateRender: false }, 0);
+        /* park & fade as the section leaves */
+        gsap.to(fcrate, {
+          autoAlpha: 0, ease: "none",
+          scrollTrigger: { trigger: "#browse", start: "top 80%", end: "top 50%", scrub: 1 }
+        });
+
+        /* SEGMENT 5 — the crate opens at the final CTA (celebration, not scrubbed) */
+        var burst = gsap.timeline({
+          scrollTrigger: { trigger: "#final", start: "top 65%", toggleActions: "play none none reverse" },
+          onStart: function(){
+            var p = itemXY(fcrate, "f-crate");
+            gsap.set(fcrate, { x: p.x, y: p.y, rotation: 0 });
+          }
+        });
+        burst.to(fcrate, { autoAlpha: 1, duration: 0.35 }, 0);
+        burst.to("#fcrate .lid", { rotation: -30, duration: 0.5, ease: "back.out(1.6)" }, 0.25);
+        var arc = [ {dx:-150,dy:-55,r:-14}, {dx:-60,dy:-85,r:8}, {dx:40,dy:-90,r:-6}, {dx:130,dy:-60,r:12}, {dx:-105,dy:-20,r:-8}, {dx:95,dy:-25,r:6} ];
+        fitems.forEach(function(it, i){
+          burst.fromTo(it,
+            { x: function(){ var p = itemXY(fcrate, "f-crate"); return p.x + 20; },
+              y: function(){ var p = itemXY(fcrate, "f-crate"); return p.y + 10; },
+              scale: 0.35, autoAlpha: 0 },
+            { x: function(){ var p = itemXY(fcrate, "f-crate"); return p.x + arc[i].dx; },
+              y: function(){ var p = itemXY(fcrate, "f-crate"); return p.y + arc[i].dy; },
+              scale: 0.55, autoAlpha: 1, rotation: arc[i].r,
+              duration: 0.6, ease: "back.out(1.5)", immediateRender: false },
+            0.35 + i * 0.06);
+        });
+      } else {
+        /* mobile: no film; stage items visible from the start */
+        placeStageScattered();
+      }
+
+      /* ---------- Anatomy of a Kit (pinned, both breakpoints) ---------- */
+      if (c.isDesktop){ placeStageScattered(); }
+      gsap.set(caps, { autoAlpha: 0 });
+      gsap.set(manifestRows, { autoAlpha: 0 });
+      gsap.set(crate, { autoAlpha: 0 });
+      gsap.set(sigEnd, { autoAlpha: 0, y: 8 });
+
+      var sigTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".sig-track",
+          start: "top top",
+          end: c.isMobile ? "+=85%" : "+=90%",
+          pin: true,
+          scrub: 1.1,
+          snap: { snapTo: function(v){ return v > 0.5 ? 1 : 0; }, duration: { min: 0.3, max: 0.9 }, delay: 0.15, ease: "power1.inOut" },
+          refreshPriority: 2
+        },
+        defaults: { ease: "none" }
+      });
+      sigTl.to("#sigCue", { autoAlpha: 0, duration: 0.6 }, 0.9);
+      sigTl.to(caps, { autoAlpha: 1, duration: 2, stagger: 0.35 }, 0);
+      sigTl.to(crate, { autoAlpha: 1, duration: 1.5 }, 2.5);
+      stageItems.forEach(function(it, i){
+        var ey = (c.isMobile && it.dataset.eym) ? it.dataset.eym : it.dataset.ey;
+        sigTl.to(it, {
+          left: it.dataset.ex + "%", top: ey + "%", rotation: 0,
+          duration: 2, ease: "power1.inOut"
+        }, 3 + i * 0.3);
+      });
+      manifestRows.forEach(function(row, i){
+        sigTl.to(row, { autoAlpha: 1, duration: 0.5 }, 3.5 + i * 0.55);
+      });
+      sigTl.call(function(){ crate.classList.toggle("solid"); }, null, 8.2);
+      sigTl.to(sigEnd, { autoAlpha: 1, y: 0, duration: 1 }, 8.4);
+
+      /* ---------- Protected, performed (pinned) ---------- */
+      var chip = document.getElementById("reqChip");
+      gsap.set("#reqCard", { autoAlpha: 0, x: -40 });
+      gsap.set("#protPhotos > *", { autoAlpha: 0, y: 24, scale: 0.92 });
+      gsap.set("#protStamp", { autoAlpha: 0, scale: 1.5 });
+      gsap.set("#protCaption", { autoAlpha: 0 });
+
+      var protTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".prot-track",
+          start: "top top",
+          end: "+=140%",
+          pin: true,
+          scrub: 1.1,
+          refreshPriority: 1
+        },
+        defaults: { ease: "none" }
+      });
+      protTl.to("#reqCard", { autoAlpha: 1, x: 0, duration: 1.5 }, 0);
+      protTl.call(function(){
+        var accepted = chip.classList.toggle("ok");
+        chip.textContent = accepted ? "Accepted — now you’re charged" : "Pending — you approve";
+      }, null, 1.8);
+      protTl.to("#protPhotos > *", { autoAlpha: 1, y: 0, scale: 1, duration: 1.2, stagger: 0.5, ease: "back.out(1.4)" }, 2.2);
+      protTl.to("#protStamp", { autoAlpha: 1, scale: 1, duration: 1, ease: "back.out(1.7)" }, 4.4);
+      protTl.to("#protCaption", { autoAlpha: 1, duration: 0.8 }, 5.2);
+
+      /* cleanup on breakpoint change: remove global listeners this run added */
+      return function(){ cleanupFns.forEach(function(fn){ fn(); }); };
+    }
+  );
+})();
+</script>
+</body>
+</html>
