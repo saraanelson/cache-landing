@@ -204,18 +204,18 @@ h3{font-size:var(--text-xl);font-weight:600}
 .kitcard{position:relative;margin-top:var(--space-6);background:transparent;color:var(--color-paper-ink);border:0;box-shadow:none;padding:0;width:100%;max-width:none;height:14rem}
 .kitcard .spread{position:absolute;inset:0}
 .kitcard .sp{position:absolute;display:block;height:auto}
-.kitcard .sp[data-i="0"]{width:6rem;right:11.6rem;bottom:1rem;left:auto;top:auto;transform:rotate(-7deg)}
+.kitcard .sp[data-i="0"]{width:6rem;right:10rem;bottom:1rem;left:auto;top:auto;transform:rotate(-7deg)}
 .kitcard .sp[data-i="1"]{width:8.4rem;right:.4rem;bottom:0;left:auto;top:auto;z-index:2}
 .kitcard .sp[data-i="2"]{width:3.8rem;right:.4rem;bottom:6.9rem;left:auto;top:auto;transform:rotate(-3deg)}
-.kitcard .sp[data-i="3"]{width:2.2rem;right:6rem;bottom:8.4rem;left:auto;top:auto;transform:rotate(2deg)}
+.kitcard .sp[data-i="3"]{width:2.2rem;right:4.5rem;bottom:8.4rem;left:auto;top:auto;transform:rotate(2deg)}
 .kitcard .sp[data-i="4"]{width:4rem;right:2.7rem;bottom:4.3rem;left:auto;top:auto;transform:rotate(4deg)}
-.kitcard .sp[data-i="5"]{width:3.2rem;right:9.8rem;bottom:5.2rem;left:auto;top:auto;transform:rotate(-4deg);z-index:7}
+.kitcard .sp[data-i="5"]{width:3.2rem;right:8.5rem;bottom:5.2rem;left:auto;top:auto;transform:rotate(-4deg);z-index:7}
 .sp-ws img{width:100%;display:block;height:auto}
 .onecard .one-suit{position:absolute;left:50%;top:56%;transform:translate(-50%,-50%);width:6.93rem;height:auto}
 .onecard .suit-ghost{position:absolute;left:50%;top:56%;transform:translate(-50%,-50%);width:6.93rem;height:auto;filter:brightness(.25) sepia(.2);opacity:0}
 .onecard .slot[data-slot="k5"]{left:50%;top:56%;margin-left:-3.3rem;margin-top:-2.7rem}
 .sp-ws .ws-full2{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:top;clip-path:inset(0 0 100% 0)}
-.kit-label{position:absolute;left:var(--space-4);top:var(--space-3);z-index:5}
+.kit-label{display:block;margin-top:var(--space-6);position:relative;z-index:5}
 .kit-label .mono{display:block;color:var(--color-paper-muted);font-size:.62rem}
 .kit-label em{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:550;font-size:1.5rem;color:var(--color-paper-ink);letter-spacing:-.01em}
 /* the one-thing card sits on the dark surface panel now — its label goes light */
@@ -224,13 +224,21 @@ h3{font-size:var(--text-xl);font-weight:600}
 /* compact desktop layout: copy top-left, stage overlays the panel's bottom-right,
    so both panels fit a browser viewport in full (placed after the base rules it overrides) */
 @media (min-width:1024px){
-  .mode{min-height:26rem}
+  .mode{min-height:28rem;padding-bottom:6.5rem}
   .mode .kitcard{position:absolute;inset:0;margin:0;padding:0;height:auto}
-  .mode .kit-label{left:var(--space-8);top:auto;bottom:3.1rem}
-  .mode .micro{position:absolute;left:var(--space-8);bottom:var(--space-4);margin:0}
+  /* all copy is normal flow (h3, pricepair, desc, kit-label, micro) — only the
+     gear cutouts are absolute, anchored bottom-right, so text can never collide */
+  .mode .micro{position:static;margin:var(--space-3) 0 0}
   #modeOne p{max-width:22ch}
   .onecard .one-suit,.onecard .suit-ghost{left:78%;top:63%}
   .onecard .slot[data-slot="k5"]{left:78%;top:63%}
+}
+/* below 1024: no free-form arc — pieces settle into a tidy grid
+   (same pattern as the hero's mobile kit grid) */
+@media (max-width:1023px){
+  #modeKit .kitcard{height:auto}
+  #modeKit .kitcard .spread{position:static;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3);align-items:end}
+  #modeKit .kitcard .sp{position:static;width:100%;transform:none}
 }
 .kitcard .tag{font-family:var(--font-mono);font-size:.66rem;letter-spacing:var(--tracking-mono);text-transform:uppercase;color:var(--color-paper-muted);line-height:1.7}
 .kitcard .tag b{font-weight:500;color:var(--color-paper-ink)}
@@ -563,9 +571,9 @@ footer .wordmark{color:var(--color-on-deep)}
       <h3>Borrow the whole kit</h3>
       <p class="pricepair"><span class="buy">$1,900 to buy it all.</span><br><span class="rent">$80 a day to try it.</span></p>
       <p>You don’t have to know what you need — the kit knows. Board, wetsuit, stove, tent, portable shower: every piece listed, one price, one curator.</p>
+      <p class="kit-label"><span class="mono">The whole kit &#183; $80/day &#183; Ocean Beach</span><em>Coastal Surf Kit</em></p>
       <!-- ASSET: kitcard — Surf Trip Kit cutout flat-lay on bone, 10:7 -->
       <div class="kitcard">
-        <p class="kit-label"><span class="mono">The whole kit &#183; $80/day &#183; Ocean Beach</span><em>Coastal Surf Kit</em></p>
         <div class="spread" aria-hidden="true">
           <img class="sp" data-i="0" src="landing-assets/img/cut-board.webp" width="640" height="159" alt="">
           <img class="sp" data-i="1" src="landing-assets/img/cut-tent.webp" width="640" height="389" alt="">
@@ -581,8 +589,8 @@ footer .wordmark{color:var(--color-on-deep)}
       <h3>…or just the one thing</h3>
       <p class="pricepair"><span class="rent">Wetsuit, $10/day.</span></p>
       <p>The piece you’re missing — or the exact model you’ve had your eye on. A serial hobbyist a few blocks away already owns it.</p>
+      <p class="kit-label"><span class="mono">One item &#183; $10/day &#183; Ocean Beach</span><em>The Wetsuit</em></p>
       <div class="kitcard onecard">
-        <p class="kit-label"><span class="mono">One item &#183; $10/day &#183; Ocean Beach</span><em>The Wetsuit</em></p>
         <span class="slot" data-slot="k5"></span>
         <img class="suit-ghost" src="landing-assets/img/kit-surf-wetsuit-cut.webp" width="472" height="903" alt="" aria-hidden="true">
         <img class="one-suit" src="landing-assets/img/kit-surf-wetsuit-cut.webp" width="472" height="903" alt="Full wetsuit, unfolded">
@@ -1234,8 +1242,11 @@ footer .wordmark{color:var(--color-on-deep)}
             0.35 + i * 0.06);
         });
       } else {
-        /* mobile: no film; stage items visible from the start */
+        /* mobile: no film; stage items visible from the start.
+           Also wipe any inline styles left by the desktop kit animation
+           (tablet rotation crosses the breakpoint after it has played). */
         placeStageScattered();
+        gsap.set(".kitcard .sp, .one-suit, .suit-ghost, #dragCursor, .kit-label", { clearProps: "all" });
       }
 
       /* ---------- Anatomy of a Kit (pinned, both breakpoints) ---------- */
