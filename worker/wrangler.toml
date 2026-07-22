@@ -1,0 +1,18 @@
+# cache-landing-gate — deploy config
+#
+# STAGE 1 (current): no routes — deploys only to the private workers.dev
+# test URL so the landing can be reviewed without touching cachekits.com.
+#
+# STAGE 2 (only on explicit go-ahead): uncomment the routes block below and
+# redeploy. That is the single step that changes what visitors see at
+# cachekits.com/ — and re-commenting + redeploying reverts it.
+
+name = "cache-landing-gate"
+main = "worker.js"
+compatibility_date = "2026-07-01"
+workers_dev = true
+
+# routes = [
+#   { pattern = "cachekits.com/", zone_name = "cachekits.com" },
+#   { pattern = "cachekits.com/landing-assets/*", zone_name = "cachekits.com" }
+# ]
