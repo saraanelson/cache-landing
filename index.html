@@ -141,8 +141,9 @@ h3{font-size:var(--text-xl);font-weight:600}
 /* ============ 1 · NAV ============ */
 .nav-wrap{position:sticky;top:var(--space-3);z-index:50;padding-inline:var(--gutter)}
 .nav{max-width:var(--max-width);margin-inline:auto;background:var(--color-surface);border-radius:var(--radius-pill);box-shadow:var(--shadow-md);display:flex;align-items:center;justify-content:space-between;padding:var(--space-2) var(--space-2) var(--space-2) var(--space-6);gap:var(--space-4)}
-.wordmark{font-family:var(--font-display);font-weight:700;font-size:1.375rem;letter-spacing:var(--tracking-display);text-decoration:none;color:var(--color-ink)}
-.wordmark i{font-style:normal;color:var(--color-accent)}
+.wordmark{font-family:var(--font-display);font-weight:700;font-size:1.375rem;letter-spacing:var(--tracking-display);text-decoration:none;color:var(--color-ink);white-space:nowrap}
+/* the brand mark: ca • che with an ember rounded-square dot */
+.wordmark .dot{display:inline-block;width:.48em;height:.48em;background:var(--color-signal);border-radius:.14em;margin:0 .13em;vertical-align:.03em}
 .nav-links{display:flex;align-items:center;gap:var(--space-6)}
 .nav-links a.textlink{text-decoration:none;font-weight:500;font-size:var(--text-sm);color:var(--color-ink-soft)}
 .nav-links a.textlink:hover{color:var(--color-ui)}
@@ -420,12 +421,9 @@ h3{font-size:var(--text-xl);font-weight:600}
 /* wordmark tile band — the brand as wallpaper, cropped at the edges */
 .markband{overflow:hidden;background:var(--color-bg);line-height:.78;user-select:none;padding-top:var(--space-8)}
 .markband .markrow{display:flex;gap:.32em;white-space:nowrap;width:max-content;font-family:var(--font-display);font-weight:700;font-size:clamp(4.5rem,12vw,9rem);letter-spacing:var(--tracking-display)}
-.markband i{font-style:normal}
+.markband .dot{display:inline-block;width:.48em;height:.48em;background:var(--color-signal);border-radius:.14em;margin:0 .06em;vertical-align:.03em}
 .mr1{color:var(--color-ink)}
-.mr1 i{color:var(--color-accent)}
-.mr1 .hot i{color:var(--color-signal)}
-.mr2{color:var(--color-accent);margin-left:-1.4em;margin-bottom:-.24em;opacity:.92}
-.mr2 i{color:var(--color-signal)}
+.mr2{color:var(--color-ink);margin-left:-1.4em;margin-bottom:-.24em;opacity:.4}
 
 footer{background:var(--color-bg-deep);color:var(--color-on-deep);padding-block:var(--space-16)}
 .foot-grid{display:flex;flex-wrap:wrap;gap:var(--space-8);justify-content:space-between;align-items:center}
@@ -500,7 +498,7 @@ footer .wordmark{color:var(--color-on-deep)}
 <!-- ============ 1 · NAV ============ -->
 <div class="nav-wrap">
   <nav class="nav" aria-label="Main">
-    <a class="wordmark" href="#top">c<i>a</i>che</a>
+    <a class="wordmark" href="#top" aria-label="Cache — home">ca<span class="dot" aria-hidden="true"></span>che</a>
     <div class="nav-links">
       <a class="textlink" href="https://cachekits.com/browse">Browse</a>
       <a class="btn" href="https://cachekits.com/auth">Sign in</a>
@@ -869,17 +867,17 @@ footer .wordmark{color:var(--color-on-deep)}
 <!-- ============ WORDMARK TILE BAND — type as texture (Polén-style) ============ -->
 <div class="markband" aria-hidden="true">
   <div class="markrow mr1">
-    <span>c<i>a</i>che</span><span>c<i>a</i>che</span><span>c<i>a</i>che</span><span class="hot">c<i>a</i>che</span><span>c<i>a</i>che</span><span>c<i>a</i>che</span><span>c<i>a</i>che</span><span>c<i>a</i>che</span>
+    <span>ca<span class="dot"></span>che</span><span>ca<span class="dot"></span>che</span><span>ca<span class="dot"></span>che</span><span>ca<span class="dot"></span>che</span><span>ca<span class="dot"></span>che</span><span>ca<span class="dot"></span>che</span><span>ca<span class="dot"></span>che</span><span>ca<span class="dot"></span>che</span>
   </div>
   <div class="markrow mr2">
-    <span>c<i>a</i>che</span><span>c<i>a</i>che</span><span>c<i>a</i>che</span><span>c<i>a</i>che</span><span>c<i>a</i>che</span><span>c<i>a</i>che</span><span>c<i>a</i>che</span><span>c<i>a</i>che</span>
+    <span>ca<span class="dot"></span>che</span><span>ca<span class="dot"></span>che</span><span>ca<span class="dot"></span>che</span><span>ca<span class="dot"></span>che</span><span>ca<span class="dot"></span>che</span><span>ca<span class="dot"></span>che</span><span>ca<span class="dot"></span>che</span><span>ca<span class="dot"></span>che</span>
   </div>
 </div>
 
 <footer>
   <div class="shell">
     <div class="foot-grid">
-      <span class="wordmark">c<i>a</i>che</span>
+      <span class="wordmark" aria-label="Cache">ca<span class="dot" aria-hidden="true"></span>che</span>
       <div class="foot-links">
         <a href="https://cachekits.com/browse">Browse</a>
         <a href="https://cachekits.com">Become a founding curator</a>
