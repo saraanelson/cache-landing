@@ -182,7 +182,6 @@ h3{font-size:var(--text-xl);font-weight:600}
 #modeKit .pricepair .rent{color:var(--color-brass-ink)}
 #modeKit p{color:var(--color-paper-ink)}
 #modeKit .micro{color:var(--color-paper-muted)}
-#modeKit .kitcard{border-color:rgba(30,58,46,.16)}
 /* hover lift is shadow-only: a transform here would create a stacking context
    and trap the traveling wetsuit beneath the neighboring card */
 .mode:hover{box-shadow:0 10px 30px rgba(0,0,0,.3);border-color:rgba(158,197,189,.28)}
@@ -195,15 +194,18 @@ h3{font-size:var(--text-xl);font-weight:600}
 /* surf inset card (the commercial flagship keeps its visual) */
 .mode{display:flex;flex-direction:column;align-items:stretch}
 .mode .kitcard{margin-top:auto;padding-top:var(--space-6)}
-.kitcard{position:relative;margin-top:var(--space-6);background:var(--color-paper);color:var(--color-paper-ink);border:1px solid rgba(22,19,16,.08);border-radius:var(--radius-md);box-shadow:var(--shadow-sm);padding:var(--space-3);width:100%;max-width:24rem;height:19rem}
+/* the kit stage: no card chrome — the slab panel is the surface.
+   The tent cutout (data-i=1) doubles as the kit bag, anchored bottom-right;
+   the other pieces sit in a semicircle arc around it. */
+.kitcard{position:relative;margin-top:var(--space-6);background:transparent;color:var(--color-paper-ink);border:0;box-shadow:none;padding:0;width:100%;max-width:none;height:19rem}
 .kitcard .spread{position:absolute;inset:0}
 .kitcard .sp{position:absolute;display:block;height:auto}
-.kitcard .sp[data-i="0"]{width:8.5rem;top:24%;left:9%;transform:rotate(-8deg)}
-.kitcard .sp[data-i="1"]{width:5.4rem;top:44%;left:7%;transform:rotate(2deg)}
-.kitcard .sp[data-i="2"]{width:5.4rem;top:40%;left:56%;transform:rotate(-2deg)}
-.kitcard .sp[data-i="3"]{width:3.1rem;top:60%;left:80%;transform:rotate(3deg)}
-.kitcard .sp[data-i="4"]{width:5.6rem;top:70%;left:24%;transform:rotate(-2deg)}
-.kitcard .sp[data-i="5"]{width:4.2rem;top:48%;left:42%;z-index:7}
+.kitcard .sp[data-i="0"]{width:7.5rem;right:14.5rem;bottom:1.2rem;left:auto;top:auto;transform:rotate(-7deg)}
+.kitcard .sp[data-i="1"]{width:10.5rem;right:.5rem;bottom:0;left:auto;top:auto;z-index:2}
+.kitcard .sp[data-i="2"]{width:4.8rem;right:.5rem;bottom:8.6rem;left:auto;top:auto;transform:rotate(-3deg)}
+.kitcard .sp[data-i="3"]{width:2.8rem;right:7.5rem;bottom:10.5rem;left:auto;top:auto;transform:rotate(2deg)}
+.kitcard .sp[data-i="4"]{width:5rem;right:3.4rem;bottom:5.4rem;left:auto;top:auto;transform:rotate(4deg)}
+.kitcard .sp[data-i="5"]{width:4rem;right:12.3rem;bottom:6.5rem;left:auto;top:auto;transform:rotate(-4deg);z-index:7}
 .sp-ws img{width:100%;display:block;height:auto}
 .onecard .one-suit{position:absolute;left:50%;top:56%;transform:translate(-50%,-50%);width:6.93rem;height:auto}
 .onecard .suit-ghost{position:absolute;left:50%;top:56%;transform:translate(-50%,-50%);width:6.93rem;height:auto;filter:brightness(.25) sepia(.2);opacity:0}
@@ -1074,15 +1076,28 @@ footer .wordmark{color:var(--color-on-deep)}
         var pieces = gsap.utils.toArray(".kitcard .sp");
         var wsPiece = document.getElementById("wsPiece");
         var wsFull2 = wsPiece.querySelector(".ws-full2");
+        var bagEl = document.querySelector('.kitcard .sp[data-i="1"]');
+        var arcPieces = pieces.filter(function(p){ return p !== bagEl; });
+        /* start each arc piece tucked toward the bag; it emanates outward on reveal */
+        function bagDelta(el, axis){
+          return function(){
+            var b = bagEl.getBoundingClientRect(), r = el.getBoundingClientRect();
+            var d = (axis === "x") ? (b.left + b.width / 2) - (r.left + r.width / 2)
+                                   : (b.top + b.height / 2) - (r.top + r.height / 2);
+            return d * 0.75;
+          };
+        }
         gsap.set(wsPiece, { height: function(){ return wsPiece.offsetHeight; } });
-        gsap.set(pieces, { autoAlpha: 0, y: -46 });
+        gsap.set(bagEl, { autoAlpha: 0, scale: 0.8, transformOrigin: "50% 100%" });
+        arcPieces.forEach(function(p){ gsap.set(p, { autoAlpha: 0, scale: 0.45, x: bagDelta(p, "x"), y: bagDelta(p, "y") }); });
         gsap.set(".one-suit", { autoAlpha: 0 });
         gsap.set("#dragCursor", { autoAlpha: 0 });
         gsap.set(".kit-label", { autoAlpha: 0 });
 
         var kitTl = gsap.timeline({ paused: true, defaults: { ease: "power1.out" } });
         kitTl.timeScale(1.6);
-        kitTl.to(pieces, { autoAlpha: 1, y: 0, duration: 0.55, stagger: 0.22, ease: "back.out(1.5)" }, 0.1);
+        kitTl.to(bagEl, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "back.out(1.6)" }, 0.1);
+        kitTl.to(arcPieces, { autoAlpha: 1, scale: 1, x: 0, y: 0, duration: 0.6, stagger: 0.14, ease: "back.out(1.4)" }, 0.5);
         kitTl.fromTo(".kit-label", { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.5 }, 1.6);
         /* the .rv reveal leaves an identity transform on the cards — a
            stacking context that would paint the traveling wetsuit beneath the
@@ -1117,10 +1132,11 @@ footer .wordmark{color:var(--color-on-deep)}
           duration: 1.1, ease: "power2.inOut"
         }, 2.75);
         /* the drop: outline fills, cursor releases and slips away */
+        kitTl.to(".suit-ghost", { autoAlpha: 0.32, duration: 0.35 }, 3.4);
         kitTl.to(".suit-ghost", { autoAlpha: 0, duration: 0.3 }, 3.85);
         kitTl.to("#dragCursor", { scale: 1, scaleY: 1, rotation: 0, duration: 0.2, ease: "back.out(2)" }, 3.9); /* the hand opens on release */
         kitTl.to(wsPiece, {
-          scale: 1.65,
+          scale: 1.73,
           height: function(){ return wsPiece.offsetWidth * 903 / 472; },
           duration: 0.7, ease: "power2.inOut"
         }, 3.9);
@@ -1128,6 +1144,7 @@ footer .wordmark{color:var(--color-on-deep)}
         kitTl.to("#dragCursor", { autoAlpha: 0, x: "+=26", y: "+=18", duration: 0.5 }, 4.2);
         /* handoff: the traveling cutout becomes the card's own suit */
         kitTl.to(".one-suit", { autoAlpha: 1, duration: 0.2 }, 4.9);
+        kitTl.fromTo(".one-suit", { scale: 0.92 }, { scale: 1, duration: 0.35, ease: "back.out(3)" }, 4.92);
         kitTl.to(wsPiece, { autoAlpha: 0, duration: 0.2 }, 4.95);
         kitTl.to(wsFull2, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.8, ease: "power2.inOut" }, 3.75);
 
@@ -1139,7 +1156,7 @@ footer .wordmark{color:var(--color-on-deep)}
         /* THE DESCENT — the hero pieces ride the scroll down toward the kit,
            each aimed at its twin's spot on the board, dissolving on arrival as
            the in-card assembly takes over. Unpinned, scrubbed, reversible. */
-        var flyScale = [0.57, 0.51, 0.51, 0.52, 0.51, 0.56];
+        var flyScale = [0.50, 0.99, 0.45, 0.47, 0.46, 0.53];
         var descend = gsap.timeline({
           scrollTrigger: { trigger: "#modes", start: "clamp(top 112%)", end: "clamp(top 30%)", scrub: 1, invalidateOnRefresh: true },
           defaults: { ease: "none" }
