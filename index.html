@@ -607,7 +607,7 @@ footer .wordmark{color:var(--color-on-deep)}
     <div class="sig-stage">
       <div class="sig-head">
         <p class="mono">02 — Anatomy of a kit</p>
-        <h2>Watch the whole hobby pack itself.</h2>
+        <h2>Packed with everything you need.</h2>
       </div>
       <p class="sig-epigraph">Owning this setup: $1,000+ before your first pot. Borrowing it: $45 a day, everything included.</p>
       <ul class="manifest" aria-label="Kit manifest">
@@ -1256,9 +1256,19 @@ footer .wordmark{color:var(--color-on-deep)}
       gsap.set(crate, { autoAlpha: 0 });
       gsap.set(sigEnd, { autoAlpha: 0, y: 8 });
 
-      /* button-played pack animation (founder: "started by a button, not scroll") */
-      var sigTl = gsap.timeline({ paused: true, defaults: { ease: "power2.inOut" } });
-      sigTl.timeScale(3.2);
+      /* the pack animation — plays when the stage enters view and replays if
+         you scroll back up and down. start:"top 78%" fires early (items are
+         already moving as it scrolls in) but late enough that the motion is
+         on-screen, not finished before you can see it. */
+      var sigTl = gsap.timeline({
+        defaults: { ease: "power2.inOut" },
+        scrollTrigger: {
+          trigger: ".sig-stage", start: "top 78%",
+          toggleActions: "play none none reset"
+        }
+      });
+      sigTl.timeScale(2.4);
+      sigTl.call(function(){ crate.classList.remove("solid"); }, null, 0);
       sigTl.to(caps, { autoAlpha: 1, duration: 2, stagger: 0.3 }, 0);
       sigTl.to(crate, { autoAlpha: 1, duration: 1.2 }, 0.3);
       stageItems.forEach(function(it, i){
@@ -1273,10 +1283,6 @@ footer .wordmark{color:var(--color-on-deep)}
       });
       sigTl.call(function(){ crate.classList.add("solid"); }, null, 4.2);
       sigTl.to(sigEnd, { autoAlpha: 1, y: 0, duration: 1 }, 4.3);
-      ScrollTrigger.create({
-        trigger: ".sig-stage", start: "top 92%", once: true,
-        onEnter: function(){ sigTl.play(); }
-      });
 
       /* ---------- Protected, performed (pinned) ---------- */
       /* PROTECTED — an auto-playing movie of the full rental lifecycle
