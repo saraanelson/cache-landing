@@ -110,6 +110,10 @@ h3{font-size:var(--text-xl);font-weight:600}
 .ws-bg{position:absolute;inset:-5% -8%;background:var(--color-paper);border-radius:var(--radius-md);box-shadow:var(--shadow-lift);z-index:-1}
 .fitem[data-i="0"]{width:15rem}
 .fitem .ws-full{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;border-radius:8px;clip-path:inset(0 0 100% 0)}
+/* crate-burst finale: the wetsuit shows full-length, not folded */
+.fitem .ws-burst{display:none}
+.fitem.as-suit img:not(.ws-burst){display:none}
+.fitem.as-suit .ws-burst{display:block;width:62%;margin-inline:auto;height:auto}
 .fcursor{position:absolute;left:0;top:0;width:26px;z-index:9;filter:drop-shadow(0 2px 5px rgba(22,19,16,.35))}
 .fcrate{position:absolute;left:0;top:0;width:10.5rem;color:var(--color-paper);will-change:transform}
 .fcrate .lid{transform-origin:8% 88%}
@@ -214,6 +218,9 @@ h3{font-size:var(--text-xl);font-weight:600}
 .kit-label{position:absolute;left:var(--space-4);top:var(--space-3);z-index:5}
 .kit-label .mono{display:block;color:var(--color-paper-muted);font-size:.62rem}
 .kit-label em{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:550;font-size:1.5rem;color:var(--color-paper-ink);letter-spacing:-.01em}
+/* the one-thing card sits on the dark surface panel now — its label goes light */
+#modeOne .kit-label .mono{color:var(--color-muted)}
+#modeOne .kit-label em{color:var(--color-ink)}
 .kitcard .tag{font-family:var(--font-mono);font-size:.66rem;letter-spacing:var(--tracking-mono);text-transform:uppercase;color:var(--color-paper-muted);line-height:1.7}
 .kitcard .tag b{font-weight:500;color:var(--color-paper-ink)}
 .kitcard .tag .price{color:var(--color-brass-ink)}
@@ -459,7 +466,7 @@ footer .wordmark{color:var(--color-on-deep)}
   <div class="fitem" data-i="2"><span class="callout">two-burner stove<svg class="co-line" viewBox="0 0 60 24" aria-hidden="true"><path d="M4 20 Q22 2 56 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span><img src="assets/img/cut-stove.webp" width="640" height="417" alt="Two-burner camp stove"></div>
   <div class="fitem" data-i="3"><span class="callout">portable shower<svg class="co-line" viewBox="0 0 60 24" aria-hidden="true"><path d="M4 20 Q22 2 56 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span><img src="assets/img/cut-shower.webp" width="412" height="644" alt="Portable camp shower"></div>
   <div class="fitem" data-i="4"><span class="callout"><svg class="co-line" viewBox="0 0 60 24" aria-hidden="true"><path d="M4 20 Q22 2 56 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>firepit &amp; mugs</span><img src="assets/img/cut-firepit.webp" width="640" height="166" alt="Fire pit and mugs"></div>
-  <div class="fitem" data-i="5"><span class="callout">the wetsuit<svg class="co-line" viewBox="0 0 60 24" aria-hidden="true"><path d="M4 20 Q22 2 56 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span><div class="ws-bg"></div><img src="assets/img/cut-wetsuit.webp" width="390" height="454" alt="Folded wetsuit"><img class="ws-full" src="assets/img/kit-surf-wetsuit-full.webp" width="768" height="1024" alt="Full wetsuit, unfolded"></div>
+  <div class="fitem" data-i="5"><span class="callout">the wetsuit<svg class="co-line" viewBox="0 0 60 24" aria-hidden="true"><path d="M4 20 Q22 2 56 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span><div class="ws-bg"></div><img src="assets/img/cut-wetsuit.webp" width="390" height="454" alt="Folded wetsuit"><img class="ws-full" src="assets/img/kit-surf-wetsuit-full.webp" width="768" height="1024" alt="Full wetsuit, unfolded"><img class="ws-burst" src="assets/img/kit-surf-wetsuit-cut.webp" width="472" height="903" alt=""></div>
   <div class="fcursor" id="dragCursor" aria-hidden="true"><svg viewBox="-1 -1 26 26" width="27" height="27"><path d="M23 5.5V20c0 2.2-1.8 4-4 4h-7.3c-1.08 0-2.1-.43-2.85-1.19L1 14.83s1.26-1.23 1.3-1.25c.22-.19.49-.29.79-.29.22 0 .42.06.6.16.04.01 4.31 2.46 4.31 2.46V4c0-.83.67-1.5 1.5-1.5S11 3.17 11 4v7h1V1.5c0-.83.67-1.5 1.5-1.5S15 .67 15 1.5V11h1V2.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5V11h1V5.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5z" fill="#161310" stroke="#FFFFFF" stroke-width="1.2" stroke-linejoin="round"/></svg></div>
   <div class="fcrate" id="fcrate">
     <svg viewBox="0 0 140 100">
@@ -709,23 +716,23 @@ footer .wordmark{color:var(--color-on-deep)}
   <span class="secnum" aria-hidden="true">05</span>
   <div class="shell">
     <p class="sect-label mono rv">05 — The curators</p>
-    <h2 class="rv">Your gear could be on this page.</h2>
+    <h2 class="rv">Are you a serial hobbyist?</h2>
     <p class="epigraph rv">Gear that sits idle costs money twice — once to buy, once to store. On Cache it earns instead: owners keep 90% of every rental.</p>
     <div class="own-grid rv-kids">
-      <!-- real listings from the rail above — real prices, honest math (day rate × days × 90%) -->
+      <!-- real listings from the rail above — payback math: new price ÷ (day rate × 90%) -->
       <div class="own">
-        <p class="ownitem mono">Custom 9&#8217;8 Longboard &#183; $50/day</p>
-        <h3>Two rental days a month &#8776; $90 back.</h3>
+        <p class="ownitem mono">Custom 9&#8217;8 Longboard &#183; $50/day &#183; new &#8776; $1,000</p>
+        <h3>22 rental days and the board has paid for itself.</h3>
         <p class="lends">San Diego &#183; <span class="keeps">listed on Cache now</span></p>
       </div>
       <div class="own">
-        <p class="ownitem mono">Listening Room Kit &#183; $18/day</p>
-        <h3>One weekend on loan &#8776; $32 back.</h3>
+        <p class="ownitem mono">Listening Room Kit &#183; $18/day &#183; new &#8776; $700</p>
+        <h3>43 days on loan and the hi-fi is paid off.</h3>
         <p class="lends">La Jolla &#183; <span class="keeps">listed on Cache now</span></p>
       </div>
       <div class="own">
-        <p class="ownitem mono">Armada Skis &#183; 164cm &#183; $15/day</p>
-        <h3>Four days a winter &#8776; $54 back.</h3>
+        <p class="ownitem mono">Armada Skis &#183; 164cm &#183; $15/day &#183; new &#8776; $650</p>
+        <h3>Two winters of weekends and the skis owe you nothing.</h3>
         <p class="lends">San Diego &#183; <span class="keeps">listed on Cache now</span></p>
       </div>
     </div>
@@ -1193,23 +1200,25 @@ footer .wordmark{color:var(--color-on-deep)}
 
         /* SEGMENT 5 — the crate opens at the final CTA (celebration, not scrubbed) */
         var burst = gsap.timeline({
-          scrollTrigger: { trigger: "#final", start: "top 65%", toggleActions: "play none none reverse" },
+          scrollTrigger: { trigger: "#final", start: "top 65%", toggleActions: "play none none reverse",
+            onLeaveBack: function(){ document.querySelector('.fitem[data-i="5"]').classList.remove("as-suit"); } },
           onStart: function(){
             var p = itemXY(fcrate, "f-crate");
             gsap.set(fcrate, { x: p.x, y: p.y, rotation: 0 });
+            document.querySelector('.fitem[data-i="5"]').classList.add("as-suit");
           }
         });
         burst.to(fcrate, { autoAlpha: 1, duration: 0.35 }, 0);
         burst.to("#fcrate .lid", { rotation: -30, duration: 0.5, ease: "back.out(1.6)" }, 0.25);
-        var arc = [ {dx:-150,dy:-55,r:-14}, {dx:-60,dy:-85,r:8}, {dx:40,dy:-90,r:-6}, {dx:130,dy:-60,r:12}, {dx:-105,dy:-20,r:-8}, {dx:95,dy:-25,r:6} ];
+        var arc = [ {dx:-190,dy:-40,r:-12,s:0.5}, {dx:-85,dy:-95,r:6,s:0.5}, {dx:25,dy:-105,r:-5,s:0.45}, {dx:135,dy:-105,r:10,s:0.4}, {dx:-140,dy:0,r:-7,s:0.5}, {dx:150,dy:-30,r:5,s:0.48} ];
         fitems.forEach(function(it, i){
           burst.fromTo(it,
             { x: function(){ var p = itemXY(fcrate, "f-crate"); return p.x + 20; },
               y: function(){ var p = itemXY(fcrate, "f-crate"); return p.y + 10; },
-              scale: 0.35, autoAlpha: 0 },
+              scale: 0.32, autoAlpha: 0 },
             { x: function(){ var p = itemXY(fcrate, "f-crate"); return p.x + arc[i].dx; },
               y: function(){ var p = itemXY(fcrate, "f-crate"); return p.y + arc[i].dy; },
-              scale: 0.55, autoAlpha: 1, rotation: arc[i].r,
+              scale: arc[i].s, autoAlpha: 1, rotation: arc[i].r,
               duration: 0.6, ease: "back.out(1.5)", immediateRender: false },
             0.35 + i * 0.06);
         });
