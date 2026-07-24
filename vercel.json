@@ -1,0 +1,13 @@
+{
+  "redirects": [
+    { "source": "/browse",              "destination": "https://app.cachekits.com/browse",              "permanent": true },
+    { "source": "/browse/:path*",       "destination": "https://app.cachekits.com/browse/:path*",       "permanent": true },
+    { "source": "/kits/:path*",         "destination": "https://app.cachekits.com/kits/:path*",         "permanent": true },
+    { "source": "/items/:path*",        "destination": "https://app.cachekits.com/items/:path*",        "permanent": true },
+    { "source": "/u/:path*",            "destination": "https://app.cachekits.com/u/:path*",            "permanent": true },
+    { "source": "/dashboard",           "destination": "https://app.cachekits.com/dashboard",           "permanent": true },
+    { "source": "/dashboard/:path*",    "destination": "https://app.cachekits.com/dashboard/:path*",    "permanent": true },
+    { "source": "/auth",                "destination": "https://app.cachekits.com/auth",                "permanent": true },
+    { "source": "/sitemap.xml",         "destination": "https://app.cachekits.com/sitemap.xml",         "permanent": true }
+  ]
+}
